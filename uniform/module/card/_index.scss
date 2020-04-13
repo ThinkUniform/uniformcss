@@ -1,0 +1,14 @@
+@use "uniform/core" as *;
+
+@if $include-card-module == true {
+
+  .card {
+    position: relative;
+    display: block;
+    background-color: white;
+    width: 100%;
+    box-shadow: effect(md);
+    border-radius: radius(lg);
+  }
+  
+}

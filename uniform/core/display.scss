@@ -1,0 +1,44 @@
+@use "uniform/core";
+@use "sass:map";
+
+$keyword: exempt !default;
+$responsive: true !default;
+
+$properties: (display) !default;
+
+$core-variants: (
+  inline: inline,
+  block: block,
+  flex: flex,
+  grid: grid,
+  inline-block: inline-block,
+  inline-flex: inline-flex,
+  inline-grid: inline-grid,
+  inline-table: inline-table,
+  table: table,
+  table-caption: table-caption,
+  table-column-group: table-column-group,
+  table-header-group: table-header-group,
+  table-footer-group: table-footer-group,
+  table-row-group: table-row-group,
+  table-cell: table-cell,
+  table-column: table-column,
+  table-row: table-row,
+  hidden: none
+) !default;
+
+$variants: () !default;
+
+$final-variants: map.merge($core-variants, $variants);
+
+$final-variants: ($final-variants) !default;
+
+$pseudos: () !default;
+
+@include core.constructor(
+  $keyword,
+  $responsive,
+  $properties,
+  $final-variants,
+  $pseudos
+);

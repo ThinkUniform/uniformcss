@@ -1,0 +1,42 @@
+@use "uniform/core" as *;
+
+@if $include-table-styles == true {
+
+  table {
+    width: 100%;
+    text-align: left;
+    background-color: white;
+    box-shadow: effect(md);
+  }
+  
+  thead {
+    tr {
+      border-top: 0;
+    }
+  }
+  
+  tr {
+    border-top: 1px solid fill(gray-200);
+  }
+  
+  th {
+    height: size(6);
+    padding: size(3, 4);
+    font-size: font-size(micro);
+    font-weight: font-weight(bold);
+    text-transform: uppercase;
+    color: fill(gray-600);
+    :first-child {
+      border-top-left-radius: radius(md);
+      border-bottom-right-radius: radius(md);
+    }
+  }
+  
+  td {
+    height: size(6);
+    padding: size(3, 4);
+    font-size: font-size(tiny);
+    font-weight: font-weight(regular);
+  }
+
+}

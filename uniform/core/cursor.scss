@@ -1,0 +1,33 @@
+@use "uniform/core";
+@use "sass:map";
+
+$keyword: cursor !default;
+$responsive: false !default;
+
+$properties: (cursor) !default;
+
+$core-variants: (
+  auto: auto,
+  default: default,
+  pointer: pointer,
+  wait: wait,
+  text: text,
+  move: move,
+  not-allowed: not-allowed
+) !default;
+
+$variants: () !default;
+
+$final-variants: map.merge($core-variants, $variants);
+
+$final-variants: ($final-variants) !default;
+
+$pseudos: (hover, active) !default;
+
+@include core.constructor(
+  $keyword,
+  $responsive,
+  $properties,
+  $final-variants,
+  $pseudos
+);

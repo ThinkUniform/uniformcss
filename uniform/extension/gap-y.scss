@@ -1,0 +1,25 @@
+@use "uniform/core" as *;
+
+$gaps: (
+  none: 0,
+  sm: size(6),
+  md: size(8),
+  lg: size(10)
+) !default;
+
+@each $gap, $gap-value in $gaps {
+  .gap-y {
+    &#{$delimiter}#{$gap} > * + * {
+      margin-top: $gap-value;
+    }
+  }
+  @each $breakpoint, $breakpoint-value in breakpoints() {
+    @media (min-width: $breakpoint-value) {
+      .#{$breakpoint}#{$breakpoint-delimiter}gap-y {
+        &#{$delimiter}#{$gap} > * + * {
+          margin-top: $gap-value;
+        }
+      }
+    }
+  }
+}

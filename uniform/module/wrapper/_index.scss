@@ -1,0 +1,26 @@
+@use "uniform/core" as *;
+
+@if $include-wrapper-module == true {
+  .wrapper {
+    width: 100%;
+    margin: auto;
+    padding-left: size(6);
+    padding-right: size(6);
+    @media (min-width: breakpoint(sm)) {
+      max-width: 768px;
+    }
+    @media (min-width: breakpoint(md)) {
+      max-width: 1024px;
+    }
+    @media (min-width: breakpoint(lg)) {
+      max-width: 1280px;
+      padding-left: size(11);
+      padding-right: size(11);
+    }
+    @media (min-width: breakpoint(xl)) {
+      max-width: 1280px;
+      padding-left: 0;
+      padding-right: 0;
+    }
+  }
+}

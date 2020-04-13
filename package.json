@@ -1,0 +1,38 @@
+{
+  "name": "@uniformcss/uniformcss",
+  "version": "0.8.0",
+  "description": "Fully configurable, drag-and-drop utility-first CSS framework built completly in Sass.",
+  "main": "styles.sass",
+  "scripts": {
+    "uniform:compile": "sass --load-path=./ --no-source-map styles.scss css/uniform.css",
+    "uniform:dev": "npm run uniform:compile && npm run uniform:groupmedia && npm run uniform:autoprefix",
+    "uniform:watch": "onchange --await-write-finish 1500 '**/*.scss' -- npm run uniform:dev",
+    "uniform:autoprefix": "postcss --no-map --use autoprefixer --replace css/uniform.css",
+    "uniform:groupmedia": "group-css-media-queries css/uniform.css css/uniform.css",
+    "uniform:cleancss": "cleancss -O2 'all:on' css/uniform.css --output css/uniformcss.min.css",
+    "uniform": "npm run uniform:compile && npm run uniform:autoprefix && npm run uniform:groupmedia && npm run uniform:cleancss"
+  },
+  "keywords": [
+    "css",
+    "sass",
+    "flexbox",
+    "framework",
+    "responsive",
+    "utility first"
+  ],
+  "author": {
+    "name": "Jin Su Park",
+    "email": "jinsupark@icloud.com",
+    "url": "https://jinsupark.com/"
+  },
+  "license": "MIT",
+  "devDependencies": {
+    "autoprefixer": "^9.7.5",
+    "clean-css-cli": "^4.3.0",
+    "group-css-media-queries": "^1.4.1",
+    "onchange": "^6.1.0",
+    "postcss-cli": "^7.1.0",
+    "sass": "^1.26.3"
+  },
+  "dependencies": {}
+}

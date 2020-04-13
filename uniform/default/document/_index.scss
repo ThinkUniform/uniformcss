@@ -1,0 +1,21 @@
+@use "uniform/core" as *;
+
+@if $include-document-styles == true {
+
+  html {
+    font-size: 14px;
+    -webkit-text-size-adjust: 100%; // Prevent adjustments of font size after orientation changes in iOS.
+    @media (min-width: breakpoint(sm)) {
+      font-size: 100%;
+    }
+  }
+
+  body {
+    font-family: font-family(sans);
+    line-height: line-height(loose);
+    color: fill(gray-800);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: graysize;
+  }
+
+}

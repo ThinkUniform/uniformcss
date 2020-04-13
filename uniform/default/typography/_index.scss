@@ -1,0 +1,102 @@
+@use "uniform/core" as *;
+
+@if $include-typography-styles == true {
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    color: fill(black);
+    font-weight: font-weight(bold);
+    line-height: line-height(tighter);
+  }
+
+  h1 {
+    font-size: font-size(h1);
+  }
+
+  h2 {
+    font-size: font-size(h2);
+  }
+
+  h3 {
+    font-size: font-size(h3);
+  }
+
+  h4 {
+    font-size: font-size(h4);
+  }
+
+  h5 {
+    font-size: font-size(h5);
+  }
+
+  h6 {
+    font-size: font-size(h6);
+  }
+
+  p {
+    margin-bottom: size(6);
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  a {
+    cursor: pointer;
+    color: fill(blue-600);
+    text-decoration: none;
+    transition: transition(visuals-steady);
+  }
+
+  b {
+    font-weight: font-weight(bold);
+  }
+
+  blockquote {
+    margin-bottom: size(6);
+    padding: size(4, 5);
+    background: fill(gray-50);
+    box-shadow: inset 4px 0px 0px 0px fill(gray-200);
+    p {
+      margin: 0;
+      font-size: font-size(body);
+    }
+    cite {
+      padding-top: size(2);
+      display: block;
+    }
+  }
+
+  sub,
+  sup {
+    position: relative;
+    margin-right: 0.2em;
+    font-size: 0.7em;
+    line-height: 0;
+    vertical-align: baseline;
+  }
+
+  sup {
+    top: -0.5em;
+    left: 0.2em;
+  }
+
+  sub {
+    bottom: -0.25em;
+    left: 0.2em;
+  }
+
+  pre {
+    display: block;
+    font-family: font-family(mono);
+    white-space: pre;
+  }
+
+  code {
+    font-family: font-family(mono);
+  }
+
+}

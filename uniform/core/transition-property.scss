@@ -1,0 +1,48 @@
+@use "uniform/core";
+@use "sass:map";
+
+$keyword: transition !default;
+$responsive: false !default;
+
+$properties: (transition-property) !default;
+
+$core-variants: (
+  none: none,
+  exempt: all,
+  visuals: (
+    background-color,
+    border-color,
+    color,
+    fill,
+    stroke,
+    opacity,
+    box-shadow,
+    transform
+  ),
+  colors: (
+    background-color,
+    border-color,
+    color,
+    fill,
+    stroke
+  ),
+  opacity: opacity,
+  shadow: box-shadow,
+  transform: transform
+) !default;
+
+$variants: () !default;
+
+$final-variants: map.merge($core-variants, $variants);
+
+$final-variants: ($final-variants) !default;
+
+$pseudos: () !default;
+
+@include core.constructor(
+  $keyword,
+  $responsive,
+  $properties,
+  $final-variants,
+  $pseudos
+);

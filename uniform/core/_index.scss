@@ -1,0 +1,918 @@
+/*! UNIFORM CSS | MIT License | github.com/ThinkUniform/UniformCSS */
+
+@use "sass:map";
+@use "sass:list";
+@use "sass:color";
+
+// CORE SETTINGS
+// ============================================================
+
+$important: false !default;
+$prefix: '' !default;
+$delimiter: '-' !default;
+$child-delimiter: '\\/' !default;
+$pseudo-delimiter: '\\.' !default;
+$breakpoint-delimiter: '\\.' !default;
+$responsive-pseudos: false !default;
+
+// DEFAULT STYLE SETTINGS
+// ============================================================
+
+$include-baseline-styles: true !default;
+$include-document-styles: true !default;
+$include-form-styles: true !default;
+$include-table-styles: true !default;
+$include-typography-styles: true !default;
+
+// MODULE SETTINGS
+// ============================================================
+
+$include-button-module: false !default;
+$include-card-module: false !default;
+$include-form-module: false !default;
+$include-table-module: false !default;
+$include-wrapper-module: false !default;
+
+// PRIVATE FUNCTIONS
+// ============================================================
+
+// PX TO REM FUNCTION
+@function rem($size-in-pixel) {
+  $remSize: $size-in-pixel / 16;
+  @return #{$remSize}rem;
+}
+
+// MULTIPLE MAP MERGE FUNCTION
+@function merge($maps...) {
+  $collection: () !default;
+  @each $map in $maps {
+    $collection: map-merge($collection, $map);
+  }
+  @return $collection;
+}
+
+// DEEP MAP GET FUNCTION
+@function get($map, $keys...) {
+  @each $key in $keys {
+    $map: map.get($map, $key);
+  }
+  @return $map;
+}
+
+// CORE PSEUDOS
+// ============================================================
+
+$core-pseudo-map: (
+  first: 'first-child',
+  last: 'last-child',
+  last-type: 'last-of-type',
+  odd: 'nth-child(odd)',
+  even: 'nth-child(even)',
+  hover: 'hover',
+  active: 'active',
+  visited: 'visited',
+  focus: 'focus',
+  disabled: 'disabled',
+  empty: 'empty',
+  focus-within: 'focus-within',
+  group-hover: 'group-hover'
+) !default;
+
+$pseudo-map: () !default;
+
+$all-pseudo-map: merge(
+  $core-pseudo-map,
+  $pseudo-map
+) !default;
+
+// CORE BREAKPOINTS
+// ============================================================
+
+$core-transitions: (
+  all-slow: all 0.4s,
+  all-steady: all 0.2s,
+  all-fast: all 0.1s,
+  visuals-slow: (
+    background-color 0.4s,
+    border-color 0.4s,
+    color 0.4s,
+    fill 0.4s,
+    stroke 0.4s,
+    opacity 0.4s,
+    box-shadow 0.4s,
+    transform 0.4s
+  ),
+  visuals-steady: (
+    background-color 0.2s,
+    border-color 0.2s,
+    color 0.2s,
+    fill 0.2s,
+    stroke 0.2s,
+    opacity 0.2s,
+    box-shadow 0.2s,
+    transform 0.2s
+  ),
+  visuals-fast: (
+    background-color 0.1s,
+    border-color 0.1s,
+    color 0.1s,
+    fill 0.1s,
+    stroke 0.1s,
+    opacity 0.1s,
+    box-shadow 0.1s,
+    transform 0.1s
+  )
+) !default;
+
+$transitions: () !default;
+
+$all-transitions: merge($core-transitions, $transitions) !default;
+
+@function transition($transition) {
+  @if (map.get($all-transitions, $transition)) {
+    $result: map.get($all-transitions, $transition);
+    @return $result;
+  } @else {
+    @error "[#{$transition}] does not exist";
+  }
+}
+
+@function transitions() {
+  $result: $all-transitions;
+  @return $result;
+}
+
+
+// CORE BREAKPOINTS
+// ============================================================
+
+$core-breakpoints: (
+  sm: 768px,
+  md: 1024px,
+  lg: 1280px,
+  xl: 1440px
+) !default;
+
+$breakpoints: () !default;
+
+$all-breakpoints: merge($core-breakpoints, $breakpoints) !default;
+
+@function breakpoint($breakpoint) {
+  @if (map.get($all-breakpoints, $breakpoint)) {
+    $result: map.get($all-breakpoints, $breakpoint);
+    @return $result;
+  } @else {
+    @error "[#{$breakpoint}] does not exist";
+  }
+}
+
+@function breakpoints() {
+  $result: $all-breakpoints;
+  @return $result;
+}
+
+// CORE FILLS
+// ============================================================
+
+$core-colors: (
+  red-50: #FFEAE9,
+  red-100: #FFD7D4,
+  red-200: #FFAFA9,
+  red-300: #FF867F,
+  red-400: #FF4A3E,
+  red-500: #FF3629,
+  red-600: #E63125,
+  red-700: #BF281F,
+  red-800: #8C1E17,
+  red-900: #59130E,
+  red-950: #260806,
+  orange-50: #FFEEE9,
+  orange-100: #FFDED4,
+  orange-200: #FFBDA9,
+  orange-300: #FF9C7D,
+  orange-400: #FF6A3C,
+  orange-500: #FF5A27,
+  orange-600: #E65123,
+  orange-700: #BF431D,
+  orange-800: #8C3115,
+  orange-900: #591F0E,
+  orange-950: #260D06,
+  yellow-50: #FFF6E5,
+  yellow-100: #FFEECC,
+  yellow-200: #FFDC99,
+  yellow-300: #FFCB66,
+  yellow-400: #FFB019,
+  yellow-500: #FFA800,
+  yellow-600: #E69700,
+  yellow-700: #BF7E00,
+  yellow-800: #8C5C00,
+  yellow-900: #593B00,
+  yellow-950:#261900,
+  green-50: #E5FAE9,
+  green-100: #CDF6D3,
+  green-200: #9AEDA7,
+  green-300: #68E37C,
+  green-400: #1CD539,
+  green-500: #03D124,
+  green-600: #03BC20,
+  green-700: #029D1B,
+  green-800: #027314,
+  green-900: #01490D,
+  green-950: #001F05,
+  teal-50: #E8F7F3,
+  teal-100: #D2EFE8,
+  teal-200: #A5DFD1,
+  teal-300: #79D0BB,
+  teal-400: #35B898,
+  teal-500: #1FB08D,
+  teal-600: #1C9F7F,
+  teal-700: #17846A,
+  teal-800: #11614D,
+  teal-900: #0B3D31,
+  teal-950: #051A15,
+  blue-50: #E8F7FF,
+  blue-100: #D2EFFF,
+  blue-200: #A4DEFF,
+  blue-300: #77CEFF,
+  blue-400: #32B5FF,
+  blue-500: #1CADFF,
+  blue-600: #199CE6,
+  blue-700: #1581BF,
+  blue-800: #0F5F8C,
+  blue-900: #0A3C59,
+  blue-950: #041A26,
+  indigo-50: #E9EEFF,
+  indigo-100: #D4DEFF,
+  indigo-200: #A9BCFF,
+  indigo-300: #7F9BFF,
+  indigo-400: #3E68FF,
+  indigo-500: #2958FF,
+  indigo-600: #254FE6,
+  indigo-700: #1F42BF,
+  indigo-800: #17308C,
+  indigo-900: #0E1F59,
+  indigo-950: #060D26,
+  purple-50: #F1E9FC,
+  purple-100: #E3D3F8,
+  purple-200: #C8A8F2,
+  purple-300: #AD7CEB,
+  purple-400: #833AE1,
+  purple-500: #7625DE,
+  purple-600: #6A21C8,
+  purple-700: #581CA6,
+  purple-800: #41147A,
+  purple-900: #290D4D,
+  purple-950: #120621,
+  magenta-50: #FCE9FA,
+  magenta-100: #F8D3F5,
+  magenta-200: #F2A8EA,
+  magenta-300: #EB7CE0,
+  magenta-400: #E13AD0,
+  magenta-500: #DE25CB,
+  magenta-600: #C821B7,
+  magenta-700: #A61C98,
+  magenta-800: #7A146F,
+  magenta-900: #4D0D47,
+  magenta-950: #21061E,
+  pink-50: #FFF1F9,
+  pink-100: #FFE3F4,
+  pink-200: #FFC8E9,
+  pink-300: #FFACDE,
+  pink-400: #FF82CD,
+  pink-500: #FF75C8,
+  pink-600: #E66AB4,
+  pink-700: #BF5896,
+  pink-800: #8C406E,
+  pink-900: #592946,
+  pink-950: #26111E,
+  gray-50: #F8F8F9,
+  gray-100: #F0F1F4,
+  gray-200: #E2E3E9,
+  gray-300: #D3D6DF,
+  gray-400: #BDC1CE,
+  gray-500: #B6BAC9,
+  gray-600: #A4A8B5,
+  gray-700: #888B97,
+  gray-800: #64666E,
+  gray-900: #404146,
+  gray-950: #1B1C1E,
+  black: black,
+  white: white
+) !default;
+
+$colors: () !default;
+
+$core-gradients: () !default;
+
+$gradients: () !default;
+
+$all-colors: merge($core-colors, $colors);
+$all-gradients: merge($core-gradients, $gradients);
+
+$fills: merge($core-colors, $core-gradients, $colors, $gradients) !default;
+
+@function color($color) {
+  @if (map.get($all-colors, $color)) {
+    $result: map.get($all-colors, $color);
+    @return $result;
+  } @else {
+    @error "[#{$color}] does not exist";
+  }
+}
+
+@function colors() {
+  $result: $all-colors;
+  @return $result;
+}
+
+@function gradient($gradient) {
+  @if (map.get($all-gradients, $gradient)) {
+    $result: map.get($all-gradients, $gradient);
+    @return $result;
+  } @else {
+    @error "[#{$gradient}] does not exist";
+  }
+}
+
+@function gradients() {
+  $result: $all-gradients;
+  @return $result;
+}
+
+@function fill($fill) {
+  @if (map.get($fills, $fill)) {
+    $result: map.get($fills, $fill);
+    @return $result;
+  } @else {
+    @error "[#{$fill}] does not exist";
+  }
+}
+
+@function fills() {
+  $result: $fills;
+  @return $result;
+}
+
+// CORE SCALES
+// ============================================================
+
+$core-non-negative-sizes: (
+  0: 0,
+  1: rem(4),
+  2: rem(8),
+  3: rem(12),
+  4: rem(16),
+  5: rem(20),
+  6: rem(24),
+  7: rem(32),
+  8: rem(40),
+  9: rem(48),
+  10: rem(64),
+  11: rem(80),
+  12: rem(96),
+  13: rem(128),
+  14: rem(160),
+  15: rem(192),
+  16: rem(256),
+  17: rem(320),
+  18: rem(384),
+  19: rem(512),
+  20: rem(640),
+  21: rem(768)
+) !default;
+
+$non-negative-sizes: () !default;
+
+$core-negative-sizes: (
+  n1: rem(-4),
+  n2: rem(-8),
+  n3: rem(-12),
+  n4: rem(-16),
+  n5: rem(-20),
+  n6: rem(-24),
+  n7: rem(-32),
+  n8: rem(-40),
+  n9: rem(-48),
+  n10: rem(-64),
+  n11: rem(-80),
+  n12: rem(-96),
+  n13: rem(-128),
+  n14: rem(-160),
+  n15: rem(-192),
+  n16: rem(-256),
+  n17: rem(-320),
+  n18: rem(-384),
+  n19: rem(-512),
+  n20: rem(-640),
+  n21: rem(-768)
+) !default;
+
+$negative-sizes: () !default;
+
+$all-non-negative-sizes: merge(
+  $core-non-negative-sizes,
+  $non-negative-sizes
+);
+
+$all-negative-sizes: merge($core-negative-sizes, $negative-sizes);
+
+$all-sizes: merge(
+  $core-non-negative-sizes,
+  $core-negative-sizes,
+  $non-negative-sizes,
+  $negative-sizes
+);
+
+@function non-negative-size($non-negative-size) {
+  @if (map.get($all-non-negative-sizes, $non-negative-size)) {
+    $result: map.get($all-non-negative-sizes, $non-negative-size);
+    @return $result;
+  } @else {
+    @error "[#{$non-negative-size}] does not exist";
+  }
+}
+
+@function non-negative-sizes() {
+  $result: $all-non-negative-sizes;
+  @return $result;
+}
+
+@function negative-size($negative-size) {
+  @if (map.get($all-negative-sizes, $negative-size)) {
+    $result: map.get($all-negative-sizes, $negative-size);
+    @return $result;
+  } @else {
+    @error "[#{$negative-size}] does not exist";
+  }
+}
+
+@function negative-sizes() {
+  $result: $all-negative-sizes;
+  @return $result;
+}
+
+@function size($size, $sizes...) {
+  $list: () !default;
+  @if (map.has-key($all-sizes, $size)) {
+    $list: map.get($all-sizes, $size);
+  } @else {
+    $list: list.append($list, $size);
+  }
+  @each $size in $sizes {
+    $value: '';
+    @if (map.has-key($all-sizes, $size)) {
+      $value: map.get($all-sizes, $size);
+      $list: list.append($list, $value);
+    } @else {
+      $list: list.append($list, $size);
+    }
+  }
+  @return $list;
+}
+
+@function sizes() {
+  $result: $all-sizes;
+  @return $result;
+}
+
+// CORE EFFECTS
+// ============================================================
+
+$core-effects: (
+  none: none,
+  sm: (
+    0 1px 2px 1px rgba(0, 0, 0, 0.08),
+    0 2px 6px 0 rgba(0, 0, 0, 0.05)
+  ),
+  md: (
+    0 2px 4px 1px rgba(0, 0, 0, 0.1),
+    0 2px 4px 0px rgba(0, 0, 0, 0.1)
+  ),
+  lg: (
+    0 1px 5px 0 rgba(0, 0, 0, 0.1),
+    0 5px 10px 0 rgba(0, 0, 0, 0.15)
+  ),
+  focus: 0 0 0 3px transparentize(fill(indigo-500), 0.8),
+  valid: 0 0 0 3px transparentize(fill(green-600), 0.8),
+  warning: 0 0 0 3px transparentize(fill(orange-500), 0.8),
+  error: 0 0 0 3px transparentize(fill(red-500), 0.8)
+);
+
+$effects: () !default;
+
+$all-effects: merge($core-effects, $effects);
+
+@function effect($effect) {
+  @if (map.get($all-effects, $effect)) {
+    $result: map.get($all-effects, $effect);
+    @return $result;
+  } @else {
+    @error "[#{$effect}] does not exist";
+  }
+}
+
+@function effects() {
+  $result: $all-effects;
+  @return $result;
+}
+
+// TYPOGRAPHY API
+// ============================================================
+
+$core-font-families: (
+  sans: (
+    system-ui,
+    -apple-system,
+    BlinkMacSystemFont,
+    'Segoe UI',
+    Roboto,
+    'Helvetica Neue',
+    Arial,
+    'Noto Sans',
+    sans-serif,
+    'Apple Color Emoji',
+    'Segoe UI Emoji',
+    'Segoe UI Symbol',
+    'Noto Color Emoji'
+  ),
+  serif: (
+    Georgia,
+    Cambria,
+    'Times New Roman',
+    Times,
+    serif
+  ),
+  mono: (
+    Menlo,
+    Monaco,
+    Consolas,
+    'Liberation Mono',
+    'Courier New',
+    monospace
+  )
+) !default;
+
+$font-families: () !default;
+
+$core-font-weights: (
+  light: 300,
+  regular: 400,
+  medium: 500,
+  semibold: 600,
+  bold: 700
+);
+
+$font-weights: () !default;
+
+$core-font-sizes: (
+  h1: rem(56),
+  h2: rem(48),
+  h3: rem(36),
+  h4: rem(28),
+  h5: rem(24),
+  h6: rem(18),
+  body: rem(16),
+  tiny: rem(14),
+  micro: rem(12)
+);
+
+$font-sizes: () !default;
+
+$core-line-heights: (
+  none: 1,
+  tightest: 1.125,
+  tighter: 1.25,
+  tight: 1.375,
+  normal: 1.5,
+  loose: 1.625,
+  looser: 1.75,
+  loosest: 1.875
+) !default;
+
+$line-heights: () !default;
+
+$all-font-families: merge($core-font-families, $font-families);
+$all-font-weights: merge($core-font-weights, $font-weights);
+$all-font-sizes: merge($core-font-sizes, $font-sizes);
+$all-line-heights: merge($core-line-heights, $line-heights);
+
+@function font-family($font-family) {
+  @if (map.get($all-font-families, $font-family)) {
+    $result: map.get($all-font-families, $font-family);
+    @return $result;
+  } @else {
+    @error "[#{$font-family}] does not exist";
+  }
+}
+
+@function font-families() {
+  $result: $all-font-families;
+  @return $result;
+}
+
+@function font-size($font-size) {
+  @if (map.get($all-font-sizes, $font-size)) {
+    $result: map.get($all-font-sizes, $font-size);
+    @return $result;
+  } @else {
+    @error "[#{$font-size}] does not exist";
+  }
+}
+
+@function font-sizes() {
+  $result: $all-font-sizes;
+  @return $result;
+}
+
+@function font-weight($font-weight) {
+  @if (map.get($all-font-weights, $font-weight)) {
+    $result: map.get($all-font-weights, $font-weight);
+    @return $result;
+  } @else {
+    @error "[#{$font-weight}] does not exist";
+  }
+}
+
+@function font-weights() {
+  $result: $all-font-weights;
+  @return $result;
+}
+
+@function line-height($line-height) {
+  @if (map.get($all-line-heights, $line-height)) {
+    $result: map.get($all-line-heights, $line-height);
+    @return $result;
+  } @else {
+    @error "[#{$line-height}] does not exist";
+  }
+}
+
+@function line-heights() {
+  $result: $all-line-heights;
+  @return $result;
+}
+
+// CORE BORDER RADIUSES
+// ============================================================
+
+$core-border-radiuses: (
+  0: 0,
+  sm: rem(3),
+  md: rem(5),
+  lg: rem(8),
+  round: 9999px
+) !default;
+
+$border-radiuses: () !default;
+$all-border-radiuses: merge($core-border-radiuses, $border-radiuses);
+
+@function radius($border-radius) {
+  @if (map.get($all-border-radiuses, $border-radius)) {
+    $result: map.get($all-border-radiuses, $border-radius);
+    @return $result;
+  } @else {
+    @error "[#{$border-radius}] does not exist";
+  }
+}
+
+@function radiuses() {
+  $result: $all-border-radiuses;
+  @return $result;
+}
+
+// CORE CONSTRUCTOR
+// ============================================================
+
+@mixin constructor(
+  $keyword,
+  $responsive,
+  $properties,
+  $final-variants,
+  $pseudos
+) {
+
+  // Create basic classes
+  @if $keyword == 'exempt' {
+    @each $variant, $variant-value in $final-variants {
+      .#{$prefix}#{'' + $variant} {
+        @each $property in $properties {
+          #{$property}: $variant-value if($important == true, !important, null);
+        }
+      }
+    }
+  } @else {
+    @each $variant, $variant-value in $final-variants {
+      @if $variant == 'exempt' {
+        .#{$prefix}#{$keyword} {
+          @each $property in $properties {
+            #{$property}: $variant-value
+              if($important == true, !important, null);
+          }
+        }
+      } @else {
+        .#{$prefix}#{$keyword} {
+          &#{$delimiter}#{'' + $variant} {
+            @each $property in $properties {
+              #{$property}: $variant-value
+                if($important == true, !important, null);
+            }
+          }
+        }
+      }
+    }
+  }
+
+  // Create basic pseudo classes
+  @each $pseudo in $pseudos {
+    @if map.has-key($all-pseudo-map, $pseudo) {
+      @if $keyword == 'exempt' {
+        @each $variant, $variant-value in $final-variants {
+          @if $pseudo == group-hover {
+            .group:hover
+              .#{$pseudo}#{$pseudo-delimiter}#{$prefix}#{''
+              + $variant} {
+              @each $property in $properties {
+                #{$property}: $variant-value
+                  if($important == true, !important, null);
+              }
+            }
+          } @else {
+            .#{$pseudo}#{$pseudo-delimiter}#{$prefix}#{'' + $variant} {
+              &:#{map.get($all-pseudo-map, $pseudo)} {
+                @each $property in $properties {
+                  #{$property}: $variant-value
+                    if($important == true, !important, null);
+                }
+              }
+            }
+          }
+        }
+      } @else {
+        @each $variant, $variant-value in $final-variants {
+          @if $variant == 'exempt' {
+            @if $pseudo == group-hover {
+              .group:hover
+                .#{$pseudo}#{$pseudo-delimiter}#{$prefix}#{$keyword} {
+                @each $property in $properties {
+                  #{$property}: $variant-value
+                    if($important == true, !important, null);
+                }
+              }
+            } @else {
+              .#{$pseudo}#{$pseudo-delimiter}#{$prefix}#{$keyword} {
+                &:#{map.get($all-pseudo-map, $pseudo)} {
+                  @each $property in $properties {
+                    #{$property}: $variant-value
+                      if($important == true, !important, null);
+                  }
+                }
+              }
+            }
+          } @else {
+            @if $pseudo == group-hover {
+              .group:hover
+                .#{$pseudo}#{$pseudo-delimiter}#{$prefix}#{$keyword} {
+                &#{$delimiter}#{'' + $variant} {
+                  @each $property in $properties {
+                    #{$property}: $variant-value
+                      if($important == true, !important, null);
+                  }
+                }
+              }
+            } @else {
+              .#{$pseudo}#{$pseudo-delimiter}#{$prefix}#{$keyword} {
+                &#{$delimiter}#{'' + $variant} {
+                  &:#{map.get($all-pseudo-map, $pseudo)} {
+                    @each $property in $properties {
+                      #{$property}: $variant-value
+                        if($important == true, !important, null);
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+
+  // Create responsive classes
+  @if $responsive == true {
+    @each $breakpoint, $breakpoint-value in $all-breakpoints {
+      @media (min-width: $breakpoint-value) {
+        // Create basic classes
+        @if $keyword == 'exempt' {
+          @each $variant, $variant-value in $final-variants {
+            .#{$breakpoint}#{$breakpoint-delimiter}#{$prefix}#{'' + $variant} {
+              @each $property in $properties {
+                #{$property}: $variant-value
+                  if($important == true, !important, null);
+              }
+            }
+          }
+        } @else {
+          @each $variant, $variant-value in $final-variants {
+            @if $variant == 'exempt' {
+              .#{$breakpoint}#{$breakpoint-delimiter}#{$prefix}#{$keyword} {
+                @each $property in $properties {
+                  #{$property}: $variant-value
+                    if($important == true, !important, null);
+                }
+              }
+            } @else {
+              .#{$breakpoint}#{$breakpoint-delimiter}#{$prefix}#{$keyword} {
+                &#{$delimiter}#{'' + $variant} {
+                  @each $property in $properties {
+                    #{$property}: $variant-value
+                      if($important == true, !important, null);
+                  }
+                }
+              }
+            }
+          }
+        }
+
+        @if $responsive-pseudos == true {
+          // Create basic pseudo classes
+          @each $pseudo, $pseudo-value in $pseudos {
+            @if map.has-key($all-pseudo-map, $pseudo) {
+              @if $keyword == 'exempt' {
+                // Basic variant in the breakpoint context without keyword
+                @each $variant, $variant-value in $final-variants {
+                  @if $pseudo == group-hover {
+                    .group:hover
+                      .#{$breakpoint}#{$breakpoint-delimiter}#{$pseudo}#{$pseudo-delimiter}#{$prefix}#{''
+                      + $variant} {
+                      @each $property in $properties {
+                        #{$property}: $variant-value
+                          if($important == true, !important, null);
+                      }
+                    }
+                  } @else {
+                    .#{$breakpoint}#{$breakpoint-delimiter}#{$pseudo}#{$pseudo-delimiter}#{$prefix}#{''
+                      + $variant} {
+                      &:#{map.get($all-pseudo-map, $pseudo)} {
+                        @each $property in $properties {
+                          #{$property}: $variant-value
+                            if($important == true, !important, null);
+                        }
+                      }
+                    }
+                  }
+                }
+              } @else {
+                // Pseudo variant loop in the breakpoint context
+                @each $variant, $variant-value in $final-variants {
+                  @if $variant == 'exempt' {
+                    @if $pseudo == group-hover {
+                      .group:hover
+                        .#{$breakpoint}#{$breakpoint-delimiter}#{$pseudo}#{$pseudo-delimiter}#{$prefix}#{$keyword} {
+                        @each $property in $properties {
+                          #{$property}: $variant-value
+                            if($important == true, !important, null);
+                        }
+                      }
+                    } @else {
+                      .#{$breakpoint}#{$breakpoint-delimiter}#{$pseudo}#{$pseudo-delimiter}#{$prefix}#{$keyword} {
+                        &:#{map.get($all-pseudo-map, $pseudo)} {
+                          @each $property in $properties {
+                            #{$property}: $variant-value
+                              if($important == true, !important, null);
+                          }
+                        }
+                      }
+                    }
+                  } @else {
+                    @if $pseudo == group-hover {
+                      .group:hover
+                        .#{$breakpoint}#{$breakpoint-delimiter}#{$pseudo}#{$pseudo-delimiter}#{$prefix}#{$keyword} {
+                        &#{$delimiter}#{'' + $variant} {
+                          @each $property in $properties {
+                            #{$property}: $variant-value
+                              if($important == true, !important, null);
+                          }
+                        }
+                      }
+                    } @else {
+                      .#{$breakpoint}#{$breakpoint-delimiter}#{$pseudo}#{$pseudo-delimiter}#{$prefix}#{$keyword} {
+                        &#{$delimiter}#{'' + $variant} {
+                          &:#{map.get($all-pseudo-map, $pseudo)} {
+                            @each $property in $properties {
+                              #{$property}: $variant-value
+                                if($important == true, !important, null);
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

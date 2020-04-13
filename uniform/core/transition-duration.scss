@@ -1,0 +1,29 @@
+@use "uniform/core";
+@use "sass:map";
+
+$keyword: transition !default;
+$responsive: false !default;
+
+$properties: (transition-duration) !default;
+
+$core-variants: (
+  slow: 0.4s,
+  steady: 0.2s,
+  fast: 0.1s
+) !default;
+
+$variants: () !default;
+
+$final-variants: map.merge($core-variants, $variants);
+
+$final-variants: ($final-variants) !default;
+
+$pseudos: () !default;
+
+@include core.constructor(
+  $keyword,
+  $responsive,
+  $properties,
+  $final-variants,
+  $pseudos
+);

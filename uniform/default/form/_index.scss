@@ -1,0 +1,195 @@
+@use "uniform/core" as *;
+
+@if $include-form-styles == true {
+
+  label {
+    color: fill(black);
+  }
+
+  input {
+    display: block;
+    position: relative;
+    width: 100%;
+    height: size(8);
+    padding: size(0, 3);
+    background: white;
+    border-width: 1px;
+    border-style: solid;
+    border-color: fill(gray-300);
+    border-radius: radius(md);
+    outline: 0;
+    appearance: none;
+    font-size: font-size(body);
+    transition: all 0.1s;
+
+    // STATES
+    &.is-valid {
+      border-color: fill(green-500);
+      &:focus {
+        border-color: fill(green-500);
+        box-shadow: effect(valid);
+      }
+    }
+    &.is-warning {
+      border-color: fill(orange-400);
+      &:focus {
+        border-color: fill(orange-400);
+        box-shadow: effect(warning);
+      }
+    }
+    &.is-error {
+      border-color: fill(red-500);
+      &:focus {
+        border-color: fill(red-500);
+        box-shadow: effect(error);
+      }
+    }
+
+    // PSEUDOS
+    &:hover {
+      border-color: fill(gray-400);
+    }
+    &:focus {
+      border-color: fill(indigo-500);
+      box-shadow: effect(focus);
+    }
+    &:disabled {
+      background: fill(gray-100);
+      color: fill(gray-700);
+      pointer-events: none;
+    }
+  }
+
+  /* Reset Checkbox */
+  input[type="checkbox"] {
+    all: unset;
+    appearance: checkbox;
+  }
+
+  /* Reset Checkbox */
+  input[type="radio"] {
+    all: unset;
+    appearance: radio;
+  }
+
+  /* Chrome, Safari, Edge, Opera */
+  input::-webkit-outer-spin-button,
+  input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+
+  /* Firefox */
+  input[type='number'] {
+    -moz-appearance: textfield;
+  }
+
+  textarea {
+    display: block;
+    position: relative;
+    width: 100%;
+    min-height: size(14);
+    padding: size(4);
+    background: white;
+    border-width: 1px;
+    border-style: solid;
+    border-color: fill(gray-300);
+    border-radius: radius(md);
+    outline: 0;
+    appearance: none;
+    font-size: font-size(body);
+    line-height: line-height(loose);
+    transition: all 0.2s;
+
+    // PSEUDOS
+    &:hover {
+      border-color: fill(gray-400);
+    }
+    &:focus {
+      border-color: fill(indigo-500);
+      box-shadow: effect(focus);
+    }
+    &:disabled {
+      background: fill(gray-100);
+      color: fill(gray-700);
+      pointer-events: none;
+    }
+
+    // STATES
+    &.is-valid {
+      border-color: fill(green-600);
+      &:focus {
+        border-color: fill(green-600);
+        box-shadow: effect(valid);
+      }
+    }
+    &.is-warning {
+      border-color: fill(orange-500);
+      &:focus {
+        border-color: fill(orange-500);
+        box-shadow: effect(warning);
+      }
+    }
+    &.is-error {
+      border-color: fill(red-500);
+      &:focus {
+        border-color: fill(red-500);
+        box-shadow: effect(error);
+      }
+    }
+  }
+
+  select {
+    display: inline-block;
+    width: 100%;
+    height: rem(40);
+    padding: 0 rem(14);
+    outline: 0;
+    border-width: 1px;
+    border-style: solid;
+    border-color: fill(gray-300);
+    border-radius: radius(md);
+    background: linear-gradient(to bottom, #ffffff 0%, #f1f2f3 100%);
+    appearance: select;
+    font-size: font-size(body);
+    transition: all 0.1s;
+    cursor: pointer;
+
+    // STATES
+    &.is-valid {
+      border-color: fill(green-600);
+      &:focus {
+        border-color: fill(green-600);
+        box-shadow: effect(valid);
+      }
+    }
+    &.is-warning {
+      border-color: fill(orange-500);
+      &:focus {
+        border-color: fill(orange-500);
+        box-shadow: effect(valid);
+      }
+    }
+    &.is-error {
+      border-color: fill(red-500);
+      &:focus {
+        border-color: fill(red-500);
+        box-shadow: effect(valid);
+      }
+    }
+
+    // PSEUDOS
+    &:hover {
+      border-color: fill(gray-400);
+    }
+    &:focus {
+      border-color: fill(indigo-500);
+      box-shadow: effect(focus);
+    }
+    &:disabled {
+      background: fill(gray-100);
+      color: fill(gray-700);
+      pointer-events: none;
+    }
+  }
+}

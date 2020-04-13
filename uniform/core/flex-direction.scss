@@ -1,0 +1,30 @@
+@use "uniform/core";
+@use "sass:map";
+
+$keyword: flex !default;
+$responsive: true !default;
+
+$properties: (flex-direction) !default;
+
+$core-variants: (
+  row: row,
+  row-reverse: row-reverse,
+  col: column,
+  col-reverse: column-reverse
+) !default;
+
+$variants: () !default;
+
+$final-variants: map.merge($core-variants, $variants);
+
+$final-variants: ($final-variants) !default;
+
+$pseudos: () !default;
+
+@include core.constructor(
+  $keyword,
+  $responsive,
+  $properties,
+  $final-variants,
+  $pseudos
+);

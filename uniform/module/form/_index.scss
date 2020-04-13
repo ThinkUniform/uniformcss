@@ -1,0 +1,351 @@
+@use "uniform/core" as *;
+
+@if $include-form-module == true {
+  .form {
+    // add default form styling here
+  }
+
+  .form#{$child-delimiter}group {
+    position: relative;
+    display: block;
+    margin-bottom: size(4);
+    &:last-child {
+      margin-bottom: 0;
+    }
+    &:after {
+      content: '';
+      display: table !important;
+      clear: both !important;
+    }
+  }
+
+  .form#{$child-delimiter}message {
+    padding-top: size(2);
+    &.is-valid {
+      color: fill(green-600);
+    }
+    &.is-warning {
+      color: fill(orange-500);
+    }
+    &.is-error {
+      color: fill(red-500);
+    }
+  }
+
+  /******************************
+  LABEL
+  ******************************/
+
+  .label {
+    display: block;
+    position: relative;
+    padding-bottom: size(1);
+    font-size: font-size(micro);
+    font-weight: font-weight(bold);
+    text-transform: uppercase;
+    color: fill(gray-600);
+    &.is-required {
+      &:after {
+        content: '*';
+        position: relative;
+        display: inline-block;
+        top: -2px;
+        left: 2px;
+        color: fill(red-500);
+      }
+    }
+  }
+
+  /******************************
+  INPUT SIZES
+  ******************************/
+
+  .input-sm {
+    height: size(7);
+    padding: size(0, 3);
+  }
+
+  .input-md {
+    height: size(8);
+    padding: size(0, 3);
+  }
+
+  .input-lg {
+    height: size(9);
+    padding: size(0, 4);
+  }
+
+  @each $breakpoint, $breakpoint-value in breakpoints() {
+    @media (min-width: $breakpoint-value) {
+      .#{$breakpoint}#{$breakpoint-delimiter}input-sm {
+        height: size(7);
+        padding: size(0, 3);
+      }
+      .#{$breakpoint}#{$breakpoint-delimiter}input-md {
+        height: size(8);
+        padding: rem(14);
+      }
+      .#{$breakpoint}#{$breakpoint-delimiter}input-lg {
+        height: size(9);
+        padding: size(0, 4);
+      }
+    }
+  }
+
+  /******************************
+  CHECKBOX
+  ******************************/
+
+  .input-checkbox {
+    display: inline-flex;
+    align-items: center;
+    position: relative;
+    padding: 0;
+    font-size: font-size(tiny);
+    font-weight: font-weight(regular);
+    line-height: line-height(normal);
+    text-transform: none;
+    color: black;
+
+    &.is-disabled {
+      cursor: default;
+      pointer-events: none;
+    }
+
+    &:hover {
+      .input-checkbox#{$child-delimiter}box {
+        border-color: fill(gray-400);
+      }
+    }
+
+    input {
+      display: none;
+      &:checked ~ .input-checkbox#{$child-delimiter}box {
+        background: fill(indigo-500);
+        border-color: fill(indigo-500);
+        &:after {
+          display: block;
+        }
+      }
+      &:disabled {
+        & ~ .input-checkbox#{$child-delimiter}box {
+          background: fill(gray-300);
+          border-color: fill(gray-300);
+          pointer-events: none;
+          &:after {
+            border-color: black;
+          }
+        }
+      }
+    }
+
+    .input-checkbox#{$child-delimiter}box {
+      flex: none;
+      position: relative;
+      height: rem(20);
+      width: rem(20);
+      margin-right: size(2);
+      border-radius: radius(md);
+      background: white;
+      border: 1px solid fill(gray-300);
+      transition: all 0.1s;
+      cursor: pointer;
+
+      &:after {
+        content: '';
+        display: none;
+        position: absolute;
+        left: rem(6);
+        top: rem(1);
+        width: rem(8);
+        height: rem(12);
+        border: solid #fff;
+        border-width: 0 rem(3) rem(3) 0;
+        transform: rotate(45deg);
+      }
+    }
+  }
+
+  /******************************
+  TOGGLE
+  ******************************/
+
+  .input-toggle {
+    display: inline-flex;
+    align-items: center;
+    position: relative;
+    padding: 0;
+    font-size: font-size(tiny);
+    font-weight: font-weight(regular);
+    line-height: line-height(normal);
+    text-transform: none;
+    color: black;
+    cursor: pointer;
+
+    &.is-disabled {
+      cursor: default;
+      pointer-events: none;
+    }
+
+    &:hover {
+      .input-toggle#{$child-delimiter}slide {
+        background-color: fill(gray-400);
+      }
+    }
+
+    input {
+      display: none;
+      &:checked + .input-toggle#{$child-delimiter}slide {
+        background-color: fill(green-500);
+      }
+      &:checked + .input-toggle#{$child-delimiter}slide:before {
+        transform: translateX(24px);
+      }
+      &:disabled + .input-toggle#{$child-delimiter}slide {
+        background-color: fill(gray-300);
+      }
+    }
+
+    .input-toggle#{$child-delimiter}slide {
+      position: relative;
+      width: 48px;
+      height: 24px;
+      background-color: fill(gray-300);
+      transition: all 0.2s;
+      border-radius: radius(round);
+
+      &:before {
+        content: '';
+        position: absolute;
+        left: 3px;
+        bottom: 3px;
+        width: 18px;
+        height: 18px;
+        background-color: #fff;
+        border-radius: radius(round);
+        box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.2);
+        transition: all 0.1s;
+      }
+    }
+  }
+
+  /******************************
+  RADIO
+  ******************************/
+
+  .input-radio {
+    display: inline-flex;
+    align-items: center;
+    position: relative;
+    padding: 0;
+    cursor: pointer;
+    font-size: font-size(tiny);
+    font-weight: font-weight(regular);
+    line-height: line-height(normal);
+    text-transform: none;
+    color: black;
+
+    &:hover {
+      .input-radio#{$child-delimiter}selection {
+        border-color: fill(gray-400);
+      }
+    }
+
+    &.is-disabled {
+      cursor: default;
+      pointer-events: none;
+    }
+
+    input {
+      display: none;
+      &:checked ~ .input-radio#{$child-delimiter}selection {
+        background: fill(indigo-500);
+        border-color: fill(indigo-500);
+        &:after {
+          display: block;
+          background: white;
+        }
+      }
+      &:disabled {
+        & ~ .input-radio#{$child-delimiter}selection {
+          background: fill(gray-300);
+          border-color: fill(gray-300);
+          pointer-events: none;
+          &:after {
+            background: black;
+          }
+        }
+      }
+    }
+
+    .input-radio#{$child-delimiter}selection {
+      display: flex;
+      flex: none;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      width: 20px;
+      height: 20px;
+      margin-right: size(2);
+      border-radius: radius(round);
+      border: 1px solid fill(gray-300);
+      background: white;
+      transition: all 0.1s;
+      &:after {
+        position: absolute;
+        content: '';
+        display: none;
+        width: 8px;
+        height: 8px;
+        border-radius: radius(round);
+      }
+    }
+  }
+
+  /******************************
+  SELECT
+  ******************************/
+
+  .input-select {
+    position: relative;
+    width: 100%;
+
+    &:hover {
+      .input-select#{$child-delimiter}angle:after {
+        border-color: fill(black);
+      }
+    }
+    &:focus {
+      .input-select#{$child-delimiter}angle:after {
+        border-color: fill(black);
+      }
+    }
+    select[disabled] {
+      & ~ .input-select#{$child-delimiter}angle:after {
+        border-color: fill(gray-600);
+      }
+    }
+
+    .input-select#{$child-delimiter}angle {
+      display: flex;
+      align-items: center;
+      position: absolute;
+      right: size(4);
+      top: 0;
+      height: 100%;
+
+      &:after {
+        position: relative;
+        top: -0.1rem;
+        content: '';
+        display: block;
+        width: 0.5rem;
+        height: 0.5rem;
+        border: solid fill(gray-700);
+        border-width: 0 0.1rem 0.1rem 0;
+        transform: rotate(45deg);
+        transition: transition(visuals-steady);
+      }
+    }
+  }
+}

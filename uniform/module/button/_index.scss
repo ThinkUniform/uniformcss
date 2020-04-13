@@ -1,0 +1,201 @@
+@use "uniform/core" as *;
+@use "sass:color";
+
+@if $include-button-module == true {
+  .btn {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    height: size(8);
+    margin-right: size(1);
+    padding: size(3);
+    outline: none;
+    border-radius: radius(md);
+    font-family: font-family(sans);
+    font-size: font-size(micro);
+    font-weight: font-weight(bold);
+    line-height: 1;
+    text-decoration: none;
+    text-transform: uppercase;
+    color: white;
+    white-space: nowrap;
+    transition: transition(visuals-steady);
+    background: fill(indigo-500);
+    cursor: pointer;
+
+    &:last-of-type {
+      margin-right: 0;
+    }
+    &:hover {
+      background: fill(indigo-400);
+    }
+    &:focus {
+      box-shadow: 0 0 0 3px transparentize(fill(indigo-500), 0.75);
+    }
+    &:active {
+      background: fill(indigo-600);
+    }
+    &.is-active {
+      background: fill(indigo-600);
+    }
+  }
+
+  /******************************
+  FILLS
+  ******************************/
+
+  .btn-ghost {
+    background: transparent;
+    color: fill(gray-800);
+    &:hover {
+      background: fill(gray-100);
+    }
+    &:active {
+      background: fill(gray-200);
+    }
+    &.is-active {
+      background: fill(gray-200);
+    }
+  }
+  .btn-primary {
+    background: fill(orange-500);
+    &:hover {
+      background: fill(orange-400);
+    }
+    &:focus {
+      box-shadow: 0 0 0 3px transparentize(fill(orange-500), 0.75);
+    }
+    &:active {
+      background: fill(orange-600);
+    }
+    &.is-active {
+      background: fill(orange-600);
+    }
+  }
+  .btn-secondary {
+    background: fill(gray-950);
+    &:hover {
+      background: fill(gray-900);
+    }
+    &:focus {
+      box-shadow: 0 0 0 3px transparentize(fill(gray-950), 0.75);
+    }
+    &:active {
+      background: fill(black);
+    }
+    &.is-active {
+      background: fill(black);
+    }
+  }
+  .btn-tertiary {
+    background: fill(gray-50);
+    color: fill(gray-800);
+    border: 1px solid fill(gray-300);
+    &:hover {
+      background: fill(gray-100);
+      border-color: fill(gray-400);
+    }
+    &:focus {
+      box-shadow: 0 0 0 3px transparentize(fill(gray-400), 0.75);
+    }
+    &:active {
+      background: fill(gray-200);
+    }
+    &.is-active {
+      background: fill(gray-200);
+    }
+  }
+  .btn-danger {
+    background: fill(red-500);
+    &:hover {
+      background: fill(red-400);
+    }
+    &:focus {
+      box-shadow: 0 0 0 3px transparentize(fill(red-500), 0.75);
+    }
+    &:active {
+      background: fill(red-600);
+    }
+    &.is-active {
+      background: fill(red-600);
+    }
+  }
+
+  /******************************
+  SIZES
+  ******************************/
+
+  .btn-sm {
+    height: size(7);
+    padding: size(2);
+    font-size: font-size(micro);
+  }
+  .btn-md {
+    height: size(8);
+    padding: size(3);
+    font-size: font-size(micro);
+  }
+  .btn-lg {
+    height: size(9);
+    padding: size(4);
+    font-size: font-size(micro);
+  }
+
+  @each $breakpoint, $breakpoint-value in breakpoints() {
+    @media (min-width: $breakpoint-value) {
+      .#{$breakpoint}#{$breakpoint-delimiter}btn-sm {
+        height: size(7);
+        padding: size(2);
+        font-size: font-size(micro);
+      }
+      .#{$breakpoint}#{$breakpoint-delimiter}btn-md {
+        height: size(8);
+        padding: size(3);
+        font-size: font-size(micro);
+      }
+      .#{$breakpoint}#{$breakpoint-delimiter}btn-lg {
+        height: size(9);
+        padding: size(4);
+        font-size: font-size(micro);
+      }
+    }
+  }
+
+  /******************************
+  BUTTONS
+  ******************************/
+
+  .btns {
+    display: inline-flex;
+
+    .btn {
+      display: flex;
+      flex: 1;
+      border-radius: 0;
+      margin: 0;
+
+      &:first-child {
+        border-top-left-radius: radius(md);
+        border-bottom-left-radius: radius(md);
+      }
+      &:last-child {
+        border-top-right-radius: radius(md);
+        border-bottom-right-radius: radius(md);
+      }
+
+      &-tertiary {
+        border-right: 0;
+        &:hover {
+          border-color: fill(gray-300);
+        }
+        &:last-child {
+          border-right: 1px solid fill(gray-300);
+        }
+        &.is-active {
+          background: fill(gray-200);
+        }
+      }
+    }
+  }
+}

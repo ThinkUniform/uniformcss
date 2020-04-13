@@ -1,0 +1,31 @@
+@use "uniform/core";
+@use "sass:map";
+
+$keyword: exempt !default;
+$responsive: true !default;
+
+$properties: (position) !default;
+
+$core-variants: (
+  static: static,
+  fixed: fixed,
+  absolute: absolute,
+  relative: relative,
+  sticky: sticky
+) !default;
+
+$variants: () !default;
+
+$final-variants: map.merge($core-variants, $variants);
+
+$final-variants: ($final-variants) !default;
+
+$pseudos: () !default;
+
+@include core.constructor(
+  $keyword,
+  $responsive,
+  $properties,
+  $final-variants,
+  $pseudos
+);

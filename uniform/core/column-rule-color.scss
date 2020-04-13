@@ -1,0 +1,25 @@
+@use "uniform/core";
+@use "sass:map";
+
+$keyword: col-rule !default;
+$responsive: false !default;
+
+$properties: (column-rule-color) !default;
+
+$core-variants: (core.colors()) !default;
+
+$variants: () !default;
+
+$final-variants: map.merge($core-variants, $variants);
+
+$final-variants: ($final-variants) !default;
+
+$pseudos: () !default;
+
+@include core.constructor(
+  $keyword,
+  $responsive,
+  $properties,
+  $final-variants,
+  $pseudos
+);

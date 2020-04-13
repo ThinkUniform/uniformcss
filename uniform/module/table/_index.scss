@@ -1,0 +1,139 @@
+@use "uniform/core" as *;
+@use "sass:color";
+
+@mixin table-stack {
+  box-shadow: none;
+  background-color: transparent;
+  thead {
+    display: none;
+  }
+  tbody {
+    display: block;
+  }
+  tr {
+    display: block;
+    margin-bottom: size(6);
+    background-color: white;
+    box-shadow: effect(md);
+    border: 0;
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+  td {
+    display: block;
+    border-bottom: 1px solid fill(gray-200);
+    &:last-child {
+      border-bottom: 0;
+    }
+    &[data-table-label] {
+      // data label pseudo for responsive table
+      &:before {
+        display: block;
+        content: attr(data-table-label);
+        margin-bottom: size(2);
+        font-size: font-size(micro);
+        font-weight: font-weight(semibold);
+        text-transform: uppercase;
+        white-space: nowrap;
+        color: fill(gray-600);
+      }
+    }
+  }
+  th,
+  td {
+    height: auto;
+  }
+}
+
+@mixin table-unstack {
+  background-color: white;
+  box-shadow: effect(md) !important;
+  thead {
+    display: table-header-group;
+    tr:first-child {
+      border: 0;
+    }
+  }
+  tbody {
+    display: table-row-group;
+  }
+  tr {
+    display: table-row;
+    margin-bottom: auto;
+    background-color: transparent;
+    box-shadow: none;
+    border-top: 1px solid fill(gray-200);
+  }
+  td {
+    display: table-cell;
+    border-bottom: 0;
+    &[data-table-label] {
+      // data label pseudo for responsive table
+      &:before {
+        display: none;
+      }
+    }
+  }
+}
+
+@if $include-table-module == true {
+  /******************************
+  INTERACTION
+  ******************************/
+
+  .table-interactive-row {
+    tbody tr {
+      &:hover {
+        td {
+          background-color: fill(gray-50);
+          transition: transition(visuals-steady);
+        }
+      }
+      &:active {
+        td {
+          background-color: fill(gray-100);
+        }
+      }
+    }
+  }
+  .table-interactive-col {
+    tbody td {
+      &:hover {
+        background-color: fill(gray-50);
+        transition: transition(visuals-steady);
+      }
+      &:active {
+        background-color: fill(gray-100);
+      }
+    }
+  }
+
+  /******************************
+  RESPONSIVE
+  ******************************/
+
+  .table-stack {
+    @include table-stack;
+  }
+
+  .table-unstack {
+    @include table-unstack;
+  }
+
+  @each $breakpoint, $breakpoint-value in breakpoints() {
+    @media (min-width: $breakpoint-value) {
+      .#{$breakpoint}#{$breakpoint-delimiter}table-stack {
+        @include table-stack;
+      }
+    }
+  }
+
+  @each $breakpoint, $breakpoint-value in breakpoints() {
+    @media (min-width: $breakpoint-value) {
+      .#{$breakpoint}#{$breakpoint-delimiter}table-unstack {
+        @include table-unstack;
+      }
+    }
+  }
+}

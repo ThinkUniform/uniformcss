@@ -1,0 +1,35 @@
+@use "uniform/core";
+@use "sass:map";
+
+$keyword: object !default;
+$responsive: false !default;
+
+$properties: (object-position) !default;
+
+$core-variants: (
+  bottom: bottom,
+  center: center,
+  left: left,
+  left-bottom: left-bottom,
+  left-top: left-top,
+  right: right,
+  right-bottom: right-bottom,
+  right-top: right-top,
+  top: top
+) !default;
+
+$variants: () !default;
+
+$final-variants: map.merge($core-variants, $variants);
+
+$final-variants: ($final-variants) !default;
+
+$pseudos: () !default;
+
+@include core.constructor(
+  $keyword,
+  $responsive,
+  $properties,
+  $final-variants,
+  $pseudos
+);

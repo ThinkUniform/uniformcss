@@ -1,0 +1,111 @@
+@use "uniform/core" as *;
+
+$gaps: (
+  sm: size(4),
+  md: size(6),
+  lg: size(8)
+);
+
+@if $include-grid-module == true {
+  .row {
+    clear: both;
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  /******************************
+  GUTTER
+  ******************************/
+
+  .row-gap {
+    @each $gap-key, $gap-value in $gaps {
+      &-#{$gap-key} {
+        margin-left: -#{$gap-value};
+        margin-right: -#{$gap-value};
+        & > [class*='col'] {
+          padding-left: $gap-value;
+          padding-right: $gap-value;
+        }
+      }
+    }
+  }
+
+  @each $breakpoint, $breakpoint-value in breakpoints() {
+    @media (min-width: $breakpoint-value) {
+      .#{$breakpoint}#{$breakpoint-delimiter}row-gap {
+        @each $gap-key, $gap-value in $gaps {
+          &-#{$gap-key} {
+            margin-left: -#{$gap-value};
+            margin-right: -#{$gap-value};
+            & > [class*='col'] {
+              padding-left: $gap-value;
+              padding-right: $gap-value;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  /******************************
+  12 COLUMN
+  ******************************/
+
+  .col {
+    flex: 1;
+  }
+
+  .col {
+    $columns: 12;
+    @while $columns > 0 {
+      &#{$delimiter}#{$columns} {
+        flex: none;
+        width: 100% / 12 * $columns;
+      }
+      $columns: $columns - 1;
+    }
+  }
+  @each $breakpoint, $breakpoint-value in breakpoints() {
+    @media (min-width: $breakpoint-value) {
+      .#{$breakpoint}#{$breakpoint-delimiter}col {
+        $columns: 12;
+        @while $columns > 0 {
+          &#{$delimiter}#{$columns} {
+            flex: none;
+            width: 100% / 12 * $columns;
+          }
+          $columns: $columns - 1;
+        }
+      }
+    }
+  }
+
+  /******************************
+  5 COLUMNS
+  ******************************/
+
+  .col {
+    $columns: 5;
+    @while $columns > 0 {
+      &#{$delimiter}#{$columns}-5 {
+        flex: none;
+        width: 100% / 5 * $columns;
+      }
+      $columns: $columns - 1;
+    }
+  }
+  @each $breakpoint, $breakpoint-value in breakpoints() {
+    @media (min-width: $breakpoint-value) {
+      .#{$breakpoint}#{$breakpoint-delimiter}col {
+        $columns: 5;
+        @while $columns > 0 {
+          &#{$delimiter}#{$columns}-5 {
+            flex: none;
+            width: 100% / 5 * $columns;
+          }
+          $columns: $columns - 1;
+        }
+      }
+    }
+  }
+}

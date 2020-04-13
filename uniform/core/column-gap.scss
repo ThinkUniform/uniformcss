@@ -1,0 +1,36 @@
+@use "uniform/core";
+@use "sass:map";
+
+$keyword: col-gap !default;
+$responsive: true !default;
+
+$properties: (column-gap) !default;
+
+$core-variants: (
+  0: 0,
+  px: 1px,
+  1: core.size(1),
+  2: core.size(2),
+  3: core.size(3),
+  xs: core.size(4),
+  sm: core.size(6),
+  md: core.size(8),
+  lg: core.size(10),
+  xl: core.size(12)
+) !default;
+
+$variants: () !default;
+
+$final-variants: map.merge($core-variants, $variants);
+
+$final-variants: ($final-variants) !default;
+
+$pseudos: () !default;
+
+@include core.constructor(
+  $keyword,
+  $responsive,
+  $properties,
+  $final-variants,
+  $pseudos
+);

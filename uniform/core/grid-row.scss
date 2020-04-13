@@ -1,0 +1,33 @@
+@use "uniform/core";
+@use "sass:map";
+
+$keyword: row !default;
+$responsive: true !default;
+
+$properties: (grid-row) !default;
+
+$core-variants: (
+  auto: auto,
+  span-1: span 1 / span 1,
+  span-2: span 2 / span 2,
+  span-3: span 3 / span 3,
+  span-4: span 4 / span 4,
+  span-5: span 5 / span 5,
+  span-6: span 6 / span 6
+) !default;
+
+$variants: () !default;
+
+$final-variants: map.merge($core-variants, $variants);
+
+$final-variants: ($final-variants) !default;
+
+$pseudos: () !default;
+
+@include core.constructor(
+  $keyword,
+  $responsive,
+  $properties,
+  $final-variants,
+  $pseudos
+);

@@ -1,0 +1,30 @@
+@use "uniform/core";
+@use "sass:map";
+
+$keyword: overflow-y !default;
+$responsive: true !default;
+
+$properties: (overflow-y) !default;
+
+$core-variants: (
+  auto: auto,
+  hidden: hidden,
+  visible: visible,
+  scroll: scroll
+) !default;
+
+$variants: () !default;
+
+$final-variants: map.merge($core-variants, $variants);
+
+$final-variants: ($final-variants) !default;
+
+$pseudos: () !default;
+
+@include core.constructor(
+  $keyword,
+  $responsive,
+  $properties,
+  $final-variants,
+  $pseudos
+);

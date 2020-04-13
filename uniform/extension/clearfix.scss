@@ -1,0 +1,9 @@
+@use "uniform/core" as *;
+
+.clearfix {
+  &::after {
+    content: '';
+    display: table;
+    clear: both;
+  }
+}

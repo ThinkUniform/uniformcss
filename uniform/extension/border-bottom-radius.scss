@@ -1,0 +1,25 @@
+@use "uniform/core";
+@use "sass:map";
+
+$keyword: radius-b !default;
+$responsive: true !default;
+
+$properties: (border-bottom-left-radius, border-bottom-right-radius) !default;
+
+$core-variants: (core.radiuses()) !default;
+
+$variants: () !default;
+
+$final-variants: map.merge($core-variants, $variants);
+
+$final-variants: ($final-variants) !default;
+
+$pseudos: () !default;
+
+@include core.constructor(
+  $keyword,
+  $responsive,
+  $properties,
+  $final-variants,
+  $pseudos
+);

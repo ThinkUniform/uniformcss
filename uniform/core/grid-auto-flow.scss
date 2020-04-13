@@ -1,0 +1,30 @@
+@use "uniform/core";
+@use "sass:map";
+
+$keyword: grid-flow !default;
+$responsive: true !default;
+
+$properties: (grid-auto-flow) !default;
+
+$core-variants: (
+  row: row,
+  col: column,
+  row-dense: row dense,
+  col-dense: column dense
+) !default;
+
+$variants: () !default;
+
+$final-variants: map.merge($core-variants, $variants);
+
+$final-variants: ($final-variants) !default;
+
+$pseudos: () !default;
+
+@include core.constructor(
+  $keyword,
+  $responsive,
+  $properties,
+  $final-variants,
+  $pseudos
+);

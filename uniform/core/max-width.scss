@@ -1,0 +1,47 @@
+@use "uniform/core";
+@use "sass:map";
+
+$keyword: max-w !default;
+$responsive: true !default;
+
+$properties: (max-width) !default;
+
+$core-variants: (
+  core.merge(
+    core.sizes(),
+    (
+      screen-sm: core.breakpoint(sm)
+    ),
+    (
+      screen-md: core.breakpoint(md)
+    ),
+    (
+      screen-lg: core.breakpoint(lg)
+    ),
+    (
+      screen-xl: core.breakpoint(xl)
+    ),
+    (
+      full: 100%,
+    ),
+    (
+      none: none
+    )
+  )
+) !default;
+
+$variants: () !default;
+
+$final-variants: map.merge($core-variants, $variants);
+
+$final-variants: ($final-variants) !default;
+
+$pseudos: () !default;
+
+@include core.constructor(
+  $keyword,
+  $responsive,
+  $properties,
+  $final-variants,
+  $pseudos
+);

@@ -1,0 +1,151 @@
+@forward "core";
+
+// DEFAULT
+@use "default/baseline" as *;
+@use "default/document" as *;
+@use "default/form" as *;
+@use "default/table" as *;
+@use "default/typography" as *;
+
+// MODULE
+@use "module/button" as *;
+@use "module/card" as *;
+@use "module/form" as *;
+@use "module/table" as *;
+@use "module/wrapper" as *;
+
+// CORE
+@forward "core/align-content" as align-content-*;
+@forward "core/align-items" as align-items-*;
+@forward "core/align-self" as align-self-*;
+@forward "core/background-attachment" as background-attachment-*;
+@forward "core/background-color" as background-color-*;
+@forward "core/background-position" as background-position-*;
+@forward "core/background-repeat" as background-repeat-*;
+@forward "core/background-size" as background-size-*;
+@forward "core/background" as background-*;
+@forward "core/border-collapse" as border-collapse-*;
+@forward "core/border-color" as border-color-*;
+@forward "core/border-style" as border-style-*;
+@forward "core/border-radius" as border-radius-*;
+
+@forward "extension/border-bottom-radius" as border-bottom-radius-*;
+@forward "extension/border-left-radius" as border-left-radius-*;
+@forward "extension/border-right-radius" as border-right-radius-*;
+@forward "extension/border-top-radius" as border-top-radius-*;
+
+@forward "core/border-bottom-left-radius" as border-bottom-left-radius-*;
+@forward "core/border-bottom-right-radius" as border-bottom-right-radius-*;
+@forward "core/border-top-left-radius" as border-top-left-radius-*;
+@forward "core/border-top-right-radius" as border-top-right-radius-*;
+@forward "core/border-width" as border-width-*;
+@forward "core/border-top-width" as border-top-width-*;
+@forward "core/border-right-width" as border-right-width-*;
+@forward "core/border-bottom-width" as border-bottom-width-*;
+@forward "core/border-left-width" as border-left-width-*;
+@forward "core/bottom" as bottom-*;
+@forward "core/box-shadow" as box-shadow-*;
+@forward "core/box-sizing" as box-sizing-*;
+@forward "core/clear" as clear-*;
+@forward "core/color" as color-*;
+@forward "core/column-count" as column-count-*;
+@forward "core/column-fill" as column-fill-*;
+@forward "core/column-gap" as column-gap-*;
+@forward "core/column-rule-color" as column-rule-color-*;
+@forward "core/column-rule-style" as column-rule-style-*;
+@forward "core/column-rule-width" as column-rule-width-*;
+@forward "core/column-span" as column-span-*;
+@forward "core/cursor" as cursor-*;
+@forward "core/display" as display-*;
+@forward "core/fill" as fill-*;
+@forward "core/filter" as filter-*;
+@forward "core/flex-direction" as flex-direction-*;
+@forward "core/flex-grow" as flex-grow-*;
+@forward "core/flex-shrink" as flex-shrink-*;
+@forward "core/flex-wrap" as flex-wrap-*;
+@forward "core/flex" as flex-*;
+@forward "core/float" as float-*;
+@forward "core/font-family" as font-family-*;
+@forward "core/font-size" as font-size-*;
+@forward "core/font-style" as font-style-*;
+@forward "core/font-weight" as font-weight-*;
+@forward "core/gap" as gap-*;
+@forward "core/grid-auto-flow" as grid-auto-flow-*;
+@forward "core/grid-column-end" as grid-column-end-*;
+@forward "core/grid-column-start" as grid-column-start-*;
+@forward "core/grid-column" as grid-column-*;
+@forward "core/grid-row-end" as grid-row-end-*;
+@forward "core/grid-row-start" as grid-row-start-*;
+@forward "core/grid-row" as grid-row-*;
+@forward "core/grid-template-columns" as grid-template-columns-*;
+@forward "core/grid-template-rows" as grid-template-rows-*;
+@forward "core/height" as height-*;
+@forward "core/justify-content" as justify-content-*;
+@forward "core/left" as left-*;
+@forward "core/letter-spacing" as letter-spacing-*;
+@forward "core/line-height" as line-height-*;
+@forward "core/list-style-position" as list-style-position-*;
+@forward "core/list-style-type" as list-style-type-*;
+@forward "core/margin" as margin-*;
+
+@forward "extension/margin-x" as margin-x-*;
+@forward "extension/margin-y" as margin-y-*;
+
+@forward "core/margin-bottom" as margin-bottom-*;
+@forward "core/margin-left" as margin-left-*;
+@forward "core/margin-right" as margin-right-*;
+@forward "core/margin-top" as margin-top-*;
+@forward "core/max-height" as max-height-*;
+@forward "core/max-width" as max-width-*;
+@forward "core/min-height" as min-height-*;
+@forward "core/min-width" as min-width-*;
+@forward "core/object-fit" as object-fit-*;
+@forward "core/object-position" as object-position-*;
+@forward "core/opacity" as opacity-*;
+@forward "core/order" as order-*;
+@forward "core/outline" as outline-*;
+@forward "core/overflow-x" as overflow-x-*;
+@forward "core/overflow-y" as overflow-y-*;
+@forward "core/overflow" as overflow-*;
+@forward "core/padding" as padding-*;
+
+@forward "extension/padding-x" as padding-x-*;
+@forward "extension/padding-y" as padding-y-*;
+
+@forward "core/padding-bottom" as padding-bottom-*;
+@forward "core/padding-left" as padding-left-*;
+@forward "core/padding-right" as padding-right-*;
+@forward "core/padding-top" as padding-top-*;
+@forward "core/pointer-events" as pointer-events-*;
+@forward "core/position" as position-*;
+@forward "core/right" as right-*;
+@forward "core/scrolling" as scrolling-*;
+@forward "core/stroke-width" as stroke-width-*;
+@forward "core/stroke" as stroke-*;
+@forward "core/table-layout" as table-layout-*;
+@forward "core/text-align" as text-align-*;
+@forward "core/text-decoration" as text-decoration-*;
+@forward "core/text-overflow" as text-overflow-*;
+@forward "core/text-transform" as text-transform-*;
+@forward "core/top" as top-*;
+@forward "core/transform-origin" as transform-origin-*;
+@forward "core/transform" as transform-*;
+@forward "core/transition-duration" as transition-duration-*;
+@forward "core/transition-property" as transition-property-*;
+@forward "core/transition-timing-function" as transition-timing-function-*;
+@forward "core/transition" as transition-*;
+@forward "core/user-select" as user-select-*;
+@forward "core/vertical-align" as vertical-align-*;
+@forward "core/visibility" as visibility-*;
+@forward "core/white-space" as white-space-*;
+@forward "core/width" as width-*;
+@forward "core/word-break" as word-break-*;
+@forward "core/z-index" as z-index-*;
+
+// EXTENSIONS
+@forward "extension/appearance" as apperance-*;
+@forward "extension/clearfix" as clearfix-*;
+@forward "extension/font-smooth" as font-smooth-*;
+@forward "extension/x" as x-*;
+@forward "extension/xy" as xy-*;
+@forward "extension/y" as y-*;

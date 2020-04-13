@@ -1,0 +1,25 @@
+@use "uniform/core";
+@use "sass:map";
+
+$keyword: border !default;
+$responsive: false !default;
+
+$properties: (border-color) !default;
+
+$core-variants: (core.colors()) !default;
+
+$variants: () !default;
+
+$final-variants: map.merge($core-variants, $variants);
+
+$final-variants: ($final-variants) !default;
+
+$pseudos: (hover, focus, active, group-hover, focus-within) !default;
+
+@include core.constructor(
+  $keyword,
+  $responsive,
+  $properties,
+  $final-variants,
+  $pseudos
+);
