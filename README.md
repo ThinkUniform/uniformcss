@@ -16,7 +16,7 @@
 **Step 1. Install package** - Easiest way to get started is to install UniformCSS using npm, this will get you the latest build.
 
 ```sh
-npm install uniformcss
+npm install @uniformcss/uniformcss
 ```
 
 **Step 2. Add Uniform** - Simply drag-and-drop the uniform folder to your sass directory and add this one liner to your stylesheet.

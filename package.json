@@ -1,5 +1,5 @@
 {
-  "name": "@uniformcss/uniformcss",
+  "name": "uniformcss",
   "version": "0.8.0",
   "description": "Fully configurable, drag-and-drop utility-first CSS framework built completly in Sass.",
   "main": "styles.sass",

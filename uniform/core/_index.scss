@@ -8,11 +8,11 @@
 // ============================================================
 
 $important: false !default;
-$prefix: '' !default;
-$delimiter: '-' !default;
-$child-delimiter: '\\/' !default;
-$pseudo-delimiter: '\\.' !default;
-$breakpoint-delimiter: '\\.' !default;
+$prefix: "" !default;
+$delimiter: "-" !default;
+$child-delimiter: "\\/" !default;
+$pseudo-delimiter: "\\." !default;
+$breakpoint-delimiter: "\\." !default;
 $responsive-pseudos: false !default;
 
 // DEFAULT STYLE SETTINGS
@@ -63,27 +63,24 @@ $include-wrapper-module: false !default;
 // ============================================================
 
 $core-pseudo-map: (
-  first: 'first-child',
-  last: 'last-child',
-  last-type: 'last-of-type',
-  odd: 'nth-child(odd)',
-  even: 'nth-child(even)',
-  hover: 'hover',
-  active: 'active',
-  visited: 'visited',
-  focus: 'focus',
-  disabled: 'disabled',
-  empty: 'empty',
-  focus-within: 'focus-within',
-  group-hover: 'group-hover'
+  first: "first-child",
+  last: "last-child",
+  last-type: "last-of-type",
+  odd: "nth-child(odd)",
+  even: "nth-child(even)",
+  hover: "hover",
+  active: "active",
+  visited: "visited",
+  focus: "focus",
+  disabled: "disabled",
+  empty: "empty",
+  focus-within: "focus-within",
+  group-hover: "group-hover",
 ) !default;
 
 $pseudo-map: () !default;
 
-$all-pseudo-map: merge(
-  $core-pseudo-map,
-  $pseudo-map
-) !default;
+$all-pseudo-map: merge($core-pseudo-map, $pseudo-map) !default;
 
 // CORE BREAKPOINTS
 // ============================================================
@@ -100,7 +97,7 @@ $core-transitions: (
     stroke 0.4s,
     opacity 0.4s,
     box-shadow 0.4s,
-    transform 0.4s
+    transform 0.4s,
   ),
   visuals-steady: (
     background-color 0.2s,
@@ -110,7 +107,7 @@ $core-transitions: (
     stroke 0.2s,
     opacity 0.2s,
     box-shadow 0.2s,
-    transform 0.2s
+    transform 0.2s,
   ),
   visuals-fast: (
     background-color 0.1s,
@@ -120,8 +117,8 @@ $core-transitions: (
     stroke 0.1s,
     opacity 0.1s,
     box-shadow 0.1s,
-    transform 0.1s
-  )
+    transform 0.1s,
+  ),
 ) !default;
 
 $transitions: () !default;
@@ -142,7 +139,6 @@ $all-transitions: merge($core-transitions, $transitions) !default;
   @return $result;
 }
 
-
 // CORE BREAKPOINTS
 // ============================================================
 
@@ -150,7 +146,7 @@ $core-breakpoints: (
   sm: 768px,
   md: 1024px,
   lg: 1280px,
-  xl: 1440px
+  xl: 1440px,
 ) !default;
 
 $breakpoints: () !default;
@@ -175,129 +171,129 @@ $all-breakpoints: merge($core-breakpoints, $breakpoints) !default;
 // ============================================================
 
 $core-colors: (
-  red-50: #FFEAE9,
-  red-100: #FFD7D4,
-  red-200: #FFAFA9,
-  red-300: #FF867F,
-  red-400: #FF4A3E,
-  red-500: #FF3629,
-  red-600: #E63125,
-  red-700: #BF281F,
-  red-800: #8C1E17,
-  red-900: #59130E,
+  red-50: #ffeae9,
+  red-100: #ffd7d4,
+  red-200: #ffafa9,
+  red-300: #ff867f,
+  red-400: #ff4a3e,
+  red-500: #ff3629,
+  red-600: #e63125,
+  red-700: #bf281f,
+  red-800: #8c1e17,
+  red-900: #59130e,
   red-950: #260806,
-  orange-50: #FFEEE9,
-  orange-100: #FFDED4,
-  orange-200: #FFBDA9,
-  orange-300: #FF9C7D,
-  orange-400: #FF6A3C,
-  orange-500: #FF5A27,
-  orange-600: #E65123,
-  orange-700: #BF431D,
-  orange-800: #8C3115,
-  orange-900: #591F0E,
-  orange-950: #260D06,
-  yellow-50: #FFF6E5,
-  yellow-100: #FFEECC,
-  yellow-200: #FFDC99,
-  yellow-300: #FFCB66,
-  yellow-400: #FFB019,
-  yellow-500: #FFA800,
-  yellow-600: #E69700,
-  yellow-700: #BF7E00,
-  yellow-800: #8C5C00,
-  yellow-900: #593B00,
-  yellow-950:#261900,
-  green-50: #E5FAE9,
-  green-100: #CDF6D3,
-  green-200: #9AEDA7,
-  green-300: #68E37C,
-  green-400: #1CD539,
-  green-500: #03D124,
-  green-600: #03BC20,
-  green-700: #029D1B,
+  orange-50: #ffeee9,
+  orange-100: #ffded4,
+  orange-200: #ffbda9,
+  orange-300: #ff9c7d,
+  orange-400: #ff6a3c,
+  orange-500: #ff5a27,
+  orange-600: #e65123,
+  orange-700: #bf431d,
+  orange-800: #8c3115,
+  orange-900: #591f0e,
+  orange-950: #260d06,
+  yellow-50: #fff6e5,
+  yellow-100: #ffeecc,
+  yellow-200: #ffdc99,
+  yellow-300: #ffcb66,
+  yellow-400: #ffb019,
+  yellow-500: #ffa800,
+  yellow-600: #e69700,
+  yellow-700: #bf7e00,
+  yellow-800: #8c5c00,
+  yellow-900: #593b00,
+  yellow-950: #261900,
+  green-50: #e5fae9,
+  green-100: #cdf6d3,
+  green-200: #9aeda7,
+  green-300: #68e37c,
+  green-400: #1cd539,
+  green-500: #03d124,
+  green-600: #03bc20,
+  green-700: #029d1b,
   green-800: #027314,
-  green-900: #01490D,
-  green-950: #001F05,
-  teal-50: #E8F7F3,
-  teal-100: #D2EFE8,
-  teal-200: #A5DFD1,
-  teal-300: #79D0BB,
-  teal-400: #35B898,
-  teal-500: #1FB08D,
-  teal-600: #1C9F7F,
-  teal-700: #17846A,
-  teal-800: #11614D,
-  teal-900: #0B3D31,
-  teal-950: #051A15,
-  blue-50: #E8F7FF,
-  blue-100: #D2EFFF,
-  blue-200: #A4DEFF,
-  blue-300: #77CEFF,
-  blue-400: #32B5FF,
-  blue-500: #1CADFF,
-  blue-600: #199CE6,
-  blue-700: #1581BF,
-  blue-800: #0F5F8C,
-  blue-900: #0A3C59,
-  blue-950: #041A26,
-  indigo-50: #E9EEFF,
-  indigo-100: #D4DEFF,
-  indigo-200: #A9BCFF,
-  indigo-300: #7F9BFF,
-  indigo-400: #3E68FF,
-  indigo-500: #2958FF,
-  indigo-600: #254FE6,
-  indigo-700: #1F42BF,
-  indigo-800: #17308C,
-  indigo-900: #0E1F59,
-  indigo-950: #060D26,
-  purple-50: #F1E9FC,
-  purple-100: #E3D3F8,
-  purple-200: #C8A8F2,
-  purple-300: #AD7CEB,
-  purple-400: #833AE1,
-  purple-500: #7625DE,
-  purple-600: #6A21C8,
-  purple-700: #581CA6,
-  purple-800: #41147A,
-  purple-900: #290D4D,
+  green-900: #01490d,
+  green-950: #001f05,
+  teal-50: #e8f7f3,
+  teal-100: #d2efe8,
+  teal-200: #a5dfd1,
+  teal-300: #79d0bb,
+  teal-400: #35b898,
+  teal-500: #1fb08d,
+  teal-600: #1c9f7f,
+  teal-700: #17846a,
+  teal-800: #11614d,
+  teal-900: #0b3d31,
+  teal-950: #051a15,
+  blue-50: #e8f7ff,
+  blue-100: #d2efff,
+  blue-200: #a4deff,
+  blue-300: #77ceff,
+  blue-400: #32b5ff,
+  blue-500: #1cadff,
+  blue-600: #199ce6,
+  blue-700: #1581bf,
+  blue-800: #0f5f8c,
+  blue-900: #0a3c59,
+  blue-950: #041a26,
+  indigo-50: #e9eeff,
+  indigo-100: #d4deff,
+  indigo-200: #a9bcff,
+  indigo-300: #7f9bff,
+  indigo-400: #3e68ff,
+  indigo-500: #2958ff,
+  indigo-600: #254fe6,
+  indigo-700: #1f42bf,
+  indigo-800: #17308c,
+  indigo-900: #0e1f59,
+  indigo-950: #060d26,
+  purple-50: #f1e9fc,
+  purple-100: #e3d3f8,
+  purple-200: #c8a8f2,
+  purple-300: #ad7ceb,
+  purple-400: #833ae1,
+  purple-500: #7625de,
+  purple-600: #6a21c8,
+  purple-700: #581ca6,
+  purple-800: #41147a,
+  purple-900: #290d4d,
   purple-950: #120621,
-  magenta-50: #FCE9FA,
-  magenta-100: #F8D3F5,
-  magenta-200: #F2A8EA,
-  magenta-300: #EB7CE0,
-  magenta-400: #E13AD0,
-  magenta-500: #DE25CB,
-  magenta-600: #C821B7,
-  magenta-700: #A61C98,
-  magenta-800: #7A146F,
-  magenta-900: #4D0D47,
-  magenta-950: #21061E,
-  pink-50: #FFF1F9,
-  pink-100: #FFE3F4,
-  pink-200: #FFC8E9,
-  pink-300: #FFACDE,
-  pink-400: #FF82CD,
-  pink-500: #FF75C8,
-  pink-600: #E66AB4,
-  pink-700: #BF5896,
-  pink-800: #8C406E,
+  magenta-50: #fce9fa,
+  magenta-100: #f8d3f5,
+  magenta-200: #f2a8ea,
+  magenta-300: #eb7ce0,
+  magenta-400: #e13ad0,
+  magenta-500: #de25cb,
+  magenta-600: #c821b7,
+  magenta-700: #a61c98,
+  magenta-800: #7a146f,
+  magenta-900: #4d0d47,
+  magenta-950: #21061e,
+  pink-50: #fff1f9,
+  pink-100: #ffe3f4,
+  pink-200: #ffc8e9,
+  pink-300: #ffacde,
+  pink-400: #ff82cd,
+  pink-500: #ff75c8,
+  pink-600: #e66ab4,
+  pink-700: #bf5896,
+  pink-800: #8c406e,
   pink-900: #592946,
-  pink-950: #26111E,
-  gray-50: #F8F8F9,
-  gray-100: #F0F1F4,
-  gray-200: #E2E3E9,
-  gray-300: #D3D6DF,
-  gray-400: #BDC1CE,
-  gray-500: #B6BAC9,
-  gray-600: #A4A8B5,
-  gray-700: #888B97,
-  gray-800: #64666E,
+  pink-950: #26111e,
+  gray-50: #f8f8f9,
+  gray-100: #f0f1f4,
+  gray-200: #e2e3e9,
+  gray-300: #d3d6df,
+  gray-400: #bdc1ce,
+  gray-500: #b6bac9,
+  gray-600: #a4a8b5,
+  gray-700: #888b97,
+  gray-800: #64666e,
   gray-900: #404146,
-  gray-950: #1B1C1E,
+  gray-950: #1b1c1e,
   black: black,
-  white: white
+  white: white,
 ) !default;
 
 $colors: () !default;
@@ -378,7 +374,7 @@ $core-non-negative-sizes: (
   18: rem(384),
   19: rem(512),
   20: rem(640),
-  21: rem(768)
+  21: rem(768),
 ) !default;
 
 $non-negative-sizes: () !default;
@@ -404,15 +400,12 @@ $core-negative-sizes: (
   n18: rem(-384),
   n19: rem(-512),
   n20: rem(-640),
-  n21: rem(-768)
+  n21: rem(-768),
 ) !default;
 
 $negative-sizes: () !default;
 
-$all-non-negative-sizes: merge(
-  $core-non-negative-sizes,
-  $non-negative-sizes
-);
+$all-non-negative-sizes: merge($core-non-negative-sizes, $non-negative-sizes);
 
 $all-negative-sizes: merge($core-negative-sizes, $negative-sizes);
 
@@ -459,7 +452,7 @@ $all-sizes: merge(
     $list: list.append($list, $size);
   }
   @each $size in $sizes {
-    $value: '';
+    $value: "";
     @if (map.has-key($all-sizes, $size)) {
       $value: map.get($all-sizes, $size);
       $list: list.append($list, $value);
@@ -482,21 +475,21 @@ $core-effects: (
   none: none,
   sm: (
     0 1px 2px 1px rgba(0, 0, 0, 0.08),
-    0 2px 6px 0 rgba(0, 0, 0, 0.05)
+    0 2px 6px 0 rgba(0, 0, 0, 0.05),
   ),
   md: (
     0 2px 4px 1px rgba(0, 0, 0, 0.1),
-    0 2px 4px 0px rgba(0, 0, 0, 0.1)
+    0 2px 4px 0px rgba(0, 0, 0, 0.1),
   ),
   lg: (
     0 1px 5px 0 rgba(0, 0, 0, 0.1),
-    0 5px 10px 0 rgba(0, 0, 0, 0.15)
+    0 5px 10px 0 rgba(0, 0, 0, 0.15),
   ),
   focus: 0 0 0 3px transparentize(fill(indigo-500), 0.8),
   valid: 0 0 0 3px transparentize(fill(green-600), 0.8),
   warning: 0 0 0 3px transparentize(fill(orange-500), 0.8),
-  error: 0 0 0 3px transparentize(fill(red-500), 0.8)
-);
+  error: 0 0 0 3px transparentize(fill(red-500), 0.8),
+) !default;
 
 $effects: () !default;
 
@@ -524,32 +517,32 @@ $core-font-families: (
     system-ui,
     -apple-system,
     BlinkMacSystemFont,
-    'Segoe UI',
+    "Segoe UI",
     Roboto,
-    'Helvetica Neue',
+    "Helvetica Neue",
     Arial,
-    'Noto Sans',
+    "Noto Sans",
     sans-serif,
-    'Apple Color Emoji',
-    'Segoe UI Emoji',
-    'Segoe UI Symbol',
-    'Noto Color Emoji'
+    "Apple Color Emoji",
+    "Segoe UI Emoji",
+    "Segoe UI Symbol",
+    "Noto Color Emoji",
   ),
   serif: (
     Georgia,
     Cambria,
-    'Times New Roman',
+    "Times New Roman",
     Times,
-    serif
+    serif,
   ),
   mono: (
     Menlo,
     Monaco,
     Consolas,
-    'Liberation Mono',
-    'Courier New',
-    monospace
-  )
+    "Liberation Mono",
+    "Courier New",
+    monospace,
+  ),
 ) !default;
 
 $font-families: () !default;
@@ -559,8 +552,8 @@ $core-font-weights: (
   regular: 400,
   medium: 500,
   semibold: 600,
-  bold: 700
-);
+  bold: 700,
+) !default;
 
 $font-weights: () !default;
 
@@ -573,8 +566,8 @@ $core-font-sizes: (
   h6: rem(18),
   body: rem(16),
   tiny: rem(14),
-  micro: rem(12)
-);
+  micro: rem(12),
+) !default;
 
 $font-sizes: () !default;
 
@@ -586,7 +579,7 @@ $core-line-heights: (
   normal: 1.5,
   loose: 1.625,
   looser: 1.75,
-  loosest: 1.875
+  loosest: 1.875,
 ) !default;
 
 $line-heights: () !default;
@@ -660,7 +653,7 @@ $core-border-radiuses: (
   sm: rem(3),
   md: rem(5),
   lg: rem(8),
-  round: 9999px
+  round: 9999px,
 ) !default;
 
 $border-radiuses: () !default;
@@ -683,18 +676,11 @@ $all-border-radiuses: merge($core-border-radiuses, $border-radiuses);
 // CORE CONSTRUCTOR
 // ============================================================
 
-@mixin constructor(
-  $keyword,
-  $responsive,
-  $properties,
-  $final-variants,
-  $pseudos
-) {
-
+@mixin constructor($keyword, $responsive, $properties, $final-variants, $pseudos) {
   // Create basic classes
-  @if $keyword == 'exempt' {
+  @if $keyword == "exempt" {
     @each $variant, $variant-value in $final-variants {
-      .#{$prefix}#{'' + $variant} {
+      .#{$prefix}#{"" + $variant} {
         @each $property in $properties {
           #{$property}: $variant-value if($important == true, !important, null);
         }
@@ -702,19 +688,17 @@ $all-border-radiuses: merge($core-border-radiuses, $border-radiuses);
     }
   } @else {
     @each $variant, $variant-value in $final-variants {
-      @if $variant == 'exempt' {
+      @if $variant == "exempt" {
         .#{$prefix}#{$keyword} {
           @each $property in $properties {
-            #{$property}: $variant-value
-              if($important == true, !important, null);
+            #{$property}: $variant-value if($important == true, !important, null);
           }
         }
       } @else {
         .#{$prefix}#{$keyword} {
-          &#{$delimiter}#{'' + $variant} {
+          &#{$delimiter}#{"" + $variant} {
             @each $property in $properties {
-              #{$property}: $variant-value
-                if($important == true, !important, null);
+              #{$property}: $variant-value if($important == true, !important, null);
             }
           }
         }
@@ -725,23 +709,19 @@ $all-border-radiuses: merge($core-border-radiuses, $border-radiuses);
   // Create basic pseudo classes
   @each $pseudo in $pseudos {
     @if map.has-key($all-pseudo-map, $pseudo) {
-      @if $keyword == 'exempt' {
+      @if $keyword == "exempt" {
         @each $variant, $variant-value in $final-variants {
           @if $pseudo == group-hover {
-            .group:hover
-              .#{$pseudo}#{$pseudo-delimiter}#{$prefix}#{''
-              + $variant} {
+            .group:hover .#{$pseudo}#{$pseudo-delimiter}#{$prefix}#{"" + $variant} {
               @each $property in $properties {
-                #{$property}: $variant-value
-                  if($important == true, !important, null);
+                #{$property}: $variant-value if($important == true, !important, null);
               }
             }
           } @else {
-            .#{$pseudo}#{$pseudo-delimiter}#{$prefix}#{'' + $variant} {
+            .#{$pseudo}#{$pseudo-delimiter}#{$prefix}#{"" + $variant} {
               &:#{map.get($all-pseudo-map, $pseudo)} {
                 @each $property in $properties {
-                  #{$property}: $variant-value
-                    if($important == true, !important, null);
+                  #{$property}: $variant-value if($important == true, !important, null);
                 }
               }
             }
@@ -749,43 +729,37 @@ $all-border-radiuses: merge($core-border-radiuses, $border-radiuses);
         }
       } @else {
         @each $variant, $variant-value in $final-variants {
-          @if $variant == 'exempt' {
+          @if $variant == "exempt" {
             @if $pseudo == group-hover {
-              .group:hover
-                .#{$pseudo}#{$pseudo-delimiter}#{$prefix}#{$keyword} {
+              .group:hover .#{$pseudo}#{$pseudo-delimiter}#{$prefix}#{$keyword} {
                 @each $property in $properties {
-                  #{$property}: $variant-value
-                    if($important == true, !important, null);
+                  #{$property}: $variant-value if($important == true, !important, null);
                 }
               }
             } @else {
               .#{$pseudo}#{$pseudo-delimiter}#{$prefix}#{$keyword} {
                 &:#{map.get($all-pseudo-map, $pseudo)} {
                   @each $property in $properties {
-                    #{$property}: $variant-value
-                      if($important == true, !important, null);
+                    #{$property}: $variant-value if($important == true, !important, null);
                   }
                 }
               }
             }
           } @else {
             @if $pseudo == group-hover {
-              .group:hover
-                .#{$pseudo}#{$pseudo-delimiter}#{$prefix}#{$keyword} {
-                &#{$delimiter}#{'' + $variant} {
+              .group:hover .#{$pseudo}#{$pseudo-delimiter}#{$prefix}#{$keyword} {
+                &#{$delimiter}#{"" + $variant} {
                   @each $property in $properties {
-                    #{$property}: $variant-value
-                      if($important == true, !important, null);
+                    #{$property}: $variant-value if($important == true, !important, null);
                   }
                 }
               }
             } @else {
               .#{$pseudo}#{$pseudo-delimiter}#{$prefix}#{$keyword} {
-                &#{$delimiter}#{'' + $variant} {
+                &#{$delimiter}#{"" + $variant} {
                   &:#{map.get($all-pseudo-map, $pseudo)} {
                     @each $property in $properties {
-                      #{$property}: $variant-value
-                        if($important == true, !important, null);
+                      #{$property}: $variant-value if($important == true, !important, null);
                     }
                   }
                 }
@@ -802,30 +776,27 @@ $all-border-radiuses: merge($core-border-radiuses, $border-radiuses);
     @each $breakpoint, $breakpoint-value in $all-breakpoints {
       @media (min-width: $breakpoint-value) {
         // Create basic classes
-        @if $keyword == 'exempt' {
+        @if $keyword == "exempt" {
           @each $variant, $variant-value in $final-variants {
-            .#{$breakpoint}#{$breakpoint-delimiter}#{$prefix}#{'' + $variant} {
+            .#{$breakpoint}#{$breakpoint-delimiter}#{$prefix}#{"" + $variant} {
               @each $property in $properties {
-                #{$property}: $variant-value
-                  if($important == true, !important, null);
+                #{$property}: $variant-value if($important == true, !important, null);
               }
             }
           }
         } @else {
           @each $variant, $variant-value in $final-variants {
-            @if $variant == 'exempt' {
+            @if $variant == "exempt" {
               .#{$breakpoint}#{$breakpoint-delimiter}#{$prefix}#{$keyword} {
                 @each $property in $properties {
-                  #{$property}: $variant-value
-                    if($important == true, !important, null);
+                  #{$property}: $variant-value if($important == true, !important, null);
                 }
               }
             } @else {
               .#{$breakpoint}#{$breakpoint-delimiter}#{$prefix}#{$keyword} {
-                &#{$delimiter}#{'' + $variant} {
+                &#{$delimiter}#{"" + $variant} {
                   @each $property in $properties {
-                    #{$property}: $variant-value
-                      if($important == true, !important, null);
+                    #{$property}: $variant-value if($important == true, !important, null);
                   }
                 }
               }
@@ -837,25 +808,23 @@ $all-border-radiuses: merge($core-border-radiuses, $border-radiuses);
           // Create basic pseudo classes
           @each $pseudo, $pseudo-value in $pseudos {
             @if map.has-key($all-pseudo-map, $pseudo) {
-              @if $keyword == 'exempt' {
+              @if $keyword == "exempt" {
                 // Basic variant in the breakpoint context without keyword
                 @each $variant, $variant-value in $final-variants {
                   @if $pseudo == group-hover {
                     .group:hover
-                      .#{$breakpoint}#{$breakpoint-delimiter}#{$pseudo}#{$pseudo-delimiter}#{$prefix}#{''
+                      .#{$breakpoint}#{$breakpoint-delimiter}#{$pseudo}#{$pseudo-delimiter}#{$prefix}#{""
                       + $variant} {
                       @each $property in $properties {
-                        #{$property}: $variant-value
-                          if($important == true, !important, null);
+                        #{$property}: $variant-value if($important == true, !important, null);
                       }
                     }
                   } @else {
-                    .#{$breakpoint}#{$breakpoint-delimiter}#{$pseudo}#{$pseudo-delimiter}#{$prefix}#{''
+                    .#{$breakpoint}#{$breakpoint-delimiter}#{$pseudo}#{$pseudo-delimiter}#{$prefix}#{""
                       + $variant} {
                       &:#{map.get($all-pseudo-map, $pseudo)} {
                         @each $property in $properties {
-                          #{$property}: $variant-value
-                            if($important == true, !important, null);
+                          #{$property}: $variant-value if($important == true, !important, null);
                         }
                       }
                     }
@@ -864,21 +833,19 @@ $all-border-radiuses: merge($core-border-radiuses, $border-radiuses);
               } @else {
                 // Pseudo variant loop in the breakpoint context
                 @each $variant, $variant-value in $final-variants {
-                  @if $variant == 'exempt' {
+                  @if $variant == "exempt" {
                     @if $pseudo == group-hover {
                       .group:hover
                         .#{$breakpoint}#{$breakpoint-delimiter}#{$pseudo}#{$pseudo-delimiter}#{$prefix}#{$keyword} {
                         @each $property in $properties {
-                          #{$property}: $variant-value
-                            if($important == true, !important, null);
+                          #{$property}: $variant-value if($important == true, !important, null);
                         }
                       }
                     } @else {
                       .#{$breakpoint}#{$breakpoint-delimiter}#{$pseudo}#{$pseudo-delimiter}#{$prefix}#{$keyword} {
                         &:#{map.get($all-pseudo-map, $pseudo)} {
                           @each $property in $properties {
-                            #{$property}: $variant-value
-                              if($important == true, !important, null);
+                            #{$property}: $variant-value if($important == true, !important, null);
                           }
                         }
                       }
@@ -887,20 +854,18 @@ $all-border-radiuses: merge($core-border-radiuses, $border-radiuses);
                     @if $pseudo == group-hover {
                       .group:hover
                         .#{$breakpoint}#{$breakpoint-delimiter}#{$pseudo}#{$pseudo-delimiter}#{$prefix}#{$keyword} {
-                        &#{$delimiter}#{'' + $variant} {
+                        &#{$delimiter}#{"" + $variant} {
                           @each $property in $properties {
-                            #{$property}: $variant-value
-                              if($important == true, !important, null);
+                            #{$property}: $variant-value if($important == true, !important, null);
                           }
                         }
                       }
                     } @else {
                       .#{$breakpoint}#{$breakpoint-delimiter}#{$pseudo}#{$pseudo-delimiter}#{$prefix}#{$keyword} {
-                        &#{$delimiter}#{'' + $variant} {
+                        &#{$delimiter}#{"" + $variant} {
                           &:#{map.get($all-pseudo-map, $pseudo)} {
                             @each $property in $properties {
-                              #{$property}: $variant-value
-                                if($important == true, !important, null);
+                              #{$property}: $variant-value if($important == true, !important, null);
                             }
                           }
                         }

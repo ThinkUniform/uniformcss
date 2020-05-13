@@ -40,7 +40,7 @@ $final-variants: map.merge($core-variants, $variants);
 
 $final-variants: ($final-variants) !default;
 
-$pseudos: (hover, active) !default;
+$pseudos: (hover, active, group-hover) !default;
 
 @include core.constructor(
   $keyword,

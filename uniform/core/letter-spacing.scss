@@ -7,9 +7,13 @@ $responsive: false !default;
 $properties: (letter-spacing) !default;
 
 $core-variants: (
-  tight: -0.025em,
+  tightest: -0.1em,
+  tighter: -0.075em,
+  tight: -0.05em,
   normal: 0,
-  loose: 0.025em
+  loose: 0.05em,
+  looser: 0.075em,
+  loosest: 0.1em
 ) !default;
 
 $variants: () !default;
