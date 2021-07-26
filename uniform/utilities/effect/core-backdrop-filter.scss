@@ -1,0 +1,50 @@
+@use "uniform/core";
+@use "sass:map";
+@use "sass:string";
+
+$name: backdrop-filter; 
+$shorthand: backdrop;
+$responsive: false;
+$responsive-pseudos: false;
+$extra-selector: null;
+
+$properties: (backdrop-filter, -webkit-backdrop-filter);
+$static-properties: (
+  --backdrop-blur: 0,
+  --backdrop-brightness: 1,
+  --backdrop-contrast: 1,
+  --backdrop-grayscale: 0,
+  --backdrop-hue-rotate: 0deg,
+  --backdrop-invert: 0,
+  --backdrop-opacity: 1,
+  --backdrop-saturate: 1,
+  --backdrop-sepia: 0
+);
+
+$variants: (
+  null: string.unquote("blur(var(--backdrop-blur))") string.unquote("brightness(var(--backdrop-brightness))") string.unquote("contrast(var(--backdrop-contrast))") string.unquote("grayscale(var(--backdrop-grayscale))") string.unquote("hue-rotate(var(--backdrop-hue-rotate))") string.unquote("invert(var(--backdrop-invert))") string.unquote("opacity(var(--backdrop-opacity))") string.unquote("saturate(var(--backdrop-saturate))") string.unquote("sepia(var(--backdrop-sepia))"),
+  none: none
+);
+
+$pseudos: ();
+
+$config: (
+  utilities: (
+    $name: (
+      shorthand: $shorthand,
+      responsive: $responsive,
+      responsive-pseudos: $responsive-pseudos,
+      extra-selector: $extra-selector,
+      properties: $properties,
+      static-properties: $static-properties,
+      variants: (
+        $variants
+      ),
+      pseudos: (
+        $pseudos
+      )
+    )
+  )
+);
+
+core.$all-config: map.deep-merge(core.$all-config, $config);

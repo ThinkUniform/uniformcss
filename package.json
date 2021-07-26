@@ -1,0 +1,36 @@
+{
+  "name": "uniformcss",
+  "version": "1.0.0",
+  "description": "A fully configurable utility class generator and CSS framework built for Sass projects.",
+  "main": "main.sass",
+  "scripts": {
+    "uniform": "sass --load-path=./node_modules/uniformcss --load-path=./ --load-path=./optional-sass-path --no-source-map main.scss dist/uniform.css",
+    "uniform:compressed": "sass --load-path=./node_modules/uniformcss --load-path=./ --load-path=./optional-sass-path --no-source-map main.scss dist/uniform.min.css --style compressed",
+    "uniform:watch": "sass --load-path=./node_modules/uniformcss --load-path=./ --load-path=./optional-sass-path --no-source-map --watch main.scss dist/uniform.css",
+    "uniform:watch-compressed": "sass --load-path=./node_modules/uniformcss --load-path=./ --load-path=./optional-sass-path --no-source-map --watch main.scss dist/uniform.min.css --style compressed",
+    "uniform:purge": "purgecss -c purgecss.config.js -o dist"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/ThinkUniform/uniformcss.git"
+  },
+  "keywords": [
+    "css",
+    "sass",
+    "functional css",
+    "atomic css",
+    "responsive css",
+    "utility first",
+    "uniformcss"
+  ],
+  "author": {
+    "name": "Jin Su Park",
+    "email": "jinsupark@icloud.com",
+    "url": "https://jinsupark.com/"
+  },
+  "license": "MIT",
+  "devDependencies": {
+    "postcss-cli": "^7.1.0",
+    "purgecss": "^3.0.0"
+  }
+}

@@ -1,0 +1,1479 @@
+@use "sass:map";
+@use "sass:list";
+@use "sass:string";
+@use "sass:meta";
+@use "sass:color";
+@use "sass:math";
+
+// ==================================================
+// User config
+// ==================================================
+
+$config: (
+  
+) !default;
+
+// ==================================================
+// Default config
+// ==================================================
+
+@function rem($size-in-pixel) {
+  $size: math.div($size-in-pixel, 16);
+  @return #{$size}rem;
+}
+
+@function hex2rgb($hexColor) {
+  @return "#{color.red($hexColor)},#{color.green($hexColor)},#{color.blue($hexColor)}";
+}
+
+@function escape($any) {
+  $escape-chars: (
+    "!",
+    "#",
+    "$",
+    "%",
+    "&",
+    "'",
+    "(",
+    ")",
+    "*",
+    "+",
+    ",",
+    ".",
+    "/",
+    ":",
+    ";",
+    "<",
+    "=",
+    ">",
+    "?",
+    "@",
+    "[",
+    "]",
+    "^",
+    "`",
+    "{",
+    "|",
+    "}",
+    "~",
+  );
+
+	$string: "" + $any;
+	$escaped-string: "";
+	@for $x from 1 through string.length($string) {
+		$character: string.slice($string, $x, $x);
+		@if list.index($escape-chars, $character) {
+			// NOTE: `"\\..."` must be quoted.
+			$escaped-string: $escaped-string + "\\"+ $character;
+		} @else {
+			$escaped-string: $escaped-string + $character;
+		}
+	}
+	@return $escaped-string;
+}
+
+@function string-split($string, $separator) {
+  // empty array/list
+  $split-array: ();
+  // first index of separator in string
+  $index: string.index($string, $separator);
+ 
+  // loop through string
+  @while $index != null {
+    // get the substring from the first character to the separator
+    $item: string.slice($string, 1, $index - 1);
+    // push item to array
+    $split-array: append($split-array, $item);
+    // remove item and separator from string
+    $string: string.slice($string, $index + 1);
+    // find new index of separator
+    $index : string.index($string, $separator);
+  }
+  // add the remaining string to list (the last item)
+  $split-array: append($split-array, $string);
+  @return $split-array;
+}
+
+$default-config: (
+
+  // Build settings
+  important: false,
+  prefix: null,
+  delimiter: '-',
+  pseudo-delimiter: '.',
+  screen-delimiter: '.',
+  headless: false,
+  comma-compression: false,
+  css-variables: true,
+  
+  // Excludes settings
+  excludes: (),
+  includes: (),
+
+  // Theme settings
+  extend: (
+    shadows: (),
+    colors: (),
+    gradients: (),
+    screens: (),
+    font-families: (),
+    font-sizes: (),
+    font-weights: (),
+    text-sizes: (),
+    leadings: (),
+    trackings: (),
+    radiuses: (),
+    blurs: (),
+    opacities: (),
+    positive-sizes: (),
+    negative-sizes: (),
+  ),
+
+  screens: (
+    sm: 768px,
+    md: 1024px,
+    lg: 1280px,
+    // xl: 1536px
+  ),
+
+  pseudos: (
+    first: ':first-child',
+    last: ':last-child',
+    first-type: ':first-of-type',
+    last-type: ':last-of-type',
+    odd: ':nth-child(odd)',
+    even: ':nth-child(even)',
+    hover: ':hover',
+    focus: ':focus',
+    active: ':active',
+    visited: ':visited',
+    checked: ':checked',
+    disabled: ':disabled',
+    empty: ':empty',
+    focus-within: ':focus-within'
+  ),
+
+  opacities: (
+    0: 0,
+    2: 0.02,
+    4: 0.04,
+    6: 0.06,
+    8: 0.08,
+    10: 0.1,
+    15: 0.15,
+    20: 0.2,
+    25: 0.25,
+    30: 0.3,
+    35: 0.35,
+    40: 0.4,
+    45: 0.45,
+    50: 0.5,
+    55: 0.55,
+    60: 0.6,
+    65: 0.65,
+    70: 0.7,
+    75: 0.75,
+    80: 0.8,
+    85: 0.85,
+    90: 0.9,
+    95: 0.95,
+    100: 1,
+  ),
+
+  colors: (
+    primary-50: #E8F1FD,
+    primary-100: #D1E2FB,
+    primary-200: #A3C6F7,
+    primary-300: #4D91F0,
+    primary-400: #1267DD,
+    primary-500: #0054CB,
+    primary-600: #0046A8,
+    primary-700: #003785,
+    primary-800: #002F71,
+    primary-900: #00265C,
+    primary-950: #001533,
+    secondary-50: #FDF8D2,
+    secondary-100: #FBEDA6,
+    secondary-200: #F7CC4F,
+    secondary-300: #ECA713,
+    secondary-400: #E18C00,
+    secondary-500: #D27F00,
+    secondary-600: #C37300,
+    secondary-700: #A45B00,
+    secondary-800: #884B00,
+    secondary-900: #6B3B00,
+    secondary-950: #331B00,
+    white: #ffffff,
+    black: #000000,
+    warm-gray-50: #F7F6F5,
+    warm-gray-100: #F0EDEC,
+    warm-gray-200: #E0DCDA,
+    warm-gray-300: #D1CBC8,
+    warm-gray-400: #C1BAB6,
+    warm-gray-500: #A29994,
+    warm-gray-600: #837974,
+    warm-gray-700: #645B56,
+    warm-gray-800: #453D39,
+    warm-gray-900: #362F2C,
+    warm-gray-950: #26211F,
+    gray-50: #F7F7F7,
+    gray-100: #F0F0F0,
+    gray-200: #E0E0E0,
+    gray-300: #D1D1D1,
+    gray-400: #C1C1C1,
+    gray-500: #A2A2A2,
+    gray-600: #838383,
+    gray-700: #646464,
+    gray-800: #454545,
+    gray-900: #363636,
+    gray-950: #262626,
+    cool-gray-50: #F4F5F7,
+    cool-gray-100: #E9EBF0,
+    cool-gray-200: #D3D8E0,
+    cool-gray-300: #BFC5D1,
+    cool-gray-400: #ABB2C1,
+    cool-gray-500: #8690A2,
+    cool-gray-600: #656F83,
+    cool-gray-700: #485164,
+    cool-gray-800: #2D3545,
+    cool-gray-900: #222836,
+    cool-gray-950: #171C26,
+    red-50: #FDE8EC,
+    red-100: #FBD2D7,
+    red-200: #F7A7AE,
+    red-300: #F05356,
+    red-400: #DD211A,
+    red-500: #CB1200,
+    red-600: #A81400,
+    red-700: #851300,
+    red-800: #711100,
+    red-900: #5C0E00,
+    red-950: #330800,
+    orange-50: #FBEBD6,
+    orange-100: #F8D5AF,
+    orange-200: #F1A363,
+    orange-300: #DF742E,
+    orange-400: #CE4700,
+    orange-500: #BE3E00,
+    orange-600: #AD3700,
+    orange-700: #8D2900,
+    orange-800: #792200,
+    orange-900: #661C00,
+    orange-950: #401100,
+    yellow-50: #FDF8D2,
+    yellow-100: #FBEDA6,
+    yellow-200: #F7CC4F,
+    yellow-300: #ECA713,
+    yellow-400: #E18C00,
+    yellow-500: #D27F00,
+    yellow-600: #C37300,
+    yellow-700: #A45B00,
+    yellow-800: #884B00,
+    yellow-900: #6B3B00,
+    yellow-950: #331B00,
+    lime-50: #DCFBD2,
+    lime-100: #C0F7A6,
+    lime-200: #9CEF53,
+    lime-300: #83DB0B,
+    lime-400: #88C800,
+    lime-500: #80B500,
+    lime-600: #78A200,
+    lime-700: #637D00,
+    lime-800: #536800,
+    lime-900: #425200,
+    lime-950: #202600,
+    green-50: #E3FBE0,
+    green-100: #C4F7C1,
+    green-200: #86EF8D,
+    green-300: #4FDB63,
+    green-400: #20C845,
+    green-500: #12B539,
+    green-600: #07A22F,
+    green-700: #007D26,
+    green-800: #006820,
+    green-900: #00521A,
+    green-950: #00260D,
+    teal-50: #E7FDF3,
+    teal-100: #D0FBE8,
+    teal-200: #A3F7D6,
+    teal-300: #4CEFC2,
+    teal-400: #12DBB4,
+    teal-500: #00C8B1,
+    teal-600: #00A297,
+    teal-700: #007D79,
+    teal-800: #006865,
+    teal-900: #005251,
+    teal-950: #002626,
+    cyan-50: #EAFDFD,
+    cyan-100: #D5FAFB,
+    cyan-200: #ACF2F7,
+    cyan-300: #5DDAF0,
+    cyan-400: #26B8DD,
+    cyan-500: #0097CB,
+    cyan-600: #0078A8,
+    cyan-700: #005C85,
+    cyan-800: #004D71,
+    cyan-900: #003E5C,
+    cyan-950: #002233,
+    blue-50: #E8F1FD,
+    blue-100: #D1E2FB,
+    blue-200: #A3C6F7,
+    blue-300: #4D91F0,
+    blue-400: #1267DD,
+    blue-500: #0054CB,
+    blue-600: #0046A8,
+    blue-700: #003785,
+    blue-800: #002F71,
+    blue-900: #00265C,
+    blue-950: #001533,
+    indigo-50: #F0F0FD,
+    indigo-100: #E2E1FB,
+    indigo-200: #C7C3F8,
+    indigo-300: #9A8BF1,
+    indigo-400: #7A60DF,
+    indigo-500: #6039CE,
+    indigo-600: #4A23AD,
+    indigo-700: #38128D,
+    indigo-800: #300D79,
+    indigo-900: #280A66,
+    indigo-950: #180440,
+    purple-50: #F3EEFD,
+    purple-100: #E8DDFB,
+    purple-200: #D4BCF7,
+    purple-300: #B47DEF,
+    purple-400: #9A4EDB,
+    purple-500: #8526C8,
+    purple-600: #6B11A2,
+    purple-700: #52027D,
+    purple-800: #430068,
+    purple-900: #360052,
+    purple-950: #1A0026,
+    pink-50: #FDEEFD,
+    pink-100: #FBDCF9,
+    pink-200: #F7BAF0,
+    pink-300: #EF7AD4,
+    pink-400: #DB4AAF,
+    pink-500: #C82187,
+    pink-600: #A20D63,
+    pink-700: #7D0043,
+    pink-800: #680036,
+    pink-900: #52002A,
+    pink-950: #260013
+  ),
+
+  gradients: (
+    linear: linear-gradient(var(--linear-gradient, to right, #40C6FF 0%, #505BED 100%)),
+    radial: radial-gradient(var(--radial-gradient, circle at 50% 50%, #40c6ff, #505bed)),
+    conic: conic-gradient(var(--conic-gradient, from 90deg at 50% 50%, #40c6ff, #505bed)),
+  ),
+
+  range-limits: (
+    margin: (1, 32),
+    padding: (1, 32),
+    width: (1, 36),
+    min-width: (24, 36),
+    max-width: (24, 42),
+    height: (1, 36),
+    min-height: (24, 36),
+    max-height: (24, 36),
+    gap: (1, 32),
+    gutter: (1, 32),
+    border-width: (1, 4),
+    top: (1, 32),
+    right: (1, 32),
+    bottom: (1, 32),
+    left: (1, 32),
+    translate: (1, 32)
+  ),
+
+  positive-sizes: (
+    1: rem(1),
+    2: rem(2),
+    4: rem(4),
+    6: rem(6),
+    8: rem(8),
+    10: rem(10),
+    12: rem(12),
+    14: rem(14),
+    16: rem(16),
+    18: rem(18),
+    20: rem(20),
+    24: rem(24),
+    28: rem(28),
+    32: rem(32),
+    36: rem(36),
+    40: rem(40),
+    48: rem(48),
+    56: rem(56),
+    64: rem(64),
+    72: rem(72),
+    80: rem(80),
+    96: rem(96),
+    112: rem(112),
+    128: rem(128),
+    144: rem(144),
+    160: rem(160),
+    192: rem(192),
+    224: rem(224),
+    256: rem(256),
+    288: rem(288),
+    320: rem(320),
+    384: rem(384),
+    448: rem(448),
+    512: rem(512),
+    576: rem(576),
+    640: rem(640),
+    768: rem(768),
+    896: rem(896),
+    1024: rem(1024),
+    1152: rem(1152),
+    1280: rem(1280),
+    1536: rem(1536)
+  ),
+
+  negative-sizes: (
+    n1: rem(-1),
+    n2: rem(-2),
+    n4: rem(-4),
+    n6: rem(-6),
+    n8: rem(-8),
+    n10: rem(-10),
+    n12: rem(-12),
+    n14: rem(-14),
+    n16: rem(-16),
+    n18: rem(-18),
+    n20: rem(-20),
+    n24: rem(-24),
+    n28: rem(-28),
+    n32: rem(-32),
+    n36: rem(-36),
+    n40: rem(-40),
+    n48: rem(-48),
+    n56: rem(-56),
+    n64: rem(-64),
+    n72: rem(-72),
+    n80: rem(-80),
+    n96: rem(-96),
+    n112: rem(-112),
+    n128: rem(-128),
+    n144: rem(-144),
+    n160: rem(-160),
+    n192: rem(-192),
+    n224: rem(-224),
+    n256: rem(-256),
+    n288: rem(-288),
+    n320: rem(-320),
+    n384: rem(-384),
+    n448: rem(-448),
+    n512: rem(-512),
+    n576: rem(-576),
+    n640: rem(-640),
+    n768: rem(-768),
+    n896: rem(-896),
+    n1024: rem(-1024),
+    n1152: rem(-1152),
+    n1280: rem(-1280),
+    n1536: rem(-1536)
+  ),
+
+  font-families: (
+    sans: (sans-serif),
+    serif: (serif),
+    mono: (monospace),
+  ),
+
+  font-sizes: (
+    2xs: (
+      font-size: rem(10),
+      line-height: 1.875,
+    ),
+    xs: (
+      font-size: rem(12),
+      line-height: 1.875,
+    ),
+    sm: (
+      font-size: rem(14),
+      line-height: 1.75,
+    ),
+    md: (
+      font-size: rem(16),
+      line-height: 1.75,
+    ),
+    lg: (
+      font-size: rem(18),
+      line-height: 1.625,
+    ),
+    xl: (
+      font-size: rem(20),
+      line-height: 1.625,
+    ),
+    2xl: (
+      font-size: rem(24),
+      line-height: 1.5,
+    ),
+    3xl: (
+      font-size: rem(28),
+      line-height: 1.375,
+    ),
+    4xl: (
+      font-size: rem(32),
+      line-height: 1.25,
+    ),
+    5xl: (
+      font-size: rem(36),
+      line-height: 1.25,
+    ),
+    6xl: (
+      font-size: rem(40),
+      line-height: 1.25,
+    ),
+    7xl: (
+      font-size: rem(48),
+      line-height: 1.25,
+    ),
+    8xl: (
+      font-size: rem(56),
+      line-height: 1.25,
+    ),
+    9xl: (
+      font-size: rem(64),
+      line-height: 1.125,
+    ),
+    10xl: (
+      font-size: rem(72),
+      line-height: 1.125,
+    ),
+    11xl: (
+      font-size: rem(80),
+      line-height: 1.125,
+    ),
+    12xl: (
+      font-size: rem(96),
+      line-height: 1.125,
+    )
+  ),
+
+  font-weights: (
+    ultralight: 100,
+    extralight: 200,
+    light: 300,
+    regular: 400,
+    medium: 500,
+    semibold: 600,
+    bold: 700,
+    extrabold: 800,
+    ultrabold: 900
+  ),
+
+  leadings: (
+    tightest: 1.125,
+    tighter: 1.25,
+    tight: 1.375,
+    normal: 1.5,
+    loose: 1.625,
+    looser: 1.75,
+    loosest: 1.875,
+  ),
+
+  trackings: (
+    tightest: -0.08em,
+    tighter: -0.04em,
+    tight: -0.02em,
+    normal: 0,
+    loose: 0.02em,
+    looser: 0.04em,
+    loosest: 0.08em,
+  ),
+
+  radiuses: (
+    2xs: rem(3),
+    xs: rem(4),
+    sm: rem(6),
+    md: rem(8),
+    lg: rem(12),
+    xl: rem(16),
+    2xl: rem(24),
+  ),
+
+  blurs: (
+    2xs: 4px,
+    xs: 8px,
+    sm: 12px,
+    md: 16px,
+    lg: 24px,
+    xl: 32px,
+    2xl: 48px,
+  ),
+
+  shadows: (
+    2xs: (
+      0 1px 2px rgba(134, 144, 162, 0.1)
+    ),
+    xs: (
+      0 2px 4px rgba(134, 144, 162, 0.15)
+    ),
+    sm: (
+      0 3px 6px rgba(134, 144, 162, 0.2)
+    ),
+    md: (
+      0 4px 8px rgba(134, 144, 162, 0.25)
+    ),
+    lg: (
+      0 6px 12px rgba(134, 144, 162, 0.3)
+    ),
+    xl: (
+      0 12px 24px rgba(134, 144, 162, 0.35)
+    ),
+    2xl: (
+      0 24px 48px rgba(134, 144, 162, 0.4)
+    ),
+
+    focus: (
+      0 0 0 4px rgba(0, 84, 203, 0.2)
+    ),
+    success: (
+      0 0 0 4px rgba(18, 181, 57, 0.2)
+    ),
+    warning: (
+      0 0 0 4px rgba(210, 127, 0, 0.2)
+    ),
+    danger: (
+      0 0 0 4px rgba(203, 18, 0, 0.2)
+    ),
+    info: (
+      0 0 0 4px rgba(0, 200, 177, 0.2)
+    )
+  ),
+
+  keyframes: (
+    spin: (
+      from: (
+        transform: rotate(0deg)
+      ),
+      to: (
+        transform: rotate(360deg)
+      )
+    ),
+    ping: (
+      0%: (
+        transform: scale(1),
+        opacity: 1,
+      ),
+      80%: (
+        transform: scale(2.25),
+        opacity: 0,
+      ),
+      100%: (
+        transform: scale(2.25),
+        opacity: 0,
+      )
+    ),
+    bounce: (
+      0%: (
+        transform: translateY(-25%),
+        animation-timing-function: cubic-bezier(.8,0,1,1)
+      ),
+      50%: (
+        transform: none,
+        animation-timing-function: cubic-bezier(0,0,.2,1)
+      ),
+      100%: (
+        transform: translateY(-25%),
+        animation-timing-function: cubic-bezier(.8,0,1,1)
+      )
+    ),
+    pulse: (
+      0%: (
+        opacity: 1,
+      ),
+      50%: (
+        opacity: .5,
+      ),
+      100%: (
+        opacity: 1,
+      )
+    )
+  )
+) !default;
+
+// ==================================================
+// Config compiler
+// ==================================================
+
+$all-config: map.deep-merge($default-config, $config);
+
+// ==================================================
+// Fetched variables
+// ==================================================
+
+$important: map.get($all-config, important);
+$prefix: map.get($all-config, prefix);
+$delimiter: map.get($all-config, delimiter);
+$child-delimiter: map.get($all-config, child-delimiter);
+$pseudo-delimiter: escape(map.get($all-config, pseudo-delimiter));
+$screen-delimiter: escape(map.get($all-config, screen-delimiter));
+
+$headless: map.get($all-config, headless);
+$root: map.get($all-config, root);
+$css-variables: map.get($all-config, css-variables);
+
+$screens: map.get($all-config, screens);
+
+$range-limits: map.get($all-config, range-limits);
+$positive-sizes: map.get($all-config, positive-sizes);
+$negative-sizes: map.get($all-config, negative-sizes);
+
+$shadows: map.get($all-config, shadows);
+
+$font-families: map.get($all-config, font-families);
+$font-sizes: map.get($all-config, font-sizes);
+$font-weights: map.get($all-config, font-weights);
+$text-sizes: map.get($all-config, text-sizes);
+$leadings: map.get($all-config, leadings);
+$trackings: map.get($all-config, trackings);
+
+$radiuses: map.get($all-config, radiuses);
+
+$blurs: map.get($all-config, blurs);
+
+$opacities: map.get($all-config, opacities);
+
+$colors: map.get($all-config, colors);
+$gradients: map.get($all-config, gradients);
+
+$extend-screens: map.get($all-config, extend, screens);
+$extend-positive-sizes: map.get($all-config, extend, positive-sizes);
+$extend-negative-sizes: map.get($all-config, extend, negative-sizes);
+$extend-shadows: map.get($all-config, extend, shadows);
+$extend-font-families: map.get($all-config, extend, font-families);
+$extend-font-sizes: map.get($all-config, extend, font-sizes);
+$extend-text-sizes: map.get($all-config, extend, text-sizes);
+$extend-font-weights: map.get($all-config, extend, font-weights);
+$extend-leadings: map.get($all-config, extend, leadings);
+$extend-trackings: map.get($all-config, extend, trackings);
+$extend-radiuses: map.get($all-config, extend, radiuses);
+$extend-blurs: map.get($all-config, extend, blurs);
+$extend-opacities: map.get($all-config, extend, opacities);
+$extend-colors: map.get($all-config, extend, colors);
+$extend-gradients: map.get($all-config, extend, gradients);
+
+// ==================================================
+// Private functions
+// ==================================================
+
+// Multiple map merge function
+@function merge($maps...) {
+  $collection: ();
+  @each $map in $maps {
+    $collection: map.merge($collection, $map);
+  }
+  @return $collection;
+}
+
+@function deep-merge($maps...) {
+  $collection: ();
+  @each $map in $maps {
+    $collection: map.deep-merge($collection, $map);
+  }
+  @return $collection;
+}
+
+@function join($maps...) {
+  $collection: ();
+  @each $map in $maps {
+    $collection: list.join($collection, $map);
+  }
+  @return $collection;
+}
+
+// Generate screens map
+@function name-screens() {
+  $named-screens: ();
+  @each $key, $value in $screens {
+    $screens: (
+      screen-#{$key}: $value,
+    );
+    $named-screens: map.merge($named-screens, $screens);
+  }
+  @return $named-screens;
+}
+
+// ==================================================
+// Merged variables
+// ==================================================
+
+// Merged screens
+$merged-screens: ();
+@if $screens != null {
+  $merged-screens: map.deep-merge($merged-screens, $screens);
+}
+$merged-screens: map.deep-merge($merged-screens, $extend-screens);
+
+// Merged Sizes
+$merged-positive-sizes: ();
+@if $positive-sizes != null {
+  $merged-positive-sizes: map.deep-merge($merged-positive-sizes, $positive-sizes);
+}
+$merged-positive-sizes: map.deep-merge($merged-positive-sizes, $extend-positive-sizes);
+
+$merged-negative-sizes: ();
+@if $negative-sizes != null {
+  $merged-negative-sizes: map.deep-merge($merged-negative-sizes, $negative-sizes);
+}
+$merged-negative-sizes: map.deep-merge($merged-negative-sizes, $extend-negative-sizes);
+
+$merged-sizes: ();
+@if $positive-sizes != null {
+  $merged-sizes: map.deep-merge($merged-sizes, $positive-sizes);
+}
+@if $negative-sizes != null {
+  $merged-sizes: map.deep-merge($merged-sizes, $negative-sizes);
+}
+$merged-sizes: map.deep-merge($merged-sizes, $extend-positive-sizes);
+$merged-sizes: map.deep-merge($merged-sizes, $extend-negative-sizes);
+
+// Merged shadows
+$merged-shadows: ();
+@if $shadows != null {
+  $merged-shadows: map.deep-merge($merged-shadows, $shadows);
+}
+$merged-shadows: map.deep-merge($merged-shadows, $extend-shadows);
+
+// Merged font-families
+$merged-font-families: ();
+@if $font-families != null {
+  $merged-font-families: map.deep-merge($merged-font-families, $font-families);
+}
+$merged-font-families: map.deep-merge($merged-font-families, $extend-font-families);
+
+// Merged font-sizes
+$merged-font-sizes: ();
+@if $font-sizes != null {
+  $merged-font-sizes: map.deep-merge($merged-font-sizes, $font-sizes);
+}
+$merged-font-sizes: map.deep-merge($merged-font-sizes, $extend-font-sizes);
+
+// Merged font-weights
+$merged-font-weights: ();
+@if $font-weights != null {
+  $merged-font-weights: map.deep-merge($merged-font-weights, $font-weights);
+}
+$merged-font-weights: map.deep-merge($merged-font-weights, $extend-font-weights);
+
+// Merged leadings
+$merged-leadings: ();
+@if $leadings != null {
+  $merged-leadings: map.deep-merge($merged-leadings, $leadings);
+}
+$merged-leadings: map.deep-merge($merged-leadings, $extend-leadings);
+
+// Merged trackings
+$merged-trackings: ();
+@if $trackings != null {
+  $merged-trackings: map.deep-merge($merged-trackings, $trackings);
+}
+$merged-trackings: map.deep-merge($merged-trackings, $extend-trackings);
+
+// Merged radiuses
+$merged-radiuses: ();
+@if $radiuses != null {
+  $merged-radiuses: map.deep-merge($merged-radiuses, $radiuses);
+}
+$merged-radiuses: map.deep-merge($merged-radiuses, $extend-radiuses);
+
+// Merged blurs
+$merged-blurs: ();
+@if $blurs != null {
+  $merged-blurs: map.deep-merge($merged-blurs, $blurs);
+}
+$merged-blurs: map.deep-merge($merged-blurs, $extend-blurs);
+
+// Merged opacity levels
+$merged-opacities: ();
+@if $opacities != null {
+  $merged-opacities: map.deep-merge($merged-opacities, $opacities);
+}
+$merged-opacities: map.deep-merge($merged-opacities, $extend-opacities);
+
+// Merged Colors
+$merged-colors: ();
+@if $colors != null {
+  $merged-colors: map.deep-merge($merged-colors, $colors);
+}
+$merged-colors: map.deep-merge($merged-colors, $extend-colors);
+
+// Merged Gradients
+$merged-gradients: ();
+@if $gradients != null {
+  $merged-gradients: map.deep-merge($merged-gradients, $gradients);
+}
+$merged-gradients: map.deep-merge($merged-gradients, $extend-gradients);
+
+
+// ==================================================
+// Helper function
+// ==================================================
+
+// Get screen function
+@function screen($screen) {
+  $result: ();
+  @if map.get($all-config, screens, $screen) {
+    $result: map.get($all-config, screens, $screen);
+  }
+  @return $result;
+}
+
+@function screens() {
+  $result: $screens;
+  @return $result;
+}
+
+// Get gradient function
+@function gradient($gradient) {
+  @if map.get($merged-gradients, $gradient) {
+    $result: map.get($merged-gradients, $gradient);
+    @return $result;
+  } @else {
+    @error "[#{$gradient}] does not exist.";
+  }
+}
+
+@function gradients() {
+  $result: ();
+  @each $key, $value in $merged-gradients {
+    $map: (
+      $key: $value
+    );
+    $result: map.merge($result, $map);
+  }
+  @return $result;
+}
+
+// Get opacities function
+@function opacities() {
+  $result: ();
+  @each $key, $value in $merged-opacities {
+    $map: (
+      $key: $value
+    );
+    $result: map.merge($result, $map);
+  }
+  @return $result;
+}
+
+// Get color function
+@function fill($key, $opacity: 1) {
+  $result: ();
+  @if map.has-key($merged-colors, $key) {
+    @if $css-variables == true {
+      $result: rgba( var(--#{$key}), $opacity); 
+    } @else {
+      $result: rgba(map.get($merged-colors, $key), $opacity); 
+    }
+  } @else {
+    @error "[#{$key}] does not exist.";
+  }
+
+  @return $result;
+}
+
+@function fills($type) {
+  $result: ();
+  @if $css-variables == true {
+    @each $key, $value in $merged-colors {
+      $map: (
+        $key: rgba(var(--#{$key}), var(--#{$type}-opacity))
+      );
+      $result: map.merge($result, $map);
+    }
+  } @else {
+    @each $key, $value in $merged-colors {
+      $map: (
+        $key: rgba(#{hex2rgb($value)}, var(--#{$type}-opacity))
+      );
+      $result: map.merge($result, $map);
+    }
+  }
+  
+  @return $result;
+}
+
+
+// Get radius function
+@function radius($radius) {
+  $result: null;
+  @if map.get($merged-radiuses, $radius) {
+    @if $css-variables == true {
+      $result: var(--radius-#{$radius});
+    } @else {
+      $result: map.get($merged-radiuses, $radius); 
+    }
+    @return $result;
+  } @else {
+    @error "[#{$radius}] does not exist.";
+  }
+}
+
+@function radiuses() {
+  $result: ();
+  @if $css-variables == true {
+    @each $key, $value in $merged-radiuses {
+      $map: (
+        $key: var(--radius-#{$key})
+      );
+      $result: map.merge($result, $map);
+    }
+  } @else {
+    @each $key, $value in $merged-radiuses {
+      $map: (
+        $key: $value
+      );
+      $result: map.merge($result, $map);
+    }
+  }
+  
+  @return $result;
+}
+
+// Get blur function
+@function blur($blur) {
+  $result: null;
+  @if map.get($merged-blurs, $blur) {
+    @if $css-variables == true {
+      $result: var(--blur-#{$blur});
+      @return $result;
+    } @else {
+      $result: map.get($merged-blurs, $blur);
+      @return $result;
+    } 
+    
+  } @else {
+    @error "[#{$blur}] does not exist.";
+  }
+}
+
+@function blurs() {
+  $result: ();
+  @if $css-variables == true {
+    @each $key, $value in $merged-blurs {
+      $map: (
+        $key: var(--blur-#{$key})
+      );
+      $result: map.merge($result, $map);
+    }
+  } @else {
+    @each $key, $value in $merged-blurs {
+      $map: (
+        $key: $value
+      );
+      $result: map.merge($result, $map);
+    }
+  } 
+  @return $result;
+}
+
+// Get shadow function
+@function shadow($shadow) {
+  @if map.get($merged-shadows, $shadow) {
+    @if $css-variables == true {
+      $result: var(--shadow-#{$shadow});
+      @return $result;
+    } @else {
+      $result: map.get($merged-shadows, $shadow);
+      @return $result;
+    }
+    
+  } @else {
+    @error "[#{$shadow}] does not exist.";
+  }
+}
+
+@function shadows() {
+  $result: ();
+  @if $css-variables == true {
+    @each $key, $value in $merged-shadows {
+      $map: (
+        $key: var(--shadow-#{$key})
+      );
+      $result: map.merge($result, $map);
+    }
+  } @else {
+    @each $key, $value in $merged-shadows {
+      $map: (
+        $key: $value
+      );
+      $result: map.merge($result, $map);
+    }
+  }
+  @return $result;
+}
+
+// Get size function
+@function positive-sizes($limit: null) {
+  @if $limit != null {
+    $size-map: ();
+    $min: list.nth($limit, 1);
+    $max: list.nth($limit, 2);
+
+    @for $i from $min through $max {
+      $map: list.nth($merged-positive-sizes, $i);
+      $key: list.nth($map, 1);
+      $limit-map: (
+        $key: list.nth($map, 2)
+      );
+      $size-map: map.merge($size-map, $limit-map);
+    }
+
+    @return $size-map;
+  } @else {
+    @return $merged-positive-sizes;
+  }
+}
+
+@function negative-sizes($limit: null) {
+  @if $limit != null {
+    $size-map: ();
+    $min: list.nth($limit, 1);
+    $max: list.nth($limit, 2);
+
+    @for $i from $min through $max {
+      $map: list.nth($merged-negative-sizes, $i);
+      $key: list.nth($map, 1);
+      $limit-map: (
+        $key: list.nth($map, 2)
+      );
+      $size-map: map.merge($size-map, $limit-map);
+    }
+
+    @return $size-map;
+  } @else {
+    @return $merged-negative-sizes;
+  }
+}
+
+@function size($size, $sizes...) {
+  $result: ();
+  @if $size == 0 {
+    $result: 0;
+  } @else if map.has-key($merged-sizes, $size) {
+    $result: map.get($merged-sizes, $size);
+  } @else {
+    @error "[#{$size}] does not exist.";
+  }
+  @each $size in $sizes {
+    $value: '';
+
+    @if $size == 0 {
+      $value: 0;
+      $result: list.append($result, $value);
+    } @else if map.has-key($merged-sizes, $size) {
+      $value: map.get($merged-sizes, $size);
+      $result: list.append($result, $value);
+    } @else {
+      @error "[#{$size}] does not exist.";
+    }
+  }
+  @return $result;
+}
+
+@function sizes($limit: null) {
+  @if $limit != null {
+    $positive-sizes: positive-sizes($limit);
+    $negative-sizes: negative-sizes($limit);
+    $size-map: map.merge($positive-sizes, $negative-sizes);
+    @return $size-map;
+  } @else {
+    @return $merged-sizes;
+  }
+}
+
+// Get typography functions
+@function font($font) {
+  $result: null;
+  @if map.get($merged-font-families, $font) {
+    @if $css-variables == true {
+      $result: var(--font-#{$font});
+      @return $result;
+    } @else {
+      $result: map.get($merged-font-families, $font);
+      @return $result;
+    }
+  } @else if map.get($merged-font-sizes, $font) {
+    @if $css-variables == true {
+      $result: var(--font-#{$font});
+      @return $result;
+    } @else {
+      $result: map.get($merged-font-sizes, $font, font-size);
+      @return $result;
+    }
+  } @else if map.get($merged-font-weights, $font) {
+    @if $css-variables == true {
+      $result: var(--font-#{$font});
+      @return $result;
+    } @else {
+      $result: map.get($merged-font-weights, $font);
+      @return $result;
+    }
+  } @else {
+    @error "[#{$font}] does not exist";
+  }
+}
+
+@function font-family($font-family) {
+  $result: null;
+  @if map.get($merged-font-families, $font-family) {
+    @if $css-variables == true {
+      $result: var(--font-#{$font-family});
+      @return $result;
+    } @else {
+      $result: map.get($merged-font-families, $font-family);
+      @return $result;
+    }
+  } @else {
+    @error "[#{$font-family}] does not exist.";
+  }
+}
+
+@function font-families() {
+  $result: ();
+  @if $css-variables == true {
+    @each $key, $value in $merged-font-families {
+      $map: (
+        $key: var(--font-#{$key})
+      );
+      $result: map.merge($result, $map);
+    }
+    @return $result;
+  } @else {
+    @each $key, $value in $merged-font-families {
+      $map: (
+        $key: $value
+      );
+      $result: map.merge($result, $map);
+    }
+    @return $result;
+  }
+  
+}
+
+@function font-size($font-size) {
+  @if map.get($merged-font-sizes, $font-size) {
+    @if $css-variables == true {
+      $result: var(--font-#{$font-size});
+      @return $result;
+    } @else {
+      $result: map.get($merged-font-sizes, $font-size, font-size);
+      @return $result;
+    }
+  } @else {
+    @error "[#{$font-size}] does not exist.";
+  }
+}
+
+@function font-sizes() {
+  $result: ();
+  @if $css-variables == true {
+    @each $key, $value in $merged-font-sizes {
+      @if meta.type-of($value) == map {
+        $map: (
+          $key: (
+            font-size: var(--font-#{$key})
+          )
+        );
+        $result: map.merge($result, $map);
+      } @else {
+        $map: (
+          $key: (
+            font-size: var(--font-#{$key})
+          )
+        );
+        $result: map.merge($result, $map);
+      }
+    }
+  } @else {
+    @each $key, $value in $merged-font-sizes {
+      @if meta.type-of($value) == map {
+        $map: (
+          $key: (
+            font-size: map.get($value, font-size)
+          )
+        );
+        $result: map.merge($result, $map);
+      } @else {
+        $map: (
+          $key: (
+            font-size: map.get($value, font-size)
+          )
+        );
+        $result: map.merge($result, $map);
+      }
+    }
+  }
+  
+  @return $result;
+}
+
+@function text-sizes() {
+  $result: ();
+  @if $css-variables == true {
+    @each $key, $value in $merged-font-sizes {
+      @if meta.type-of($value) == map {
+        $map: (
+          $key: (
+            font-size: var(--font-#{$key}),
+            line-height: var(--font-#{$key}-leading)
+          )
+        );
+        $result: map.merge($result, $map);
+      } @else {
+        $map: (
+          $key: (
+            font-size: var(--font-#{$key})
+          )
+        );
+        $result: map.merge($result, $map);
+      }
+    }
+    @return $result;
+  } @else {
+    @each $key, $value in $merged-font-sizes {
+      @if meta.type-of($value) == map {
+        $map: (
+          $key: (
+            font-size: map.get($value, font-size),
+            line-height: map.get($value, line-height)
+          )
+        );
+        $result: map.merge($result, $map);
+      } @else {
+        $map: (
+          $key: (
+            font-size: map.get($value, font-size)
+          )
+        );
+        $result: map.merge($result, $map);
+      }
+    }
+    @return $result;
+  }
+  
+}
+
+@function font-weight($font-weight) {
+  $result: null;
+  @if map.get($merged-font-weights, $font-weight) {
+    @if $css-variables == true {
+      $result: var(--#{$font-weight});
+      @return $result;
+    } @else {
+      $result: map.get($merged-font-weights, $font-weight);
+      @return $result;
+    }
+  } @else {
+    @error "[#{$font-weight}] does not exist.";
+  }
+}
+
+@function font-weights() {
+  $result: ();
+  @if $css-variables == true {
+    @each $key, $value in $merged-font-weights {
+      $map: (
+        $key: var(--#{$key})
+      );
+      $result: map.merge($result, $map);
+    }
+  } @else {
+    @each $key, $value in $merged-font-weights {
+      $map: (
+        $key: $value
+      );
+      $result: map.merge($result, $map);
+    }
+  }
+  
+  @return $result;
+}
+
+@function leading($leading) {
+  $result: null;
+  @if map.get($merged-leadings, $leading) {
+    @if $css-variables == true {
+      $result: var(--leading-#{$leading});
+      @return $result;
+    } @else {
+      $result: map.get($merged-leadings, $leading);
+      @return $result;
+    }
+  } @else {
+    @error "[#{$leading}] does not exist.";
+  }
+}
+
+@function leadings() {
+  $result: ();
+  @if $css-variables == true {
+    @each $key, $value in $merged-leadings {
+      $map: (
+        $key: var(--leading-#{$key})
+      );
+      $result: map.merge($result, $map);
+    }
+    @return $result;
+  } @else {
+    @each $key, $value in $merged-leadings {
+      $map: (
+        $key: $value
+      );
+      $result: map.merge($result, $map);
+    }
+    @return $result;
+  }
+  
+}
+
+@function tracking($tracking) {
+  $result: null;
+  @if map.get($merged-trackings, $tracking) {
+    @if $css-variables == true {
+      $result: var(--tracking-#{$tracking});
+      @return $result;
+    } @else {
+      $result: map.get($merged-trackings, $tracking);
+      @return $result;
+    }
+  } @else {
+    @error "[#{$tracking}] does not exist.";
+  }
+}
+
+@function trackings() {
+  $result: ();
+  @if $css-variables == true {
+    @each $key, $value in $merged-trackings {
+      $map: (
+        $key: var(--tracking-#{$key})
+      );
+      $result: map.merge($result, $map);
+    }
+    @return $result;
+  } @else {
+    @each $key, $value in $merged-trackings {
+      $map: (
+        $key: $value
+      );
+      $result: map.merge($result, $map);
+    }
+    @return $result;
+  }
+}
+
+// ==================================================
+// Helper mixins
+// ==================================================
+
+@mixin screen($screen) {
+  @media (min-width: screen($screen)) {
+    @content; 
+  }
+}

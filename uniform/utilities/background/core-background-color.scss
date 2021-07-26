@@ -1,0 +1,50 @@
+@use "uniform/core";
+@use "sass:map";
+
+$name: background-color;
+$shorthand: bg;
+$responsive: false;
+$responsive-pseudos: false;
+$extra-selector: null;
+
+$properties: (background-color);
+$static-properties: (
+  --bg-opacity: 1,
+);
+
+$variants: (
+	core.merge(
+    core.fills(bg),
+    (
+      transparent: transparent,
+      current: currentColor,
+      success: var(--bg-success, rgba(18, 181, 57, var(--bg-opacity))),
+      warning: var(--bg-warning, rgba(210, 127, 0, var(--bg-opacity))),
+      danger: var(--bg-danger, rgba(203, 18, 0, var(--bg-opacity))),
+      info: var(--bg-info, rgba(0, 200, 177, var(--bg-opacity))),
+    )
+	)
+);
+
+$pseudos: (hover, group-hover, focus);
+
+$config: (
+  utilities: (
+    $name: (
+      shorthand: $shorthand,
+      responsive: $responsive,
+      responsive-pseudos: $responsive-pseudos,
+      extra-selector: $extra-selector,
+      properties: $properties,
+      static-properties: $static-properties,
+      variants: (
+        $variants
+      ),
+      pseudos: (
+        $pseudos
+      )
+    )
+  )
+);
+
+core.$all-config: map.deep-merge(core.$all-config, $config);

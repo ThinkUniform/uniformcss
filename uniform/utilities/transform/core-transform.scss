@@ -1,0 +1,51 @@
+@use "uniform/core";
+@use "sass:map";
+
+$name: transform;
+$shorthand: transform;
+$responsive: false;
+$responsive-pseudos: false;
+$extra-selector: null;
+
+$properties: (transform);
+$static-properties: (
+  --translate-x: 0,
+  --translate-y: 0,
+  --rotate: 0,
+  --skew-x: 0,
+  --skew-y: 0,
+  --scale-x: 1,
+  --scale-y: 1
+);
+
+$variants: (
+  null: (
+    translateX(var(--translate-x)) translateY(var(--translate-y)) rotate(var(--rotate))
+      skewX(var(--skew-x)) skewY(var(--skew-y)) scaleX(var(--scale-x))
+      scaleY(var(--scale-y)
+    )
+  ),
+);
+
+$pseudos: ();
+
+$config: (
+  utilities: (
+    $name: (
+      shorthand: $shorthand,
+      responsive: $responsive,
+      responsive-pseudos: $responsive-pseudos,
+      extra-selector: $extra-selector,
+      properties: $properties,
+      static-properties: $static-properties,
+      variants: (
+        $variants
+      ),
+      pseudos: (
+        $pseudos
+      )
+    )
+  )
+);
+
+core.$all-config: map.deep-merge(core.$all-config, $config);

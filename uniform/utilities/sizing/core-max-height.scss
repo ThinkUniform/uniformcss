@@ -1,0 +1,49 @@
+@use "uniform/core";
+@use "sass:map";
+
+$name: max-height;
+$shorthand: max-h;
+$responsive: true;
+$responsive-pseudos: false;
+$extra-selector: null;
+
+$properties: (max-height);
+$static-properties: ();
+
+$range-limit: map.get(core.$all-config, range-limits, max-height);
+
+$variants: (
+	core.merge(
+		core.positive-sizes($range-limit),
+		(
+      none: none,
+			100p: 100%,
+			100vh: 100vh,
+			50p: 50%,
+			50vh: 50vh,
+		)
+	)
+);
+
+$pseudos: ();
+
+$config: (
+  utilities: (
+    $name: (
+      shorthand: $shorthand,
+      responsive: $responsive,
+      responsive-pseudos: $responsive-pseudos,
+      extra-selector: $extra-selector,
+      properties: $properties,
+      static-properties: $static-properties,
+      variants: (
+        $variants
+      ),
+      pseudos: (
+        $pseudos
+      )
+    )
+  )
+);
+
+core.$all-config: map.deep-merge(core.$all-config, $config);

@@ -1,0 +1,48 @@
+@use "uniform/core";
+@use "sass:map";
+
+$name: min-width;
+$shorthand: min-w;
+$responsive: true;
+$responsive-pseudos: false;
+$extra-selector: null;
+
+$properties: (min-width);
+$static-properties: ();
+
+$range-limit: map.get(core.$all-config, range-limits, min-width);
+
+$variants: (
+  core.merge(
+    core.positive-sizes($range-limit),
+    (
+      50p: 50%,
+      100p: 100%,
+      50vw: 50vw,
+      100vw: 100vw,
+    )
+  )
+);
+
+$pseudos: ();
+
+$config: (
+  utilities: (
+    $name: (
+      shorthand: $shorthand,
+      responsive: $responsive,
+      responsive-pseudos: $responsive-pseudos,
+      extra-selector: $extra-selector,
+      properties: $properties,
+      static-properties: $static-properties,
+      variants: (
+        $variants
+      ),
+      pseudos: (
+        $pseudos
+      )
+    )
+  )
+);
+
+core.$all-config: map.deep-merge(core.$all-config, $config);

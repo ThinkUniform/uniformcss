@@ -1,0 +1,43 @@
+@use "uniform/core";
+@use "sass:map";
+
+$name: white-space;
+$shorthand: space;
+$responsive: true;
+$responsive-pseudos: false;
+$extra-selector: null;
+
+$properties: (white-space);
+$static-properties: ();
+
+$variants: (
+  normal: normal,
+  nowrap: nowrap,
+  pre: pre,
+  pre-wrap: pre-wrap,
+  pre-line: pre-line,
+  break: break-spaces  
+);
+
+$pseudos: ();
+
+$config: (
+  utilities: (
+    $name: (
+      shorthand: $shorthand,
+      responsive: $responsive,
+      responsive-pseudos: $responsive-pseudos,
+      extra-selector: $extra-selector,
+      properties: $properties,
+      static-properties: $static-properties,
+      variants: (
+        $variants
+      ),
+      pseudos: (
+        $pseudos
+      )
+    )
+  )
+);
+
+core.$all-config: map.deep-merge(core.$all-config, $config);

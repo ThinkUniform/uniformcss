@@ -1,0 +1,39 @@
+@use "sass:map";
+@use "sass:list";
+@use "sass:meta";
+@use "uniform/core" as *;
+
+$exclude: map.get($all-config, excludes);
+$include: map.get($all-config, includes);
+$headless: map.get($all-config, headless);
+$keyframes: map.get($all-config, keyframes);
+
+$include-condition: true;
+@if ( $headless == true ) {
+  $include-condition: false;
+}
+@if ( list.index($exclude, all) ) {
+  $include-condition: false;
+}
+@if ( list.index($exclude, keyframes) ) {
+  $include-condition: false;
+}
+@if ( list.index($include, keyframes) ) {
+  $include-condition: true;
+}
+
+@if ( $include-condition ) {
+/*! purgecss start ignore */
+  @each $keyframe-key, $keyframe-value in $keyframes {
+    @keyframes #{$keyframe-key} {
+      @each $keyframe-timestamp, $keyframe-property in $keyframe-value {
+        #{$keyframe-timestamp} {
+          @each $keyframe-transform-property, $keyframe-property-value in $keyframe-property {
+            #{$keyframe-transform-property}: #{$keyframe-property-value};
+          }
+        }
+      }
+    }
+  }
+/*! purgecss end ignore */
+}

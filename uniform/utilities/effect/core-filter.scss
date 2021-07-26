@@ -1,0 +1,50 @@
+@use "uniform/core";
+@use "sass:map";
+@use "sass:string";
+
+$name: filter; 
+$shorthand: filter;
+$responsive: false;
+$responsive-pseudos: false;
+$extra-selector: null;
+
+$properties: (filter);
+$static-properties: (
+  --filter-blur: 0,
+  --filter-brightness: 1,
+  --filter-contrast: 1,
+  --filter-grayscale: 0,
+  --filter-hue-rotate: 0deg,
+  --filter-invert: 0,
+  --filter-opacity: 1,
+  --filter-saturate: 1,
+  --filter-sepia: 0
+);
+
+$variants: (
+  null: string.unquote("blur(var(--filter-blur))") string.unquote("brightness(var(--filter-brightness))") string.unquote("contrast(var(--filter-contrast))") string.unquote("grayscale(var(--filter-grayscale))") string.unquote("hue-rotate(var(--filter-hue-rotate))") string.unquote("invert(var(--filter-invert))") string.unquote("opacity(var(--filter-opacity))") string.unquote("saturate(var(--filter-saturate))") string.unquote("sepia(var(--filter-sepia))"),
+  none: none
+);
+
+$pseudos: ();
+
+$config: (
+  utilities: (
+    $name: (
+      shorthand: $shorthand,
+      responsive: $responsive,
+      responsive-pseudos: $responsive-pseudos,
+      extra-selector: $extra-selector,
+      properties: $properties,
+      static-properties: $static-properties,
+      variants: (
+        $variants
+      ),
+      pseudos: (
+        $pseudos
+      )
+    )
+  )
+);
+
+core.$all-config: map.deep-merge(core.$all-config, $config);

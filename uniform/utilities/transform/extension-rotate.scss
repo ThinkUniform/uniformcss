@@ -1,0 +1,60 @@
+@use "uniform/core";
+@use "sass:map";
+
+$name: rotate;
+$shorthand: rotate;
+$responsive: true;
+$responsive-pseudos: false;
+$extra-selector: null;
+
+$properties: (--rotate);
+$static-properties: ();
+
+$variants: (
+	0: 0,
+  
+  2: 2deg,
+  4: 4deg,
+  6: 6deg,
+  8: 8deg,
+  10: 10deg,
+  12: 12deg,
+
+  n2: -2deg,
+  n4: -4deg,
+  n6: -6deg,
+  n8: -8deg,
+  n10: -10deg,
+  n12: -12deg,
+
+	45: 45deg,
+	90: 90deg,
+	180: 180deg,
+
+	n45: -45deg,
+	n90: -90deg,
+	n180: -180deg,
+);
+
+$pseudos: (hover, focus);
+
+$config: (
+  utilities: (
+    $name: (
+      shorthand: $shorthand,
+      responsive: $responsive,
+      responsive-pseudos: $responsive-pseudos,
+      extra-selector: $extra-selector,
+      properties: $properties,
+      static-properties: $static-properties,
+      variants: (
+        $variants
+      ),
+      pseudos: (
+        $pseudos
+      )
+    )
+  )
+);
+
+core.$all-config: map.deep-merge(core.$all-config, $config);

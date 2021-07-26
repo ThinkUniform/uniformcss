@@ -1,0 +1,92 @@
+@use "sass:map";
+@use "sass:list";
+@use "sass:meta";
+@use "uniform/core" as *;
+
+$exclude: map.get($all-config, excludes);
+$include: map.get($all-config, includes);
+$headless: map.get($all-config, headless);
+$css-variables: map.get($all-config, css-variables);
+
+$include-condition: true;
+@if ( $headless == true ) {
+  $include-condition: false;
+}
+@if ( $css-variables == false ) {
+  $include-condition: false;
+}
+@if ( list.index($exclude, all) ) {
+  $include-condition: false;
+}
+@if ( list.index($exclude, root) ) {
+  $include-condition: false;
+}
+@if ( list.index($include, root) ) {
+  $include-condition: true;
+}
+
+
+@if ( $include-condition ) {
+/*! purgecss start ignore */
+  :root {
+    --FONT-FAMILIES-----------------:#01;
+    @each $key, $value in $merged-font-families {
+      --font-#{'' + $key}: #{$value};
+    }
+    --FONT-SIZES--------------------:#02;
+    @each $key, $value in $merged-font-sizes {
+      @if (meta.type-of($value) == map) {
+        --font-#{'' + $key}: #{map.get($value, font-size)};
+      } @else {
+        --font-#{'' + $key}: #{$value};
+      }
+    }
+    --FONT-WEIGHTS------------------:#03;
+    @each $key, $value in $merged-font-weights {
+      --#{'' + $key}: #{$value};
+    }
+    --LEADING-----------------------:#04;
+    @each $key, $value in $merged-leadings {
+      --leading-#{'' + $key}: #{$value};
+    }
+    --TRACKING----------------------:#05;
+    @each $key, $value in $merged-trackings {
+      --tracking-#{'' + $key}: #{$value};
+    }
+    --TEXT-LEADING------------------:#06;
+    @each $key, $value in $merged-font-sizes {
+      @if (meta.type-of($value) == map) {
+        --font-#{'' + $key}-leading: #{map.get($value, line-height)};
+      } @else {
+        --font-#{'' + $key}-leading: 1;
+      }
+    }
+    --RADIUS------------------------:#07;
+    @each $key, $value in $merged-radiuses {
+      --radius-#{'' + $key}: #{$value};
+    }
+    --BLUR--------------------------:#08;
+    @each $key, $value in $merged-blurs {
+      --blur-#{'' + $key}: #{$value};
+    }
+    --SHADOWS-----------------------:#09;
+    @each $key, $value in $merged-shadows {
+      --shadow-#{'' + $key}: #{$value};
+    }
+    --GRADIENTS---------------------:#10;
+    @each $gradient, $gradient-value in $merged-gradients {
+      @if (meta.type-of($gradient-value) == map) {
+        @each $key, $value in $gradient-value {
+          --#{'' + $gradient}-#{'' + $key}: #{$value};
+        }
+      } @else {
+        --#{'' + $gradient}: #{$gradient-value};
+      }
+    }
+    --COLORS------------------------:#11;
+    @each $color, $color-value in $merged-colors {
+      --#{'' + $color}: #{hex2rgb($color-value)};
+    }
+  }
+/*! purgecss end ignore */
+}

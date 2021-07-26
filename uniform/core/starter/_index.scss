@@ -1,0 +1,97 @@
+@use "sass:map";
+@use "sass:list";
+@use "uniform/core" as *;
+
+$exclude: map.get($all-config, excludes);
+$include: map.get($all-config, includes);
+$headless: map.get($all-config, headless);
+
+$include-condition: true;
+@if ( $headless == true ) {
+  $include-condition: false;
+}
+@if ( list.index($exclude, all) ) {
+  $include-condition: false;
+}
+@if ( list.index($exclude, reset) ) {
+  $include-condition: false;
+}
+@if ( list.index($include, reset) ) {
+  $include-condition: true;
+}
+
+@if ( $include-condition ) {
+/*! purgecss start ignore */
+  sub, sup {
+    position: relative;
+    font-size: .75em;
+  }
+
+  sub {
+    bottom: -0.25em;
+    left: 0.25em;
+  }
+
+  sup {
+    top: -0.5em;
+    left: 0.25em;
+  }
+
+  pre, code {
+		font-family: var(--font-mono);
+	}
+
+  [type=date],
+  [type=datetime],
+  [type=datetime-local],
+  [type=email],
+  [type=month],
+  [type=number],
+  [type=password],
+  [type=search],
+  [type=tel],
+  [type=text],
+  [type=time],
+  [type=url],
+  [type=week],
+  textarea,
+  select {
+    padding: 0.5em 0.75em;
+    font-size: 1rem;
+    line-height: 1.5;
+  }
+
+  [type='checkbox'], 
+  [type='radio'] {
+    width: 1em;
+    height: 1em;
+    &:checked {
+      border-color: transparent;
+      background-color: currentColor;
+      background-size: 100% 100%;
+      background-position: center;
+      background-repeat: no-repeat;
+    }
+  }
+
+  [type='checkbox'] {
+    &:checked {
+      background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3e%3cpath fill='none' stroke='white' stroke-linecap='round' stroke-linejoin='round' stroke-width='3' d='M6 10l3 3l6-6'/%3e%3c/svg%3e");
+    }
+  }
+  
+  [type='radio'] {
+    border-radius: 9999px;
+    &:checked {
+      background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3e%3ccircle r='2' fill='white'/%3e%3c/svg%3e");
+    }
+  }
+
+  select {
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='%23343a40' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M2 5l6 6 6-6'/%3e%3c/svg%3e");
+    background-repeat: no-repeat;
+    background-position: right .75em center;
+    background-size: 16px 12px;
+  }
+/*! purgecss end ignore */
+}

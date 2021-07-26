@@ -1,0 +1,43 @@
+@use "uniform/core";
+@use "sass:map";
+
+$name: filter-hue-rotate; 
+$shorthand: filter-hue-rotate;
+$responsive: false;
+$responsive-pseudos: false;
+$extra-selector: null;
+
+$properties: (--filter-hue-rotate);
+$static-properties: ();
+
+$variants: (
+  0: 0deg,
+  15: 15deg,
+  30: 30deg,
+  60: 60deg,
+  90: 90deg,
+  180: 180deg
+);
+
+$pseudos: ();
+
+$config: (
+  utilities: (
+    $name: (
+      shorthand: $shorthand,
+      responsive: $responsive,
+      responsive-pseudos: $responsive-pseudos,
+      extra-selector: $extra-selector,
+      properties: $properties,
+      static-properties: $static-properties,
+      variants: (
+        $variants
+      ),
+      pseudos: (
+        $pseudos
+      )
+    )
+  )
+);
+
+core.$all-config: map.deep-merge(core.$all-config, $config);
