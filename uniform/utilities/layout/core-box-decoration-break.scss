@@ -7,7 +7,7 @@ $responsive: true;
 $responsive-pseudos: false;
 $extra-selector: null;
 
-$properties: (box-decoration-break);
+$properties: (box-decoration-break, -webkit-box-decoration-break);
 $static-properties: ();
 
 $variants: (
