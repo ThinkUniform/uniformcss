@@ -17,6 +17,7 @@ $variants: (
 		core.positive-sizes($range-limit),
 		core.name-screens(),
 		(
+      0: 0,
 			none: none,
 
       50p: 50%,

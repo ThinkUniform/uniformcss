@@ -25,7 +25,9 @@ $variants: (
 		top,
 		right,
 		bottom,
-		left
+		left,
+		width,
+		height,
 	),
 	colors: (
 		background-color,
@@ -42,6 +44,8 @@ $variants: (
 	opacity: opacity,
 	shadow: box-shadow,
 	transform: transform,
+	width: width,
+	height: height,
 );
 
 $pseudos: ();
