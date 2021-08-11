@@ -2130,31 +2130,15 @@ select {
 }
 
 .transition {
-  transition-property: background-color, border-color, color, fill, stroke, opacity, box-shadow, transform, top, right, bottom, left, width, height;
+  transition-property: background-color, border-color, color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter;
 }
 
 .transition-colors {
   transition-property: background-color, border-color, color, fill, stroke;
 }
 
-.transition-bg {
-  transition-property: background-color;
-}
-
-.transition-color {
-  transition-property: color;
-}
-
-.transition-border {
-  transition-property: border-color;
-}
-
-.transition-fill {
-  transition-property: fill;
-}
-
-.transition-stroke {
-  transition-property: stroke;
+.transition-filters {
+  transition-property: filter, backdrop-filter;
 }
 
 .transition-opacity {
@@ -2167,14 +2151,6 @@ select {
 
 .transition-transform {
   transition-property: transform;
-}
-
-.transition-width {
-  transition-property: width;
-}
-
-.transition-height {
-  transition-property: height;
 }
 
 .delay-100 {

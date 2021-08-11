@@ -22,12 +22,8 @@ $variants: (
 		opacity,
 		box-shadow,
 		transform,
-		top,
-		right,
-		bottom,
-		left,
-		width,
-		height,
+		filter,
+		backdrop-filter
 	),
 	colors: (
 		background-color,
@@ -36,16 +32,13 @@ $variants: (
 		fill,
 		stroke
 	),
-	bg: background-color,
-	color: color,
-	border: border-color,
-	fill: fill,
-	stroke: stroke,
+	filters: (
+		filter,
+		backdrop-filter
+	),
 	opacity: opacity,
 	shadow: box-shadow,
 	transform: transform,
-	width: width,
-	height: height,
 );
 
 $pseudos: ();
