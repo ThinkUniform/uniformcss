@@ -100,28 +100,6 @@
   --radial: radial-gradient(var(--radial-gradient, circle at 50% 50%, #40c6ff, #505bed));
   --conic: conic-gradient(var(--conic-gradient, from 90deg at 50% 50%, #40c6ff, #505bed));
   --COLORS------------------------:#11;
-  --primary-50: 237,241,255;
-  --primary-100: 218,226,255;
-  --primary-200: 176,194,255;
-  --primary-300: 137,163,255;
-  --primary-400: 99,133,255;
-  --primary-500: 68,108,250;
-  --primary-600: 38,80,235;
-  --primary-700: 0,42,200;
-  --primary-800: 0,32,154;
-  --primary-900: 0,21,102;
-  --primary-950: 0,10,51;
-  --secondary-50: 234,238,252;
-  --secondary-100: 214,221,250;
-  --secondary-200: 174,188,244;
-  --secondary-300: 139,158,233;
-  --secondary-400: 106,129,221;
-  --secondary-500: 82,105,200;
-  --secondary-600: 60,84,179;
-  --secondary-700: 43,64,147;
-  --secondary-800: 30,47,116;
-  --secondary-900: 20,33,84;
-  --secondary-950: 11,19,51;
   --white: 255,255,255;
   --black: 0,0,0;
   --warm-gray-50: 247,246,245;
@@ -278,6 +256,28 @@
   --pink-800: 104,0,54;
   --pink-900: 82,0,42;
   --pink-950: 38,0,19;
+  --primary-50: 237,241,255;
+  --primary-100: 218,226,255;
+  --primary-200: 176,194,255;
+  --primary-300: 137,163,255;
+  --primary-400: 99,133,255;
+  --primary-500: 68,108,250;
+  --primary-600: 38,80,235;
+  --primary-700: 0,42,200;
+  --primary-800: 0,32,154;
+  --primary-900: 0,21,102;
+  --primary-950: 0,10,51;
+  --secondary-50: 234,238,252;
+  --secondary-100: 214,221,250;
+  --secondary-200: 174,188,244;
+  --secondary-300: 139,158,233;
+  --secondary-400: 106,129,221;
+  --secondary-500: 82,105,200;
+  --secondary-600: 60,84,179;
+  --secondary-700: 43,64,147;
+  --secondary-800: 30,47,116;
+  --secondary-900: 20,33,84;
+  --secondary-950: 11,19,51;
 }
 
 /*! purgecss end ignore */
@@ -576,116 +576,6 @@ select {
 
 .align-text-bottom {
   vertical-align: text-bottom;
-}
-
-.color-primary-50, .focus\.color-primary-50:focus, .group:hover .group-hover\.color-primary-50, .hover\.color-primary-50:hover {
-  --color-opacity: 1;
-  color: rgba(var(--primary-50), var(--color-opacity));
-}
-
-.color-primary-100, .focus\.color-primary-100:focus, .group:hover .group-hover\.color-primary-100, .hover\.color-primary-100:hover {
-  --color-opacity: 1;
-  color: rgba(var(--primary-100), var(--color-opacity));
-}
-
-.color-primary-200, .focus\.color-primary-200:focus, .group:hover .group-hover\.color-primary-200, .hover\.color-primary-200:hover {
-  --color-opacity: 1;
-  color: rgba(var(--primary-200), var(--color-opacity));
-}
-
-.color-primary-300, .focus\.color-primary-300:focus, .group:hover .group-hover\.color-primary-300, .hover\.color-primary-300:hover {
-  --color-opacity: 1;
-  color: rgba(var(--primary-300), var(--color-opacity));
-}
-
-.color-primary-400, .focus\.color-primary-400:focus, .group:hover .group-hover\.color-primary-400, .hover\.color-primary-400:hover {
-  --color-opacity: 1;
-  color: rgba(var(--primary-400), var(--color-opacity));
-}
-
-.color-primary-500, .focus\.color-primary-500:focus, .group:hover .group-hover\.color-primary-500, .hover\.color-primary-500:hover {
-  --color-opacity: 1;
-  color: rgba(var(--primary-500), var(--color-opacity));
-}
-
-.color-primary-600, .focus\.color-primary-600:focus, .group:hover .group-hover\.color-primary-600, .hover\.color-primary-600:hover {
-  --color-opacity: 1;
-  color: rgba(var(--primary-600), var(--color-opacity));
-}
-
-.color-primary-700, .focus\.color-primary-700:focus, .group:hover .group-hover\.color-primary-700, .hover\.color-primary-700:hover {
-  --color-opacity: 1;
-  color: rgba(var(--primary-700), var(--color-opacity));
-}
-
-.color-primary-800, .focus\.color-primary-800:focus, .group:hover .group-hover\.color-primary-800, .hover\.color-primary-800:hover {
-  --color-opacity: 1;
-  color: rgba(var(--primary-800), var(--color-opacity));
-}
-
-.color-primary-900, .focus\.color-primary-900:focus, .group:hover .group-hover\.color-primary-900, .hover\.color-primary-900:hover {
-  --color-opacity: 1;
-  color: rgba(var(--primary-900), var(--color-opacity));
-}
-
-.color-primary-950, .focus\.color-primary-950:focus, .group:hover .group-hover\.color-primary-950, .hover\.color-primary-950:hover {
-  --color-opacity: 1;
-  color: rgba(var(--primary-950), var(--color-opacity));
-}
-
-.color-secondary-50, .focus\.color-secondary-50:focus, .group:hover .group-hover\.color-secondary-50, .hover\.color-secondary-50:hover {
-  --color-opacity: 1;
-  color: rgba(var(--secondary-50), var(--color-opacity));
-}
-
-.color-secondary-100, .focus\.color-secondary-100:focus, .group:hover .group-hover\.color-secondary-100, .hover\.color-secondary-100:hover {
-  --color-opacity: 1;
-  color: rgba(var(--secondary-100), var(--color-opacity));
-}
-
-.color-secondary-200, .focus\.color-secondary-200:focus, .group:hover .group-hover\.color-secondary-200, .hover\.color-secondary-200:hover {
-  --color-opacity: 1;
-  color: rgba(var(--secondary-200), var(--color-opacity));
-}
-
-.color-secondary-300, .focus\.color-secondary-300:focus, .group:hover .group-hover\.color-secondary-300, .hover\.color-secondary-300:hover {
-  --color-opacity: 1;
-  color: rgba(var(--secondary-300), var(--color-opacity));
-}
-
-.color-secondary-400, .focus\.color-secondary-400:focus, .group:hover .group-hover\.color-secondary-400, .hover\.color-secondary-400:hover {
-  --color-opacity: 1;
-  color: rgba(var(--secondary-400), var(--color-opacity));
-}
-
-.color-secondary-500, .focus\.color-secondary-500:focus, .group:hover .group-hover\.color-secondary-500, .hover\.color-secondary-500:hover {
-  --color-opacity: 1;
-  color: rgba(var(--secondary-500), var(--color-opacity));
-}
-
-.color-secondary-600, .focus\.color-secondary-600:focus, .group:hover .group-hover\.color-secondary-600, .hover\.color-secondary-600:hover {
-  --color-opacity: 1;
-  color: rgba(var(--secondary-600), var(--color-opacity));
-}
-
-.color-secondary-700, .focus\.color-secondary-700:focus, .group:hover .group-hover\.color-secondary-700, .hover\.color-secondary-700:hover {
-  --color-opacity: 1;
-  color: rgba(var(--secondary-700), var(--color-opacity));
-}
-
-.color-secondary-800, .focus\.color-secondary-800:focus, .group:hover .group-hover\.color-secondary-800, .hover\.color-secondary-800:hover {
-  --color-opacity: 1;
-  color: rgba(var(--secondary-800), var(--color-opacity));
-}
-
-.color-secondary-900, .focus\.color-secondary-900:focus, .group:hover .group-hover\.color-secondary-900, .hover\.color-secondary-900:hover {
-  --color-opacity: 1;
-  color: rgba(var(--secondary-900), var(--color-opacity));
-}
-
-.color-secondary-950, .focus\.color-secondary-950:focus, .group:hover .group-hover\.color-secondary-950, .hover\.color-secondary-950:hover {
-  --color-opacity: 1;
-  color: rgba(var(--secondary-950), var(--color-opacity));
 }
 
 .color-white, .focus\.color-white:focus, .group:hover .group-hover\.color-white, .hover\.color-white:hover {
@@ -1466,6 +1356,116 @@ select {
 .color-pink-950, .focus\.color-pink-950:focus, .group:hover .group-hover\.color-pink-950, .hover\.color-pink-950:hover {
   --color-opacity: 1;
   color: rgba(var(--pink-950), var(--color-opacity));
+}
+
+.color-primary-50, .focus\.color-primary-50:focus, .group:hover .group-hover\.color-primary-50, .hover\.color-primary-50:hover {
+  --color-opacity: 1;
+  color: rgba(var(--primary-50), var(--color-opacity));
+}
+
+.color-primary-100, .focus\.color-primary-100:focus, .group:hover .group-hover\.color-primary-100, .hover\.color-primary-100:hover {
+  --color-opacity: 1;
+  color: rgba(var(--primary-100), var(--color-opacity));
+}
+
+.color-primary-200, .focus\.color-primary-200:focus, .group:hover .group-hover\.color-primary-200, .hover\.color-primary-200:hover {
+  --color-opacity: 1;
+  color: rgba(var(--primary-200), var(--color-opacity));
+}
+
+.color-primary-300, .focus\.color-primary-300:focus, .group:hover .group-hover\.color-primary-300, .hover\.color-primary-300:hover {
+  --color-opacity: 1;
+  color: rgba(var(--primary-300), var(--color-opacity));
+}
+
+.color-primary-400, .focus\.color-primary-400:focus, .group:hover .group-hover\.color-primary-400, .hover\.color-primary-400:hover {
+  --color-opacity: 1;
+  color: rgba(var(--primary-400), var(--color-opacity));
+}
+
+.color-primary-500, .focus\.color-primary-500:focus, .group:hover .group-hover\.color-primary-500, .hover\.color-primary-500:hover {
+  --color-opacity: 1;
+  color: rgba(var(--primary-500), var(--color-opacity));
+}
+
+.color-primary-600, .focus\.color-primary-600:focus, .group:hover .group-hover\.color-primary-600, .hover\.color-primary-600:hover {
+  --color-opacity: 1;
+  color: rgba(var(--primary-600), var(--color-opacity));
+}
+
+.color-primary-700, .focus\.color-primary-700:focus, .group:hover .group-hover\.color-primary-700, .hover\.color-primary-700:hover {
+  --color-opacity: 1;
+  color: rgba(var(--primary-700), var(--color-opacity));
+}
+
+.color-primary-800, .focus\.color-primary-800:focus, .group:hover .group-hover\.color-primary-800, .hover\.color-primary-800:hover {
+  --color-opacity: 1;
+  color: rgba(var(--primary-800), var(--color-opacity));
+}
+
+.color-primary-900, .focus\.color-primary-900:focus, .group:hover .group-hover\.color-primary-900, .hover\.color-primary-900:hover {
+  --color-opacity: 1;
+  color: rgba(var(--primary-900), var(--color-opacity));
+}
+
+.color-primary-950, .focus\.color-primary-950:focus, .group:hover .group-hover\.color-primary-950, .hover\.color-primary-950:hover {
+  --color-opacity: 1;
+  color: rgba(var(--primary-950), var(--color-opacity));
+}
+
+.color-secondary-50, .focus\.color-secondary-50:focus, .group:hover .group-hover\.color-secondary-50, .hover\.color-secondary-50:hover {
+  --color-opacity: 1;
+  color: rgba(var(--secondary-50), var(--color-opacity));
+}
+
+.color-secondary-100, .focus\.color-secondary-100:focus, .group:hover .group-hover\.color-secondary-100, .hover\.color-secondary-100:hover {
+  --color-opacity: 1;
+  color: rgba(var(--secondary-100), var(--color-opacity));
+}
+
+.color-secondary-200, .focus\.color-secondary-200:focus, .group:hover .group-hover\.color-secondary-200, .hover\.color-secondary-200:hover {
+  --color-opacity: 1;
+  color: rgba(var(--secondary-200), var(--color-opacity));
+}
+
+.color-secondary-300, .focus\.color-secondary-300:focus, .group:hover .group-hover\.color-secondary-300, .hover\.color-secondary-300:hover {
+  --color-opacity: 1;
+  color: rgba(var(--secondary-300), var(--color-opacity));
+}
+
+.color-secondary-400, .focus\.color-secondary-400:focus, .group:hover .group-hover\.color-secondary-400, .hover\.color-secondary-400:hover {
+  --color-opacity: 1;
+  color: rgba(var(--secondary-400), var(--color-opacity));
+}
+
+.color-secondary-500, .focus\.color-secondary-500:focus, .group:hover .group-hover\.color-secondary-500, .hover\.color-secondary-500:hover {
+  --color-opacity: 1;
+  color: rgba(var(--secondary-500), var(--color-opacity));
+}
+
+.color-secondary-600, .focus\.color-secondary-600:focus, .group:hover .group-hover\.color-secondary-600, .hover\.color-secondary-600:hover {
+  --color-opacity: 1;
+  color: rgba(var(--secondary-600), var(--color-opacity));
+}
+
+.color-secondary-700, .focus\.color-secondary-700:focus, .group:hover .group-hover\.color-secondary-700, .hover\.color-secondary-700:hover {
+  --color-opacity: 1;
+  color: rgba(var(--secondary-700), var(--color-opacity));
+}
+
+.color-secondary-800, .focus\.color-secondary-800:focus, .group:hover .group-hover\.color-secondary-800, .hover\.color-secondary-800:hover {
+  --color-opacity: 1;
+  color: rgba(var(--secondary-800), var(--color-opacity));
+}
+
+.color-secondary-900, .focus\.color-secondary-900:focus, .group:hover .group-hover\.color-secondary-900, .hover\.color-secondary-900:hover {
+  --color-opacity: 1;
+  color: rgba(var(--secondary-900), var(--color-opacity));
+}
+
+.color-secondary-950, .focus\.color-secondary-950:focus, .group:hover .group-hover\.color-secondary-950, .hover\.color-secondary-950:hover {
+  --color-opacity: 1;
+  color: rgba(var(--secondary-950), var(--color-opacity));
 }
 
 .color-transparent, .focus\.color-transparent:focus, .group:hover .group-hover\.color-transparent, .hover\.color-transparent:hover {
@@ -2352,116 +2352,6 @@ select {
   background-position: center;
 }
 
-.bg-primary-50, .focus\.bg-primary-50:focus, .group:hover .group-hover\.bg-primary-50, .hover\.bg-primary-50:hover {
-  --bg-opacity: 1;
-  background-color: rgba(var(--primary-50), var(--bg-opacity));
-}
-
-.bg-primary-100, .focus\.bg-primary-100:focus, .group:hover .group-hover\.bg-primary-100, .hover\.bg-primary-100:hover {
-  --bg-opacity: 1;
-  background-color: rgba(var(--primary-100), var(--bg-opacity));
-}
-
-.bg-primary-200, .focus\.bg-primary-200:focus, .group:hover .group-hover\.bg-primary-200, .hover\.bg-primary-200:hover {
-  --bg-opacity: 1;
-  background-color: rgba(var(--primary-200), var(--bg-opacity));
-}
-
-.bg-primary-300, .focus\.bg-primary-300:focus, .group:hover .group-hover\.bg-primary-300, .hover\.bg-primary-300:hover {
-  --bg-opacity: 1;
-  background-color: rgba(var(--primary-300), var(--bg-opacity));
-}
-
-.bg-primary-400, .focus\.bg-primary-400:focus, .group:hover .group-hover\.bg-primary-400, .hover\.bg-primary-400:hover {
-  --bg-opacity: 1;
-  background-color: rgba(var(--primary-400), var(--bg-opacity));
-}
-
-.bg-primary-500, .focus\.bg-primary-500:focus, .group:hover .group-hover\.bg-primary-500, .hover\.bg-primary-500:hover {
-  --bg-opacity: 1;
-  background-color: rgba(var(--primary-500), var(--bg-opacity));
-}
-
-.bg-primary-600, .focus\.bg-primary-600:focus, .group:hover .group-hover\.bg-primary-600, .hover\.bg-primary-600:hover {
-  --bg-opacity: 1;
-  background-color: rgba(var(--primary-600), var(--bg-opacity));
-}
-
-.bg-primary-700, .focus\.bg-primary-700:focus, .group:hover .group-hover\.bg-primary-700, .hover\.bg-primary-700:hover {
-  --bg-opacity: 1;
-  background-color: rgba(var(--primary-700), var(--bg-opacity));
-}
-
-.bg-primary-800, .focus\.bg-primary-800:focus, .group:hover .group-hover\.bg-primary-800, .hover\.bg-primary-800:hover {
-  --bg-opacity: 1;
-  background-color: rgba(var(--primary-800), var(--bg-opacity));
-}
-
-.bg-primary-900, .focus\.bg-primary-900:focus, .group:hover .group-hover\.bg-primary-900, .hover\.bg-primary-900:hover {
-  --bg-opacity: 1;
-  background-color: rgba(var(--primary-900), var(--bg-opacity));
-}
-
-.bg-primary-950, .focus\.bg-primary-950:focus, .group:hover .group-hover\.bg-primary-950, .hover\.bg-primary-950:hover {
-  --bg-opacity: 1;
-  background-color: rgba(var(--primary-950), var(--bg-opacity));
-}
-
-.bg-secondary-50, .focus\.bg-secondary-50:focus, .group:hover .group-hover\.bg-secondary-50, .hover\.bg-secondary-50:hover {
-  --bg-opacity: 1;
-  background-color: rgba(var(--secondary-50), var(--bg-opacity));
-}
-
-.bg-secondary-100, .focus\.bg-secondary-100:focus, .group:hover .group-hover\.bg-secondary-100, .hover\.bg-secondary-100:hover {
-  --bg-opacity: 1;
-  background-color: rgba(var(--secondary-100), var(--bg-opacity));
-}
-
-.bg-secondary-200, .focus\.bg-secondary-200:focus, .group:hover .group-hover\.bg-secondary-200, .hover\.bg-secondary-200:hover {
-  --bg-opacity: 1;
-  background-color: rgba(var(--secondary-200), var(--bg-opacity));
-}
-
-.bg-secondary-300, .focus\.bg-secondary-300:focus, .group:hover .group-hover\.bg-secondary-300, .hover\.bg-secondary-300:hover {
-  --bg-opacity: 1;
-  background-color: rgba(var(--secondary-300), var(--bg-opacity));
-}
-
-.bg-secondary-400, .focus\.bg-secondary-400:focus, .group:hover .group-hover\.bg-secondary-400, .hover\.bg-secondary-400:hover {
-  --bg-opacity: 1;
-  background-color: rgba(var(--secondary-400), var(--bg-opacity));
-}
-
-.bg-secondary-500, .focus\.bg-secondary-500:focus, .group:hover .group-hover\.bg-secondary-500, .hover\.bg-secondary-500:hover {
-  --bg-opacity: 1;
-  background-color: rgba(var(--secondary-500), var(--bg-opacity));
-}
-
-.bg-secondary-600, .focus\.bg-secondary-600:focus, .group:hover .group-hover\.bg-secondary-600, .hover\.bg-secondary-600:hover {
-  --bg-opacity: 1;
-  background-color: rgba(var(--secondary-600), var(--bg-opacity));
-}
-
-.bg-secondary-700, .focus\.bg-secondary-700:focus, .group:hover .group-hover\.bg-secondary-700, .hover\.bg-secondary-700:hover {
-  --bg-opacity: 1;
-  background-color: rgba(var(--secondary-700), var(--bg-opacity));
-}
-
-.bg-secondary-800, .focus\.bg-secondary-800:focus, .group:hover .group-hover\.bg-secondary-800, .hover\.bg-secondary-800:hover {
-  --bg-opacity: 1;
-  background-color: rgba(var(--secondary-800), var(--bg-opacity));
-}
-
-.bg-secondary-900, .focus\.bg-secondary-900:focus, .group:hover .group-hover\.bg-secondary-900, .hover\.bg-secondary-900:hover {
-  --bg-opacity: 1;
-  background-color: rgba(var(--secondary-900), var(--bg-opacity));
-}
-
-.bg-secondary-950, .focus\.bg-secondary-950:focus, .group:hover .group-hover\.bg-secondary-950, .hover\.bg-secondary-950:hover {
-  --bg-opacity: 1;
-  background-color: rgba(var(--secondary-950), var(--bg-opacity));
-}
-
 .bg-white, .focus\.bg-white:focus, .group:hover .group-hover\.bg-white, .hover\.bg-white:hover {
   --bg-opacity: 1;
   background-color: rgba(var(--white), var(--bg-opacity));
@@ -3240,6 +3130,116 @@ select {
 .bg-pink-950, .focus\.bg-pink-950:focus, .group:hover .group-hover\.bg-pink-950, .hover\.bg-pink-950:hover {
   --bg-opacity: 1;
   background-color: rgba(var(--pink-950), var(--bg-opacity));
+}
+
+.bg-primary-50, .focus\.bg-primary-50:focus, .group:hover .group-hover\.bg-primary-50, .hover\.bg-primary-50:hover {
+  --bg-opacity: 1;
+  background-color: rgba(var(--primary-50), var(--bg-opacity));
+}
+
+.bg-primary-100, .focus\.bg-primary-100:focus, .group:hover .group-hover\.bg-primary-100, .hover\.bg-primary-100:hover {
+  --bg-opacity: 1;
+  background-color: rgba(var(--primary-100), var(--bg-opacity));
+}
+
+.bg-primary-200, .focus\.bg-primary-200:focus, .group:hover .group-hover\.bg-primary-200, .hover\.bg-primary-200:hover {
+  --bg-opacity: 1;
+  background-color: rgba(var(--primary-200), var(--bg-opacity));
+}
+
+.bg-primary-300, .focus\.bg-primary-300:focus, .group:hover .group-hover\.bg-primary-300, .hover\.bg-primary-300:hover {
+  --bg-opacity: 1;
+  background-color: rgba(var(--primary-300), var(--bg-opacity));
+}
+
+.bg-primary-400, .focus\.bg-primary-400:focus, .group:hover .group-hover\.bg-primary-400, .hover\.bg-primary-400:hover {
+  --bg-opacity: 1;
+  background-color: rgba(var(--primary-400), var(--bg-opacity));
+}
+
+.bg-primary-500, .focus\.bg-primary-500:focus, .group:hover .group-hover\.bg-primary-500, .hover\.bg-primary-500:hover {
+  --bg-opacity: 1;
+  background-color: rgba(var(--primary-500), var(--bg-opacity));
+}
+
+.bg-primary-600, .focus\.bg-primary-600:focus, .group:hover .group-hover\.bg-primary-600, .hover\.bg-primary-600:hover {
+  --bg-opacity: 1;
+  background-color: rgba(var(--primary-600), var(--bg-opacity));
+}
+
+.bg-primary-700, .focus\.bg-primary-700:focus, .group:hover .group-hover\.bg-primary-700, .hover\.bg-primary-700:hover {
+  --bg-opacity: 1;
+  background-color: rgba(var(--primary-700), var(--bg-opacity));
+}
+
+.bg-primary-800, .focus\.bg-primary-800:focus, .group:hover .group-hover\.bg-primary-800, .hover\.bg-primary-800:hover {
+  --bg-opacity: 1;
+  background-color: rgba(var(--primary-800), var(--bg-opacity));
+}
+
+.bg-primary-900, .focus\.bg-primary-900:focus, .group:hover .group-hover\.bg-primary-900, .hover\.bg-primary-900:hover {
+  --bg-opacity: 1;
+  background-color: rgba(var(--primary-900), var(--bg-opacity));
+}
+
+.bg-primary-950, .focus\.bg-primary-950:focus, .group:hover .group-hover\.bg-primary-950, .hover\.bg-primary-950:hover {
+  --bg-opacity: 1;
+  background-color: rgba(var(--primary-950), var(--bg-opacity));
+}
+
+.bg-secondary-50, .focus\.bg-secondary-50:focus, .group:hover .group-hover\.bg-secondary-50, .hover\.bg-secondary-50:hover {
+  --bg-opacity: 1;
+  background-color: rgba(var(--secondary-50), var(--bg-opacity));
+}
+
+.bg-secondary-100, .focus\.bg-secondary-100:focus, .group:hover .group-hover\.bg-secondary-100, .hover\.bg-secondary-100:hover {
+  --bg-opacity: 1;
+  background-color: rgba(var(--secondary-100), var(--bg-opacity));
+}
+
+.bg-secondary-200, .focus\.bg-secondary-200:focus, .group:hover .group-hover\.bg-secondary-200, .hover\.bg-secondary-200:hover {
+  --bg-opacity: 1;
+  background-color: rgba(var(--secondary-200), var(--bg-opacity));
+}
+
+.bg-secondary-300, .focus\.bg-secondary-300:focus, .group:hover .group-hover\.bg-secondary-300, .hover\.bg-secondary-300:hover {
+  --bg-opacity: 1;
+  background-color: rgba(var(--secondary-300), var(--bg-opacity));
+}
+
+.bg-secondary-400, .focus\.bg-secondary-400:focus, .group:hover .group-hover\.bg-secondary-400, .hover\.bg-secondary-400:hover {
+  --bg-opacity: 1;
+  background-color: rgba(var(--secondary-400), var(--bg-opacity));
+}
+
+.bg-secondary-500, .focus\.bg-secondary-500:focus, .group:hover .group-hover\.bg-secondary-500, .hover\.bg-secondary-500:hover {
+  --bg-opacity: 1;
+  background-color: rgba(var(--secondary-500), var(--bg-opacity));
+}
+
+.bg-secondary-600, .focus\.bg-secondary-600:focus, .group:hover .group-hover\.bg-secondary-600, .hover\.bg-secondary-600:hover {
+  --bg-opacity: 1;
+  background-color: rgba(var(--secondary-600), var(--bg-opacity));
+}
+
+.bg-secondary-700, .focus\.bg-secondary-700:focus, .group:hover .group-hover\.bg-secondary-700, .hover\.bg-secondary-700:hover {
+  --bg-opacity: 1;
+  background-color: rgba(var(--secondary-700), var(--bg-opacity));
+}
+
+.bg-secondary-800, .focus\.bg-secondary-800:focus, .group:hover .group-hover\.bg-secondary-800, .hover\.bg-secondary-800:hover {
+  --bg-opacity: 1;
+  background-color: rgba(var(--secondary-800), var(--bg-opacity));
+}
+
+.bg-secondary-900, .focus\.bg-secondary-900:focus, .group:hover .group-hover\.bg-secondary-900, .hover\.bg-secondary-900:hover {
+  --bg-opacity: 1;
+  background-color: rgba(var(--secondary-900), var(--bg-opacity));
+}
+
+.bg-secondary-950, .focus\.bg-secondary-950:focus, .group:hover .group-hover\.bg-secondary-950, .hover\.bg-secondary-950:hover {
+  --bg-opacity: 1;
+  background-color: rgba(var(--secondary-950), var(--bg-opacity));
 }
 
 .bg-transparent, .focus\.bg-transparent:focus, .group:hover .group-hover\.bg-transparent, .hover\.bg-transparent:hover {
@@ -6674,116 +6674,6 @@ select {
   border-style: none;
 }
 
-.border-primary-50, .focus\.border-primary-50:focus, .group:hover .group-hover\.border-primary-50, .hover\.border-primary-50:hover {
-  --border-opacity: 1;
-  border-color: rgba(var(--primary-50), var(--border-opacity));
-}
-
-.border-primary-100, .focus\.border-primary-100:focus, .group:hover .group-hover\.border-primary-100, .hover\.border-primary-100:hover {
-  --border-opacity: 1;
-  border-color: rgba(var(--primary-100), var(--border-opacity));
-}
-
-.border-primary-200, .focus\.border-primary-200:focus, .group:hover .group-hover\.border-primary-200, .hover\.border-primary-200:hover {
-  --border-opacity: 1;
-  border-color: rgba(var(--primary-200), var(--border-opacity));
-}
-
-.border-primary-300, .focus\.border-primary-300:focus, .group:hover .group-hover\.border-primary-300, .hover\.border-primary-300:hover {
-  --border-opacity: 1;
-  border-color: rgba(var(--primary-300), var(--border-opacity));
-}
-
-.border-primary-400, .focus\.border-primary-400:focus, .group:hover .group-hover\.border-primary-400, .hover\.border-primary-400:hover {
-  --border-opacity: 1;
-  border-color: rgba(var(--primary-400), var(--border-opacity));
-}
-
-.border-primary-500, .focus\.border-primary-500:focus, .group:hover .group-hover\.border-primary-500, .hover\.border-primary-500:hover {
-  --border-opacity: 1;
-  border-color: rgba(var(--primary-500), var(--border-opacity));
-}
-
-.border-primary-600, .focus\.border-primary-600:focus, .group:hover .group-hover\.border-primary-600, .hover\.border-primary-600:hover {
-  --border-opacity: 1;
-  border-color: rgba(var(--primary-600), var(--border-opacity));
-}
-
-.border-primary-700, .focus\.border-primary-700:focus, .group:hover .group-hover\.border-primary-700, .hover\.border-primary-700:hover {
-  --border-opacity: 1;
-  border-color: rgba(var(--primary-700), var(--border-opacity));
-}
-
-.border-primary-800, .focus\.border-primary-800:focus, .group:hover .group-hover\.border-primary-800, .hover\.border-primary-800:hover {
-  --border-opacity: 1;
-  border-color: rgba(var(--primary-800), var(--border-opacity));
-}
-
-.border-primary-900, .focus\.border-primary-900:focus, .group:hover .group-hover\.border-primary-900, .hover\.border-primary-900:hover {
-  --border-opacity: 1;
-  border-color: rgba(var(--primary-900), var(--border-opacity));
-}
-
-.border-primary-950, .focus\.border-primary-950:focus, .group:hover .group-hover\.border-primary-950, .hover\.border-primary-950:hover {
-  --border-opacity: 1;
-  border-color: rgba(var(--primary-950), var(--border-opacity));
-}
-
-.border-secondary-50, .focus\.border-secondary-50:focus, .group:hover .group-hover\.border-secondary-50, .hover\.border-secondary-50:hover {
-  --border-opacity: 1;
-  border-color: rgba(var(--secondary-50), var(--border-opacity));
-}
-
-.border-secondary-100, .focus\.border-secondary-100:focus, .group:hover .group-hover\.border-secondary-100, .hover\.border-secondary-100:hover {
-  --border-opacity: 1;
-  border-color: rgba(var(--secondary-100), var(--border-opacity));
-}
-
-.border-secondary-200, .focus\.border-secondary-200:focus, .group:hover .group-hover\.border-secondary-200, .hover\.border-secondary-200:hover {
-  --border-opacity: 1;
-  border-color: rgba(var(--secondary-200), var(--border-opacity));
-}
-
-.border-secondary-300, .focus\.border-secondary-300:focus, .group:hover .group-hover\.border-secondary-300, .hover\.border-secondary-300:hover {
-  --border-opacity: 1;
-  border-color: rgba(var(--secondary-300), var(--border-opacity));
-}
-
-.border-secondary-400, .focus\.border-secondary-400:focus, .group:hover .group-hover\.border-secondary-400, .hover\.border-secondary-400:hover {
-  --border-opacity: 1;
-  border-color: rgba(var(--secondary-400), var(--border-opacity));
-}
-
-.border-secondary-500, .focus\.border-secondary-500:focus, .group:hover .group-hover\.border-secondary-500, .hover\.border-secondary-500:hover {
-  --border-opacity: 1;
-  border-color: rgba(var(--secondary-500), var(--border-opacity));
-}
-
-.border-secondary-600, .focus\.border-secondary-600:focus, .group:hover .group-hover\.border-secondary-600, .hover\.border-secondary-600:hover {
-  --border-opacity: 1;
-  border-color: rgba(var(--secondary-600), var(--border-opacity));
-}
-
-.border-secondary-700, .focus\.border-secondary-700:focus, .group:hover .group-hover\.border-secondary-700, .hover\.border-secondary-700:hover {
-  --border-opacity: 1;
-  border-color: rgba(var(--secondary-700), var(--border-opacity));
-}
-
-.border-secondary-800, .focus\.border-secondary-800:focus, .group:hover .group-hover\.border-secondary-800, .hover\.border-secondary-800:hover {
-  --border-opacity: 1;
-  border-color: rgba(var(--secondary-800), var(--border-opacity));
-}
-
-.border-secondary-900, .focus\.border-secondary-900:focus, .group:hover .group-hover\.border-secondary-900, .hover\.border-secondary-900:hover {
-  --border-opacity: 1;
-  border-color: rgba(var(--secondary-900), var(--border-opacity));
-}
-
-.border-secondary-950, .focus\.border-secondary-950:focus, .group:hover .group-hover\.border-secondary-950, .hover\.border-secondary-950:hover {
-  --border-opacity: 1;
-  border-color: rgba(var(--secondary-950), var(--border-opacity));
-}
-
 .border-white, .focus\.border-white:focus, .group:hover .group-hover\.border-white, .hover\.border-white:hover {
   --border-opacity: 1;
   border-color: rgba(var(--white), var(--border-opacity));
@@ -7562,6 +7452,116 @@ select {
 .border-pink-950, .focus\.border-pink-950:focus, .group:hover .group-hover\.border-pink-950, .hover\.border-pink-950:hover {
   --border-opacity: 1;
   border-color: rgba(var(--pink-950), var(--border-opacity));
+}
+
+.border-primary-50, .focus\.border-primary-50:focus, .group:hover .group-hover\.border-primary-50, .hover\.border-primary-50:hover {
+  --border-opacity: 1;
+  border-color: rgba(var(--primary-50), var(--border-opacity));
+}
+
+.border-primary-100, .focus\.border-primary-100:focus, .group:hover .group-hover\.border-primary-100, .hover\.border-primary-100:hover {
+  --border-opacity: 1;
+  border-color: rgba(var(--primary-100), var(--border-opacity));
+}
+
+.border-primary-200, .focus\.border-primary-200:focus, .group:hover .group-hover\.border-primary-200, .hover\.border-primary-200:hover {
+  --border-opacity: 1;
+  border-color: rgba(var(--primary-200), var(--border-opacity));
+}
+
+.border-primary-300, .focus\.border-primary-300:focus, .group:hover .group-hover\.border-primary-300, .hover\.border-primary-300:hover {
+  --border-opacity: 1;
+  border-color: rgba(var(--primary-300), var(--border-opacity));
+}
+
+.border-primary-400, .focus\.border-primary-400:focus, .group:hover .group-hover\.border-primary-400, .hover\.border-primary-400:hover {
+  --border-opacity: 1;
+  border-color: rgba(var(--primary-400), var(--border-opacity));
+}
+
+.border-primary-500, .focus\.border-primary-500:focus, .group:hover .group-hover\.border-primary-500, .hover\.border-primary-500:hover {
+  --border-opacity: 1;
+  border-color: rgba(var(--primary-500), var(--border-opacity));
+}
+
+.border-primary-600, .focus\.border-primary-600:focus, .group:hover .group-hover\.border-primary-600, .hover\.border-primary-600:hover {
+  --border-opacity: 1;
+  border-color: rgba(var(--primary-600), var(--border-opacity));
+}
+
+.border-primary-700, .focus\.border-primary-700:focus, .group:hover .group-hover\.border-primary-700, .hover\.border-primary-700:hover {
+  --border-opacity: 1;
+  border-color: rgba(var(--primary-700), var(--border-opacity));
+}
+
+.border-primary-800, .focus\.border-primary-800:focus, .group:hover .group-hover\.border-primary-800, .hover\.border-primary-800:hover {
+  --border-opacity: 1;
+  border-color: rgba(var(--primary-800), var(--border-opacity));
+}
+
+.border-primary-900, .focus\.border-primary-900:focus, .group:hover .group-hover\.border-primary-900, .hover\.border-primary-900:hover {
+  --border-opacity: 1;
+  border-color: rgba(var(--primary-900), var(--border-opacity));
+}
+
+.border-primary-950, .focus\.border-primary-950:focus, .group:hover .group-hover\.border-primary-950, .hover\.border-primary-950:hover {
+  --border-opacity: 1;
+  border-color: rgba(var(--primary-950), var(--border-opacity));
+}
+
+.border-secondary-50, .focus\.border-secondary-50:focus, .group:hover .group-hover\.border-secondary-50, .hover\.border-secondary-50:hover {
+  --border-opacity: 1;
+  border-color: rgba(var(--secondary-50), var(--border-opacity));
+}
+
+.border-secondary-100, .focus\.border-secondary-100:focus, .group:hover .group-hover\.border-secondary-100, .hover\.border-secondary-100:hover {
+  --border-opacity: 1;
+  border-color: rgba(var(--secondary-100), var(--border-opacity));
+}
+
+.border-secondary-200, .focus\.border-secondary-200:focus, .group:hover .group-hover\.border-secondary-200, .hover\.border-secondary-200:hover {
+  --border-opacity: 1;
+  border-color: rgba(var(--secondary-200), var(--border-opacity));
+}
+
+.border-secondary-300, .focus\.border-secondary-300:focus, .group:hover .group-hover\.border-secondary-300, .hover\.border-secondary-300:hover {
+  --border-opacity: 1;
+  border-color: rgba(var(--secondary-300), var(--border-opacity));
+}
+
+.border-secondary-400, .focus\.border-secondary-400:focus, .group:hover .group-hover\.border-secondary-400, .hover\.border-secondary-400:hover {
+  --border-opacity: 1;
+  border-color: rgba(var(--secondary-400), var(--border-opacity));
+}
+
+.border-secondary-500, .focus\.border-secondary-500:focus, .group:hover .group-hover\.border-secondary-500, .hover\.border-secondary-500:hover {
+  --border-opacity: 1;
+  border-color: rgba(var(--secondary-500), var(--border-opacity));
+}
+
+.border-secondary-600, .focus\.border-secondary-600:focus, .group:hover .group-hover\.border-secondary-600, .hover\.border-secondary-600:hover {
+  --border-opacity: 1;
+  border-color: rgba(var(--secondary-600), var(--border-opacity));
+}
+
+.border-secondary-700, .focus\.border-secondary-700:focus, .group:hover .group-hover\.border-secondary-700, .hover\.border-secondary-700:hover {
+  --border-opacity: 1;
+  border-color: rgba(var(--secondary-700), var(--border-opacity));
+}
+
+.border-secondary-800, .focus\.border-secondary-800:focus, .group:hover .group-hover\.border-secondary-800, .hover\.border-secondary-800:hover {
+  --border-opacity: 1;
+  border-color: rgba(var(--secondary-800), var(--border-opacity));
+}
+
+.border-secondary-900, .focus\.border-secondary-900:focus, .group:hover .group-hover\.border-secondary-900, .hover\.border-secondary-900:hover {
+  --border-opacity: 1;
+  border-color: rgba(var(--secondary-900), var(--border-opacity));
+}
+
+.border-secondary-950, .focus\.border-secondary-950:focus, .group:hover .group-hover\.border-secondary-950, .hover\.border-secondary-950:hover {
+  --border-opacity: 1;
+  border-color: rgba(var(--secondary-950), var(--border-opacity));
 }
 
 .border-transparent, .focus\.border-transparent:focus, .group:hover .group-hover\.border-transparent, .hover\.border-transparent:hover {
