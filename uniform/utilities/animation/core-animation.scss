@@ -1,40 +1,23 @@
 @use "uniform/core";
 @use "sass:map";
 
-$name: animation;
-$shorthand: animate;
-$responsive: false;
-$responsive-pseudos: false;
-$extra-selector: null;
-
-$properties: (animation);
-$static-properties: ();
-
-$variants: (
-  none: none,
-	spin: spin 1s linear infinite,
-	pulse: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite,
-	ping: ping 2s cubic-bezier(0, 0, 0.2, 1) infinite,
-	bounce: (bounce 1s infinite)
-);
-
-$pseudos: ();
-
 $config: (
   utilities: (
-    $name: (
-      shorthand: $shorthand,
-      responsive: $responsive,
-      responsive-pseudos: $responsive-pseudos,
-      extra-selector: $extra-selector,
-      properties: $properties,
-      static-properties: $static-properties,
+    animation: (
+      shorthand: animate,
+      responsive: false,
+      responsive-pseudos: false,
+      extra-selector: null,
+      properties: (animation),
+      static-properties: (),
       variants: (
-        $variants
+        none: none,
+        spin: spin 1s linear infinite,
+        pulse: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite,
+        ping: ping 2s cubic-bezier(0, 0, 0.2, 1) infinite,
+        bounce: (bounce 1s infinite)
       ),
-      pseudos: (
-        $pseudos
-      )
+      pseudos: ()
     )
   )
 );

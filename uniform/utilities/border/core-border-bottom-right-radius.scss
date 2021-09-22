@@ -1,42 +1,25 @@
 @use "uniform/core";
 @use "sass:map";
 
-$name: border-bottom-right-radius;
-$shorthand: radius-br;
-$responsive: true;
-$responsive-pseudos: false;
-$extra-selector: null;
-
-$properties: (border-bottom-right-radius);
-$static-properties: ();
-
-$variants: (
-	core.merge(
-    core.radiuses(),
-    (
-      none: 0,
-      full: 9999px
-    )
-  )
-);
-
-$pseudos: (last);
-
 $config: (
   utilities: (
-    $name: (
-      shorthand: $shorthand,
-      responsive: $responsive,
-      responsive-pseudos: $responsive-pseudos,
-      extra-selector: $extra-selector,
-      properties: $properties,
-      static-properties: $static-properties,
+    border-bottom-right-radius: (
+      shorthand: radius-br,
+      responsive: true,
+      responsive-pseudos: false,
+      extra-selector: null,
+      properties: (border-bottom-right-radius),
+      static-properties: (),
       variants: (
-        $variants
+        core.merge(
+          core.radiuses(),
+          (
+            none: 0,
+            full: 9999px
+          )
+        )
       ),
-      pseudos: (
-        $pseudos
-      )
+      pseudos: (last)
     )
   )
 );

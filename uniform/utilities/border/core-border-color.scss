@@ -1,48 +1,31 @@
 @use "uniform/core";
 @use "sass:map";
 
-$name: border-color;
-$shorthand: border;
-$responsive: false;
-$responsive-pseudos: false;
-$extra-selector: null;
-
-$properties: (border-color);
-$static-properties: (
-  --border-opacity: 1,
-);
-
-$variants: (
-	core.merge(
-    core.fills(border),
-    (
-      transparent: transparent,
-      current: currentColor,
-      success: var(--border-success, rgba(18, 181, 57, var(--border-opacity))),
-      warning: var(--border-warning, rgba(210, 127, 0, var(--border-opacity))),
-      danger: var(--border-danger, rgba(203, 18, 0, var(--border-opacity))),
-      info: var(--border-info, rgba(0, 200, 177, var(--border-opacity))),
-    )
-	)
-);
-
-$pseudos: (hover, group-hover, focus);
-
 $config: (
   utilities: (
-    $name: (
-      shorthand: $shorthand,
-      responsive: $responsive,
-      responsive-pseudos: $responsive-pseudos,
-      extra-selector: $extra-selector,
-      properties: $properties,
-      static-properties: $static-properties,
-      variants: (
-        $variants
+    border-color: (
+      shorthand: border,
+      responsive: false,
+      responsive-pseudos: false,
+      extra-selector: null,
+      properties: (border-color),
+      static-properties: (
+        --border-opacity: 1
       ),
-      pseudos: (
-        $pseudos
-      )
+      variants: (
+        core.merge(
+          core.fills(border),
+          (
+            transparent: transparent,
+            current: currentColor,
+            success: var(--border-success, rgba(18, 181, 57, var(--border-opacity))),
+            warning: var(--border-warning, rgba(210, 127, 0, var(--border-opacity))),
+            danger: var(--border-danger, rgba(203, 18, 0, var(--border-opacity))),
+            info: var(--border-info, rgba(0, 200, 177, var(--border-opacity))),
+          )
+        )
+      ),
+      pseudos: (hover, group-hover, focus)
     )
   )
 );

@@ -1,41 +1,24 @@
 @use "uniform/core";
 @use "sass:map";
 
-$name: background-repeat;
-$shorthand: bg;
-$responsive: true;
-$responsive-pseudos: false;
-$extra-selector: null;
-
-$properties: (background-repeat);
-$static-properties: ();
-
-$variants: (
-  repeat: repeat,
-  repeat-x: repeat-x,
-  repeat-y: repeat-y,
-  no-repeat: no-repeat,
-  space: space,
-  round: round
-);
-
-$pseudos: ();
-
 $config: (
   utilities: (
-    $name: (
-      shorthand: $shorthand,
-      responsive: $responsive,
-      responsive-pseudos: $responsive-pseudos,
-      extra-selector: $extra-selector,
-      properties: $properties,
-      static-properties: $static-properties,
+    background-repeat: (
+      shorthand: bg,
+      responsive: true,
+      responsive-pseudos: false,
+      extra-selector: null,
+      properties: (background-repeat),
+      static-properties: (),
       variants: (
-        $variants
+        repeat: repeat,
+        repeat-x: repeat-x,
+        repeat-y: repeat-y,
+        no-repeat: no-repeat,
+        space: space,
+        round: round
       ),
-      pseudos: (
-        $pseudos
-      )
+      pseudos: ()
     )
   )
 );
