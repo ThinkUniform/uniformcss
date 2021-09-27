@@ -1,41 +1,24 @@
 @use "uniform/core";
 @use "sass:map";
 
-$name: box-shadow;
-$shorthand: shadow;
-$responsive: true;
-$responsive-pseudos: false;
-$extra-selector: null;
-
-$properties: (box-shadow);
-$static-properties: ();
-
-$variants: (
-	core.merge(
-    core.shadows(),
-    (
-      none: none,
-    )
-	)
-);
-
-$pseudos: (hover, group-hover, focus);
-
 $config: (
   utilities: (
-    $name: (
-      shorthand: $shorthand,
-      responsive: $responsive,
-      responsive-pseudos: $responsive-pseudos,
-      extra-selector: $extra-selector,
-      properties: $properties,
-      static-properties: $static-properties,
+    box-shadow: (
+      shorthand: shadow,
+      responsive: true,
+      responsive-pseudos: false,
+      extra-selector: null,
+      properties: (box-shadow),
+      static-properties: (),
       variants: (
-        $variants
+        core.merge(
+          core.shadows(),
+          (
+            none: none,
+          )
+        )
       ),
-      pseudos: (
-        $pseudos
-      )
+      pseudos: (hover, group-hover, focus)
     )
   )
 );
