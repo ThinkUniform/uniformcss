@@ -1,36 +1,19 @@
 @use "uniform/core";
 @use "sass:map";
 
-$name: backdrop-blur; 
-$shorthand: backdrop-blur;
-$responsive: false;
-$responsive-pseudos: false;
-$extra-selector: null;
-
-$properties: (--backdrop-blur);
-$static-properties: ();
-
-$variants: (
-  core.blurs()
-);
-
-$pseudos: ();
-
 $config: (
   utilities: (
-    $name: (
-      shorthand: $shorthand,
-      responsive: $responsive,
-      responsive-pseudos: $responsive-pseudos,
-      extra-selector: $extra-selector,
-      properties: $properties,
-      static-properties: $static-properties,
+    backdrop-blur: (
+      shorthand: backdrop-blur,
+      responsive: false,
+      responsive-pseudos: false,
+      extra-selector: null,
+      properties: (--backdrop-blur),
+      static-properties: (),
       variants: (
-        $variants
+        core.blurs()
       ),
-      pseudos: (
-        $pseudos
-      )
+      pseudos: ()
     )
   )
 );

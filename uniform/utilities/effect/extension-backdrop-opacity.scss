@@ -1,36 +1,19 @@
 @use "uniform/core";
 @use "sass:map";
 
-$name: backdrop-opacity; 
-$shorthand: backdrop-opacity;
-$responsive: false;
-$responsive-pseudos: false;
-$extra-selector: null;
-
-$properties: (--backdrop-opacity);
-$static-properties: ();
-
-$variants: (
-  core.opacities()
-);
-
-$pseudos: ();
-
 $config: (
   utilities: (
-    $name: (
-      shorthand: $shorthand,
-      responsive: $responsive,
-      responsive-pseudos: $responsive-pseudos,
-      extra-selector: $extra-selector,
-      properties: $properties,
-      static-properties: $static-properties,
+    backdrop-opacity: (
+      shorthand: backdrop-opacity,
+      responsive: false,
+      responsive-pseudos: false,
+      extra-selector: null,
+      properties: (--backdrop-opacity),
+      static-properties: (),
       variants: (
-        $variants
+        core.opacities()
       ),
-      pseudos: (
-        $pseudos
-      )
+      pseudos: ()
     )
   )
 );
