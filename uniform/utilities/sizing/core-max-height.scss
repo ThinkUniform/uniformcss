@@ -14,7 +14,7 @@ $config: (
       static-properties: (),
       variants: (
         core.merge(
-          core.positive-sizes($range-limit),
+          core.positive-sizes(map.get(core.$all-config, range-limits, max-height)),
           (
             0: 0,
             none: none,

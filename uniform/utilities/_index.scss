@@ -1,0 +1,3278 @@
+@use "uniform/core";
+@use "sass:map";
+@use "sass:string";
+
+$gutter-y-map: ();
+@each $size-key, $size-value in core.sizes(map.get(core.$all-config, range-limits, gutter)) {
+  $map: (
+    $size-key:  calc(#{$size-value} * var(--gutter-top)) 0 calc(#{$size-value} * var(--gutter-bottom)) 0,
+  );
+  $gutter-y-map: map.merge($gutter-y-map, $map);
+}
+
+$gutter-x-map: ();
+@each $size-key, $size-value in core.sizes(map.get(core.$all-config, range-limits, gutter)) {
+  $map: (
+    $size-key: 0 calc(#{$size-value} * var(--gutter-right)) 0 calc(#{$size-value} * var(--gutter-left)),
+  );
+  $gutter-x-map: map.merge($gutter-x-map, $map);
+}
+
+
+
+$config: (
+  utilities: (
+    vertical-align: (
+      shorthand: align,
+      responsive: true,
+      responsive-pseudos: false,
+      extra-selector: null,
+      properties: (vertical-align),
+      static-properties: (),
+      variants: (
+        baseline: baseline,
+        top: top,
+        middle: middle,
+        bottom: bottom,
+        text-top: text-top,
+        text-bottom: text-bottom
+      ),
+      pseudos: ()
+    ),
+    color: (
+      shorthand: color,
+      responsive: false,
+      responsive-pseudos: false,
+      extra-selector: null,
+      properties: (color),
+      static-properties: (
+        --color-opacity: 1,
+      ),
+      variants: (
+        core.merge(
+          core.fills(color),
+          (
+            transparent: transparent,
+            current: currentColor,
+            success: var(--color-success, rgba(18, 181, 57, var(--color-opacity))),
+            warning: var(--color-warning, rgba(210, 127, 0, var(--color-opacity))),
+            danger: var(--color-danger, rgba(203, 18, 0, var(--color-opacity))),
+            info: var(--color-info, rgba(0, 200, 177, var(--color-opacity))),
+          )
+        )
+      ),
+      pseudos: (hover, group-hover, focus)
+    ),
+    placeholder-color: (
+      shorthand: placeholder,
+      responsive: false,
+      responsive-pseudos: false,
+      extra-selector: '::placeholder',
+      properties: (color),
+      static-properties: (),
+      variants: (
+        transparent: transparent,
+        current: currentColor
+      ),
+      pseudos: (focus)
+    ),
+    text-size: (
+      shorthand: text,
+      responsive: true,
+      responsive-pseudos: false,
+      extra-selector: null,
+      properties: (),
+      static-properties: (),
+      variants: (
+        core.text-sizes()
+      ),
+      pseudos: ()
+    ),
+    font-smooth: (
+      shorthand: null,
+      responsive: false,
+      responsive-pseudos: false,
+      extra-selector: null,
+      properties: (),
+      static-properties: (),
+      variants: (
+        antialiased: (
+          -webkit-font-smoothing: antialiased,
+          -moz-osx-font-smoothing: grayscale
+        ),
+        subpixel-antialiased: (
+          -webkit-font-smoothing: auto,
+          -moz-osx-font-smoothing: auto
+        ),
+      ),
+      pseudos: ()
+    ),
+    font-size: (
+      shorthand: font,
+      responsive: true,
+      responsive-pseudos: false,
+      extra-selector: null,
+      properties: (font-size),
+      static-properties: (),
+      variants: (
+        core.font-sizes()
+      ),
+      pseudos: ()
+    ),
+    font-weight: (
+      shorthand: null,
+      responsive: false,
+      responsive-pseudos: false,
+      extra-selector: null,
+      properties: (font-weight),
+      static-properties: (),
+      variants: (
+        core.font-weights()
+      ),
+      pseudos: (hover)
+    ),
+    font-style: (
+      shorthand: null,
+      responsive: false,
+      responsive-pseudos: false,
+      extra-selector: null,
+      properties: (font-style),
+      static-properties: (),
+      variants: (
+        italic: italic,
+        normal: normal
+      ),
+      pseudos: ()
+    ),
+    font-family: (
+      shorthand: font,
+      responsive: false,
+      responsive-pseudos: false,
+      extra-selector: null,
+      properties: (font-family),
+      static-properties: (),
+      variants: (
+        core.font-families()
+      ),
+      pseudos: ()
+    ),
+    word-break: (
+      shorthand: break,
+      responsive: true,
+      responsive-pseudos: false,
+      extra-selector: null,
+      properties: (word-break),
+      static-properties: (),
+      variants: (
+        normal: normal,
+        all: break-all,
+        keep: keep-all,
+        word: break-word
+      ),
+      pseudos: ()
+    ),
+    white-space: (
+      shorthand: space,
+      responsive: true,
+      responsive-pseudos: false,
+      extra-selector: null,
+      properties: (white-space),
+      static-properties: (),
+      variants: (
+        normal: normal,
+        nowrap: nowrap,
+        pre: pre,
+        pre-wrap: pre-wrap,
+        pre-line: pre-line,
+        break: break-spaces
+      ),
+      pseudos: ()
+    ),
+    text-transform: (
+      shorthand: null,
+      responsive: false,
+      responsive-pseudos: false,
+      extra-selector: null,
+      properties: (text-transform),
+      static-properties: (),
+      variants: (
+        uppercase: uppercase,
+        lowercase: lowercase,
+        capitalize: capitalize
+      ),
+      pseudos: ()
+    ),
+    text-overflow: (
+      shorthand: null,
+      responsive: true,
+      responsive-pseudos: false,
+      extra-selector: null,
+      properties: (text-overflow),
+      static-properties: (),
+      variants: (
+        clip: clip,
+        ellipsis: ellipsis
+      ),
+      pseudos: ()
+    ),
+    text-decoration: (
+      shorthand: null,
+      responsive: false,
+      responsive-pseudos: false,
+      extra-selector: null,
+      properties: (text-decoration),
+      static-properties: (),
+      variants: (
+        underline: underline,
+        line-through: line-through,
+        no-underline: none,
+      ),
+      pseudos: (hover, group-hover, focus)
+    ),
+    text-align: (
+      shorthand: text,
+      responsive: true,
+      responsive-pseudos: false,
+      extra-selector: null,
+      properties: (text-align),
+      static-properties: (),
+      variants: (
+        left: left,
+        center: center,
+        right: right,
+        justify: justify
+      ),
+      pseudos: ()
+    ),
+    overflow-wrap: (
+      shorthand: overflow-wrap,
+      responsive: true,
+      responsive-pseudos: false,
+      extra-selector: null,
+      properties: (overflow-wrap),
+      static-properties: (),
+      variants: (
+        normal: normal,
+        any: anywhere,
+        word: break-word
+      ),
+      pseudos: ()
+    ),
+    list-style-type: (
+      shorthand: list,
+      responsive: false,
+      responsive-pseudos: false,
+      extra-selector: null,
+      properties: (list-style-type),
+      static-properties: (),
+      variants: (
+        none: none,
+        disc: disc,
+        square: square,
+        decimal: decimal
+      ),
+      pseudos: ()
+    ),
+    list-style-positions: (
+      shorthand: list,
+      responsive: false,
+      responsive-pseudos: false,
+      extra-selector: null,
+      properties: (list-style-positions),
+      static-properties: (),
+      variants: (
+        inside: inside,
+        outside: outside
+      ),
+      pseudos: ()
+    ),
+    line-height: (
+      shorthand: leading,
+      responsive: true,
+      responsive-pseudos: false,
+      extra-selector: null,
+      properties: (line-height),
+      static-properties: (),
+      variants: (
+        core.merge(
+          core.leadings(),
+          ( 
+            100: 1,
+            110: 1.1,
+            120: 1.2,
+            130: 1.3,
+            140: 1.4,
+            150: 1.5,
+            160: 1.6,
+            170: 1.7,
+            180: 1.8,
+            190: 1.9,
+            200: 2,
+            210: 2.1,
+            220: 2.2,
+            230: 2.3,
+            240: 2.4,
+            250: 2.5
+          )
+        )
+      ),
+      pseudos: ()
+    ),
+    letter-spacing: (
+      shorthand: tracking,
+      responsive: false,
+      responsive-pseudos: false,
+      extra-selector: null,
+      properties: (letter-spacing),
+      static-properties: (),
+      variants: (
+        core.merge(
+          core.trackings(),
+          (
+            none: 0
+          )
+        )
+      ),
+      pseudos: ()
+    ),
+    color-opacity: (
+      shorthand: color-opacity,
+      responsive: false,
+      responsive-pseudos: false,
+      extra-selector: null,
+      properties: (--color-opacity),
+      static-properties: (),
+      variants: (
+        core.opacities()
+      ),
+      pseudos: (hover, group-hover, focus)
+    ),
+    transition: (
+      shorthand: transition,
+      responsive: false,
+      responsive-pseudos: false,
+      extra-selector: null,
+      properties: (transition),
+      static-properties: (),
+      variants: (
+        100: (
+          background-color 100ms,
+          border-color 100ms,
+          color 100ms,
+          fill 100ms,
+          stroke 100ms,
+          opacity 100ms,
+          box-shadow 100ms,
+          transform 100ms,
+          top 100ms,
+          right 100ms,
+          bottom 100ms,
+          left 100ms
+        ),
+        200: (
+          background-color 200ms,
+          border-color 200ms,
+          color 200ms,
+          fill 200ms,
+          stroke 200ms,
+          opacity 200ms,
+          box-shadow 200ms,
+          transform 200ms,
+          top 200ms,
+          right 200ms,
+          bottom 200ms,
+          left 200ms
+        ),
+        300: (
+          background-color 300ms,
+          border-color 300ms,
+          color 300ms,
+          fill 300ms,
+          stroke 300ms,
+          opacity 300ms,
+          box-shadow 300ms,
+          transform 300ms,
+          top 300ms,
+          right 300ms,
+          bottom 300ms,
+          left 300ms
+        ),
+        400: (
+          background-color 400ms,
+          border-color 400ms,
+          color 400ms,
+          fill 400ms,
+          stroke 400ms,
+          opacity 400ms,
+          box-shadow 400ms,
+          transform 400ms,
+          top 400ms,
+          right 400ms,
+          bottom 400ms,
+          left 400ms
+        ),
+        500: (
+          background-color 500ms,
+          border-color 500ms,
+          color 500ms,
+          fill 500ms,
+          stroke 500ms,
+          opacity 500ms,
+          box-shadow 500ms,
+          transform 500ms,
+          top 500ms,
+          right 500ms,
+          bottom 500ms,
+          left 500ms
+        ),
+        600: (
+          background-color 600ms,
+          border-color 600ms,
+          color 600ms,
+          fill 600ms,
+          stroke 600ms,
+          opacity 600ms,
+          box-shadow 600ms,
+          transform 600ms,
+          top 600ms,
+          right 600ms,
+          bottom 600ms,
+          left 600ms
+        ),
+        700: (
+          background-color 700ms,
+          border-color 700ms,
+          color 700ms,
+          fill 700ms,
+          stroke 700ms,
+          opacity 700ms,
+          box-shadow 700ms,
+          transform 700ms,
+          top 700ms,
+          right 700ms,
+          bottom 700ms,
+          left 700ms
+        ),
+        800: (
+          background-color 800ms,
+          border-color 800ms,
+          color 800ms,
+          fill 800ms,
+          stroke 800ms,
+          opacity 800ms,
+          box-shadow 800ms,
+          transform 800ms,
+          top 800ms,
+          right 800ms,
+          bottom 800ms,
+          left 800ms
+        ),
+        900: (
+          background-color 900ms,
+          border-color 900ms,
+          color 900ms,
+          fill 900ms,
+          stroke 900ms,
+          opacity 900ms,
+          box-shadow 900ms,
+          transform 900ms,
+          top 900ms,
+          right 900ms,
+          bottom 900ms,
+          left 900ms
+        ),
+      ),
+      pseudos: ()
+    ),
+    transition-timing-function: (
+      shorthand: null,
+      responsive: false,
+      responsive-pseudos: false,
+      extra-selector: null,
+      properties: (transition-timing-function),
+      static-properties: (),
+      variants: (
+        linear: linear,
+        ease: ease,
+        ease-in: ease-in,
+        ease-in-out: ease-in-out
+      ),
+      pseudos: ()
+    ),
+    transition-property: (
+      shorthand: transition,
+      responsive: false,
+      responsive-pseudos: false,
+      extra-selector: null,
+      properties: (transition-property),
+      static-properties: (),
+      variants: (
+        none: none,
+				all: all,
+				null: (
+					background-color,
+					border-color,
+					color,
+					fill,
+					stroke,
+					opacity,
+					box-shadow,
+					transform,
+					filter,
+					backdrop-filter
+				),
+				colors: (
+					background-color,
+					border-color,
+					color,
+					fill,
+					stroke
+				),
+				filters: (
+					filter,
+					backdrop-filter
+				),
+				opacity: opacity,
+				shadow: box-shadow,
+				transform: transform,
+      ),
+      pseudos: ()
+    ),
+    transition-delay: (
+      shorthand: delay,
+      responsive: false,
+      responsive-pseudos: false,
+      extra-selector: null,
+      properties: (transition-delay),
+      static-properties: (),
+      variants: (
+        100: 100ms,
+        200: 200ms,
+        300: 300ms,
+        400: 400ms,
+        500: 500ms,
+        600: 600ms,
+        700: 700ms,
+        800: 800ms,
+        900: 900ms,
+      ),
+      pseudos: ()
+    ),
+    transition-duration: (
+      shorthand: duration,
+      responsive: false,
+      responsive-pseudos: false,
+      extra-selector: null,
+      properties: (transition-duration),
+      static-properties: (),
+      variants: (
+        100: 100ms,
+        200: 200ms,
+        300: 300ms,
+        400: 400ms,
+        500: 500ms,
+        600: 600ms,
+        700: 700ms,
+        800: 800ms,
+        900: 900ms,
+      ),
+      pseudos: ()
+    ),
+    background: (
+      shorthand: bg,
+      responsive: false,
+      responsive-pseudos: false,
+      extra-selector: null,
+      properties: (background),
+      static-properties: (
+        --gradient: initial
+      ),
+      variants: (
+        core.merge(
+          core.gradients(),
+          (
+            linear-x-from-white: linear-gradient(to right, rgba(255,255,255,1) 0%, rgba(255,255,255,0) 100%),
+            linear-x-to-white: linear-gradient(to right, rgba(255,255,255,0) 0%, rgba(255,255,255,1) 100%),
+            linear-y-from-white: linear-gradient(to bottom, rgba(255,255,255,1) 0%, rgba(255,255,255,0) 100%),
+            linear-y-to-white: linear-gradient(to bottom, rgba(255,255,255,0) 0%, rgba(255,255,255,1) 100%),
+            linear-x-from-black: linear-gradient(to right, rgba(0,0,0,1) 0%, rgba(0,0,0,0) 100%),
+            linear-x-to-black: linear-gradient(to right, rgba(0,0,0,0) 0%, rgba(0,0,0,1) 100%),
+            linear-y-from-black: linear-gradient(to bottom, rgba(0,0,0,1) 0%, rgba(0,0,0,0) 100%),
+            linear-y-to-black: linear-gradient(to bottom, rgba(0,0,0,0) 0%, rgba(0,0,0,1) 100%),
+          )
+        )
+      ),
+      pseudos: ()
+    ),
+    background-size: (
+      shorthand: bg,
+      responsive: true,
+      responsive-pseudos: false,
+      extra-selector: null,
+      properties: (background-size),
+      static-properties: (),
+      variants: (
+        auto: auto,
+        cover: cover,
+        contain: contain
+      ),
+      pseudos: ()
+    ),
+    background-repeat: (
+      shorthand: bg,
+      responsive: true,
+      responsive-pseudos: false,
+      extra-selector: null,
+      properties: (background-repeat),
+      static-properties: (),
+      variants: (
+        repeat: repeat,
+        repeat-x: repeat-x,
+        repeat-y: repeat-y,
+        no-repeat: no-repeat,
+        space: space,
+        round: round
+      ),
+      pseudos: ()
+    ),
+    background-position: (
+      shorthand: bg,
+      responsive: true,
+      responsive-pseudos: false,
+      extra-selector: null,
+      properties: (background-position),
+      static-properties: (),
+      variants: (
+        left-top: left top,
+        left: left,
+        left-bottom: left bottom,
+        right-top: right top,
+        right: right,
+        right-bottom: right bottom,
+        top: top,
+        bottom: bottom,
+        center: center
+      ),
+      pseudos: ()
+    ),
+    background-color: (
+      shorthand: bg,
+      responsive: false,
+      responsive-pseudos: false,
+      extra-selector: null,
+      properties: (background-color),
+      static-properties: (
+        --bg-opacity: 1,
+      ),
+      variants: (
+        core.merge(
+          core.fills(bg),
+          (
+            transparent: transparent,
+            current: currentColor,
+            success: var(--bg-success, rgba(18, 181, 57, var(--bg-opacity))),
+            warning: var(--bg-warning, rgba(210, 127, 0, var(--bg-opacity))),
+            danger: var(--bg-danger, rgba(203, 18, 0, var(--bg-opacity))),
+            info: var(--bg-info, rgba(0, 200, 177, var(--bg-opacity))),
+          )
+        )
+      ),
+      pseudos: (hover, group-hover, focus)
+    ),
+    background-clip: (
+      shorthand: bg,
+      responsive: true,
+      responsive-pseudos: false,
+      extra-selector: null,
+      properties: (background-clip, -webkit-background-clip),
+      static-properties: (),
+      variants: (
+        border: border-box,
+        padding: padding-box,
+        content: content-box,
+        text: text
+      ),
+      pseudos: ()
+    ),
+    background-attachment: (
+      shorthand: bg,
+      responsive: true,
+      responsive-pseudos: false,
+      extra-selector: null,
+      properties: (background-attachment),
+      static-properties: (),
+      variants: (
+        scroll: scroll,
+        fixed: fixed,
+        local: local
+      ),
+      pseudos: ()
+    ),
+    background-opacity: (
+      shorthand: bg-opacity,
+      responsive: false,
+      responsive-pseudos: false,
+      extra-selector: null,
+      properties: (--bg-opacity),
+      static-properties: (),
+      variants: (
+        core.merge(
+          core.opacities(),
+        )
+      ),
+      pseudos: (hover, group-hover, focus)
+    ),
+    max-width: (
+      shorthand: max-w,
+      responsive: true,
+      responsive-pseudos: false,
+      extra-selector: null,
+      properties: (max-width),
+      static-properties: (),
+      variants: (
+        core.merge(
+          core.positive-sizes(map.get(core.$all-config, range-limits, max-width)),
+          core.name-screens(),
+          (
+            0: 0,
+            none: none,
+
+            50p: 50%,
+            100p: 100%,
+            50vw: 50vw,
+            100vw: 100vw,
+
+            min: min-content,
+            max: max-content,
+            
+            text: 64ch,
+          )
+        )
+      ),
+      pseudos: ()
+    ),
+    max-height: (
+      shorthand: max-h,
+      responsive: true,
+      responsive-pseudos: false,
+      extra-selector: null,
+      properties: (max-height),
+      static-properties: (),
+      variants: (
+        core.merge(
+          core.positive-sizes(map.get(core.$all-config, range-limits, max-height)),
+          (
+            0: 0,
+            none: none,
+
+            100p: 100%,
+            100vh: 100vh,
+            
+            50p: 50%,
+            50vh: 50vh,
+          )
+        )
+      ),
+      pseudos: ()
+    ),
+    min-width: (
+      shorthand: min-w,
+      responsive: true,
+      responsive-pseudos: false,
+      extra-selector: null,
+      properties: (min-width),
+      static-properties: (),
+      variants: (
+        core.merge(
+          core.positive-sizes(map.get(core.$all-config, range-limits, min-width)),
+          (
+            50p: 50%,
+            100p: 100%,
+            50vw: 50vw,
+            100vw: 100vw,
+          )
+        )
+      ),
+      pseudos: ()
+    ),
+    min-height: (
+      shorthand: min-h,
+      responsive: true,
+      responsive-pseudos: false,
+      extra-selector: null,
+      properties: (min-height),
+      static-properties: (),
+      variants: (
+        core.merge(
+          core.positive-sizes(map.get(core.$all-config, range-limits, min-height)),
+          (
+            50p: 50%,
+            100p: 100%,
+            50vh: 50vh,
+            100vh: 100vh,
+          )
+        )
+      ),
+      pseudos: ()
+    ),
+    width: (
+      shorthand: w,
+      responsive: true,
+      responsive-pseudos: false,
+      extra-selector: null,
+      properties: (width),
+      static-properties: (),
+      variants: (
+        core.merge(
+          core.positive-sizes(map.get(core.$all-config, range-limits, width)),
+					(
+						auto: auto,
+						0: 0,
+
+						50p: 50%,
+						100p: 100%,
+						50vw: 50vw,
+						100vw: 100vw,
+
+						'1-12': 8.333333%,
+						'2-12': 16.666667%,
+						'3-12': 25%,
+						'4-12': 33.333333%,
+						'5-12': 41.666667%,
+						'6-12': 50%,
+						'7-12': 58.333333%,
+						'8-12': 66.666667%,
+						'9-12': 75%,
+						'10-12': 83.333333%,
+						'11-12': 91.666667%,
+						
+						'1-5': 20%,
+						'2-5': 40%,
+						'3-5': 60%,
+						'4-5': 80%,
+					)
+        )
+      ),
+      pseudos: ()
+    ),
+    height: (
+      shorthand: h,
+      responsive: true,
+      responsive-pseudos: false,
+      extra-selector: null,
+      properties: (height),
+      static-properties: (),
+      variants: (
+        core.merge(
+          core.positive-sizes(map.get(core.$all-config, range-limits, height)),
+          (
+            auto: auto,
+            0: 0,
+            
+            50p: 50%,
+            100p: 100%,
+            
+            50vh: 50vh,
+            100vh: 100vh,      
+          )
+        )
+      ),
+      pseudos: ()
+    ),
+    margin: (
+      shorthand: m,
+      responsive: true,
+      responsive-pseudos: false,
+      extra-selector: null,
+      properties: (margin),
+      static-properties: (),
+      variants: (
+        core.merge(
+          core.sizes(map.get(core.$all-config, range-limits, margin)),
+          (
+            auto: auto,
+            0: 0,
+          )
+        )
+      ),
+      pseudos: (first, last)
+    ),
+    margin-y: (
+      shorthand: my,
+      responsive: true,
+      responsive-pseudos: false,
+      extra-selector: null,
+      properties: (margin-top, margin-bottom),
+      static-properties: (),
+      variants: (
+        core.merge(
+          core.positive-sizes(map.get(core.$all-config, range-limits, margin)),
+          (
+            auto: auto,
+            0: 0,
+          )
+        )
+      ),
+      pseudos: ()
+    ),
+    margin-x: (
+      shorthand: mx,
+      responsive: true,
+      responsive-pseudos: false,
+      extra-selector: null,
+      properties: (margin-left, margin-right),
+      static-properties: (),
+      variants: (
+        core.merge(
+          core.positive-sizes(map.get(core.$all-config, range-limits, margin)),
+          (
+            auto: auto,
+            0: 0,
+          )
+        )
+      ),
+      pseudos: ()
+    ),
+    margin-top: (
+      shorthand: mt,
+      responsive: true,
+      responsive-pseudos: false,
+      extra-selector: null,
+      properties: (margin-top),
+      static-properties: (),
+      variants: (
+        core.merge(
+          core.sizes(map.get(core.$all-config, range-limits, margin)),
+          (
+            auto: auto,
+            0: 0,
+          )
+        )
+      ),
+      pseudos: (first, last)
+    ),
+    margin-right: (
+      shorthand: mr,
+      responsive: true,
+      responsive-pseudos: false,
+      extra-selector: null,
+      properties: (margin-right),
+      static-properties: (),
+      variants: (
+        core.merge(
+          core.sizes(map.get(core.$all-config, range-limits, margin)),
+          (
+            auto: auto,
+            0: 0,
+          )
+        )
+      ),
+      pseudos: (first, last)
+    ),
+    margin-left: (
+      shorthand: ml,
+      responsive: true,
+      responsive-pseudos: false,
+      extra-selector: null,
+      properties: (margin-left),
+      static-properties: (),
+      variants: (
+        core.merge(
+          core.sizes(map.get(core.$all-config, range-limits, margin)),
+          (
+            auto: auto,
+            0: 0,
+          )
+        )
+      ),
+      pseudos: (first, last)
+    ),
+    margin-bottom: (
+      shorthand: mb,
+      responsive: true,
+      responsive-pseudos: false,
+      extra-selector: null,
+      properties: (margin-bottom),
+      static-properties: (),
+      variants: (
+        core.merge(
+          core.sizes(map.get(core.$all-config, range-limits, margin)),
+          (
+            auto: auto,
+            0: 0,
+          )
+        )
+      ),
+      pseudos: (first, last)
+    ),
+    padding: (
+      shorthand: p,
+      responsive: true,
+      responsive-pseudos: false,
+      extra-selector: null,
+      properties: (padding),
+      static-properties: (),
+      variants: (
+        core.merge(
+          core.positive-sizes(map.get(core.$all-config, range-limits, padding)),
+          (
+            0: 0,
+          )
+        )
+      ),
+      pseudos: ()
+    ),
+    padding-y: (
+      shorthand: py,
+      responsive: true,
+      responsive-pseudos: false,
+      extra-selector: null,
+      properties: (padding-top, padding-bottom),
+      static-properties: (),
+      variants: (
+        core.merge(
+          core.positive-sizes(map.get(core.$all-config, range-limits, padding)),
+          (
+            0: 0,
+          )
+        )
+      ),
+      pseudos: ()
+    ),
+    padding-x: (
+      shorthand: px,
+      responsive: true,
+      responsive-pseudos: false,
+      extra-selector: null,
+      properties: (padding-left, padding-right),
+      static-properties: (),
+      variants: (
+        core.merge(
+          core.positive-sizes(map.get(core.$all-config, range-limits, padding)),
+          (
+            0: 0,
+          )
+        )
+      ),
+      pseudos: ()
+    ),
+    padding-top: (
+      shorthand: pt,
+      responsive: true,
+      responsive-pseudos: false,
+      extra-selector: null,
+      properties: (padding-top),
+      static-properties: (),
+      variants: (
+        core.merge(
+          core.positive-sizes(map.get(core.$all-config, range-limits, padding)),
+          (
+            0: 0,
+          )
+        )
+      ),
+      pseudos: (first, last)
+    ),
+    padding-right: (
+      shorthand: pr,
+      responsive: true,
+      responsive-pseudos: false,
+      extra-selector: null,
+      properties: (padding-right),
+      static-properties: (),
+      variants: (
+        core.merge(
+          core.positive-sizes(map.get(core.$all-config, range-limits, padding)),
+          (
+            0: 0,
+          )
+        )
+      ),
+      pseudos: (first, last)
+    ),
+    padding-left: (
+      shorthand: pl,
+      responsive: true,
+      responsive-pseudos: false,
+      extra-selector: null,
+      properties: (padding-left),
+      static-properties: (),
+      variants: (
+        core.merge(
+          core.positive-sizes(map.get(core.$all-config, range-limits, padding)),
+          (
+            0: 0,
+          )
+        )
+      ),
+      pseudos: (first, last)
+    ),
+    padding-bottom: (
+      shorthand: pb,
+      responsive: true,
+      responsive-pseudos: false,
+      extra-selector: null,
+      properties: (padding-bottom),
+      static-properties: (),
+      variants: (
+        core.merge(
+          core.positive-sizes(map.get(core.$all-config, range-limits, padding)),
+          (
+            0: 0,
+          )
+        )
+      ),
+      pseudos: (first, last)
+    ),
+    border-style: (
+      shorthand: border,
+      responsive: false,
+      responsive-pseudos: false,
+      extra-selector: null,
+      properties: (border-style),
+      static-properties: (),
+      variants: (
+        solid: solid,
+        dashed: dashed,
+        dotted: dotted,
+        double: double,
+        none: none
+      ),
+      pseudos: ()
+    ),
+    border-color: (
+      shorthand: border,
+      responsive: false,
+      responsive-pseudos: false,
+      extra-selector: null,
+      properties: (border-color),
+      static-properties: (
+        --border-opacity: 1
+      ),
+      variants: (
+        core.merge(
+          core.fills(border),
+          (
+            transparent: transparent,
+            current: currentColor,
+            success: var(--border-success, rgba(18, 181, 57, var(--border-opacity))),
+            warning: var(--border-warning, rgba(210, 127, 0, var(--border-opacity))),
+            danger: var(--border-danger, rgba(203, 18, 0, var(--border-opacity))),
+            info: var(--border-info, rgba(0, 200, 177, var(--border-opacity))),
+          )
+        )
+      ),
+      pseudos: (hover, group-hover, focus)
+    ),
+    border-collapse: (
+      shorthand: border,
+      responsive: false,
+      responsive-pseudos: false,
+      extra-selector: null,
+      properties: (border-collapse),
+      static-properties: (),
+      variants: (
+        separate: separate,
+        collapse: collapse
+      ),
+      pseudos: ()
+    ),
+    border-width: (
+      shorthand: border,
+      responsive: true,
+      responsive-pseudos: false,
+      extra-selector: null,
+      properties: (border-width),
+      static-properties: (),
+      variants: (
+        core.merge(
+          core.positive-sizes(map.get(core.$all-config, range-limits, border-width)),
+          (
+            0: 0,
+          )
+        )
+      ),
+      pseudos: ()
+    ),
+    border-y-width: (
+      shorthand: border-y,
+      responsive: true,
+      responsive-pseudos: false,
+      extra-selector: null,
+      properties: (border-top-width, border-bottom-width),
+      static-properties: (),
+      variants: (
+        core.merge(
+          core.positive-sizes(map.get(core.$all-config, range-limits, border-width)),
+          (
+            0: 0,
+          )
+        )
+      ),
+      pseudos: ()
+    ),
+    border-x-width: (
+      shorthand: border-x,
+      responsive: true,
+      responsive-pseudos: false,
+      extra-selector: null,
+      properties: (border-left-width, border-right-width),
+      static-properties: (),
+      variants: (
+        core.merge(
+          core.positive-sizes(map.get(core.$all-config, range-limits, border-width)),
+          (
+            0: 0,
+          )
+        )
+      ),
+      pseudos: ()
+    ),
+    border-top-width: (
+      shorthand: border-t,
+      responsive: true,
+      responsive-pseudos: false,
+      extra-selector: null,
+      properties: (border-top-width),
+      static-properties: (),
+      variants: (
+        core.merge(
+          core.positive-sizes(map.get(core.$all-config, range-limits, border-width)),
+          (
+            0: 0,
+          )
+        )
+      ),
+      pseudos: (
+        first
+      )
+    ),
+    border-right-width: (
+      shorthand: border-r,
+      responsive: true,
+      responsive-pseudos: false,
+      extra-selector: null,
+      properties: (border-right-width),
+      static-properties: (),
+      variants: (
+        core.merge(
+          core.positive-sizes(map.get(core.$all-config, range-limits, border-width)),
+          (
+            0: 0,
+          )
+        )
+      ),
+      pseudos: (last)
+    ),
+    border-left-width: (
+      shorthand: border-l,
+      responsive: true,
+      responsive-pseudos: false,
+      extra-selector: null,
+      properties: (border-left-width),
+      static-properties: (),
+      variants: (
+        core.merge(
+          core.positive-sizes(map.get(core.$all-config, range-limits, border-width)),
+          (
+            0: 0,
+          )
+        )
+      ),
+      pseudos: (first)
+    ),
+    border-bottom-width: (
+      shorthand: border-b,
+      responsive: true,
+      responsive-pseudos: false,
+      extra-selector: null,
+      properties: (border-bottom-width),
+      static-properties: (),
+      variants: (
+        core.merge(
+          core.positive-sizes(map.get(core.$all-config, range-limits, border-width)),
+          (
+            0: 0,
+          )
+        )
+      ),
+      pseudos: (last)
+    ),
+    border-radius: (
+      shorthand: radius,
+      responsive: true,
+      responsive-pseudos: false,
+      extra-selector: null,
+      properties: (border-radius),
+      static-properties: (),
+      variants: (
+        core.merge(
+          core.radiuses(),
+          (
+            none: 0,
+            full: 9999px
+          )
+        )
+      ),
+      pseudos: ()
+    ),
+    border-top-right-radius: (
+      shorthand: radius-tr,
+      responsive: true,
+      responsive-pseudos: false,
+      extra-selector: null,
+      properties: (border-top-right-radius),
+      static-properties: (),
+      variants: (
+        core.merge(
+          core.radiuses(),
+          (
+            none: 0,
+            full: 9999px
+          )
+        )
+      ),
+      pseudos: (
+        last
+      )
+    ),
+    border-top-left-radius: (
+      shorthand: radius-tl,
+      responsive: true,
+      responsive-pseudos: false,
+      extra-selector: null,
+      properties: (border-top-left-radius),
+      static-properties: (),
+      variants: (
+        core.merge(
+          core.radiuses(),
+          (
+            none: 0,
+            full: 9999px
+          )
+        )
+      ),
+      pseudos: (first)
+    ),
+    border-bottom-right-radius: (
+      shorthand: radius-br,
+      responsive: true,
+      responsive-pseudos: false,
+      extra-selector: null,
+      properties: (border-bottom-right-radius),
+      static-properties: (),
+      variants: (
+        core.merge(
+          core.radiuses(),
+          (
+            none: 0,
+            full: 9999px
+          )
+        )
+      ),
+      pseudos: (last)
+    ),
+    border-bottom-left-radius: (
+      shorthand: radius-bl,
+      responsive: true,
+      responsive-pseudos: false,
+      extra-selector: null,
+      properties: (border-bottom-left-radius),
+      static-properties: (),
+      variants: (
+        core.merge(
+          core.radiuses(),
+          (
+            none: 0,
+            full: 9999px
+          )
+        )
+      ),
+      pseudos: (first)
+    ),
+    border-top-radius: (
+      shorthand: radius-t,
+      responsive: true,
+      responsive-pseudos: false,
+      extra-selector: null,
+      properties: (border-top-left-radius, border-top-right-radius),
+      static-properties: (),
+      variants: (
+        core.merge(
+          core.radiuses(),
+          (
+            none: 0,
+            full: 9999px
+          )
+        )
+      ),
+      pseudos: (
+        first
+      )
+    ),
+    border-right-radius: (
+      shorthand: radius-r,
+      responsive: true,
+      responsive-pseudos: false,
+      extra-selector: null,
+      properties: (border-top-right-radius, border-bottom-right-radius),
+      static-properties: (),
+      variants: (
+        core.merge(
+          core.radiuses(),
+          (
+            none: 0,
+            full: 9999px
+          )
+        )
+      ),
+      pseudos: (
+        last
+      )
+    ),
+    border-left-radius: (
+      shorthand: radius-l,
+      responsive: true,
+      responsive-pseudos: false,
+      extra-selector: null,
+      properties: (border-top-left-radius, border-bottom-left-radius),
+      static-properties: (),
+      variants: (
+        core.merge(
+          core.radiuses(),
+          (
+            none: 0,
+            full: 9999px
+          )
+        )
+      ),
+      pseudos: (
+        first
+      )
+    ),
+    border-bottom-radius: (
+      shorthand: radius-b,
+      responsive: true,
+      responsive-pseudos: false,
+      extra-selector: null,
+      properties: (border-bottom-left-radius, border-bottom-right-radius),
+      static-properties: (),
+      variants: (
+        core.merge(
+          core.radiuses(),
+          (
+            none: 0,
+            full: 9999px
+          )
+        )
+      ),
+      pseudos: (
+        last
+      )
+    ),
+    border-opacity: (
+      shorthand: border-opacity,
+      responsive: false,
+      responsive-pseudos: false,
+      extra-selector: null,
+      properties: (--border-opacity),
+      static-properties: (),
+      variants: (
+        core.merge(
+          core.opacities(),
+        )
+      ),
+      pseudos: (
+        hover, group-hover, focus
+      )
+    ),
+    opacity: (
+      shorthand: opacity,
+      responsive: true,
+      responsive-pseudos: false,
+      extra-selector: null,
+      properties: (opacity),
+      static-properties: (),
+      variants: (
+        core.opacities()
+      ),
+      pseudos: (hover, group-hover, focus)
+    ),
+    box-shadow: (
+      shorthand: shadow,
+      responsive: true,
+      responsive-pseudos: false,
+      extra-selector: null,
+      properties: (box-shadow),
+      static-properties: (),
+      variants: (
+        core.merge(
+          core.shadows(),
+          (
+            none: none,
+          )
+        )
+      ),
+      pseudos: (hover, group-hover, focus)
+    ),
+    mix-blend-mode: (
+      shorthand: blend,
+      responsive: false,
+      responsive-pseudos: false,
+      extra-selector: null,
+      properties: (mix-blend-mode),
+      static-properties: (),
+      variants: (
+        normal: normal,
+        multiply: multiply,
+        screen: screen,
+        overlay: overlay,
+        darken: darken,
+        lighten: lighten,
+        color-dodge: color-dodge,
+        color-burn: color-burn,
+        hard-light: hard-light,
+        soft-light: soft-light,
+        difference: difference,
+        exclusion: exclusion,
+        hue: hue,
+        saturation: saturation,
+        color: color,
+        luminosity: luminosity,
+      ),
+      pseudos: ()
+    ),
+    filter: (
+      shorthand: filter,
+      responsive: false,
+      responsive-pseudos: false,
+      extra-selector: null,
+      properties: (filter),
+      static-properties: (
+        --filter-blur: 0,
+        --filter-brightness: 1,
+        --filter-contrast: 1,
+        --filter-grayscale: 0,
+        --filter-hue-rotate: 0deg,
+        --filter-invert: 0,
+        --filter-opacity: 1,
+        --filter-saturate: 1,
+        --filter-sepia: 0
+      ),
+      variants: (
+        null: string.unquote("blur(var(--filter-blur))") string.unquote("brightness(var(--filter-brightness))") string.unquote("contrast(var(--filter-contrast))") string.unquote("grayscale(var(--filter-grayscale))") string.unquote("hue-rotate(var(--filter-hue-rotate))") string.unquote("invert(var(--filter-invert))") string.unquote("opacity(var(--filter-opacity))") string.unquote("saturate(var(--filter-saturate))") string.unquote("sepia(var(--filter-sepia))"),
+        none: none
+      ),
+      pseudos: ()
+    ),
+    filter-blur: (
+      shorthand: filter-blur,
+      responsive: false,
+      responsive-pseudos: false,
+      extra-selector: null,
+      properties: (--filter-blur),
+      static-properties: (),
+      variants: (
+        core.blurs()
+      ),
+      pseudos: ()
+    ),
+    filter-brightness: (
+      shorthand: filter-brightness,
+      responsive: false,
+      responsive-pseudos: false,
+      extra-selector: null,
+      properties: (--filter-brightness),
+      static-properties: (),
+      variants: (
+        100: 1,
+        110: 1.1,
+        120: 1.2,
+        130: 1.3,
+        140: 1.4,
+        150: 1.5,
+        160: 1.6,
+        170: 1.7,
+        180: 1.8,
+        190: 1.9,
+        200: 2,
+      ),
+      pseudos: ()
+    ),
+    filter-contrast: (
+      shorthand: filter-contrast,
+      responsive: false,
+      responsive-pseudos: false,
+      extra-selector: null,
+      properties: (--filter-contrast),
+      static-properties: (),
+      variants: (
+        0: 0,
+        10: 0.1,
+        20: 0.2,
+        30: 0.3,
+        40: 0.4,
+        50: 0.5,
+        60: 0.6,
+        70: 0.7,
+        80: 0.8,
+        90: 0.9,
+        100: 1,
+      ),
+      pseudos: ()
+    ),
+    filter-grayscale: (
+      shorthand: filter-grayscale,
+      responsive: false,
+      responsive-pseudos: false,
+      extra-selector: null,
+      properties: (--filter-grayscale),
+      static-properties: (),
+      variants: (
+        0: 0,
+        100: 1,
+      ),
+      pseudos: ()
+    ),
+    filter-hue-rotate: (
+      shorthand: filter-hue-rotate,
+      responsive: false,
+      responsive-pseudos: false,
+      extra-selector: null,
+      properties: (--filter-hue-rotate),
+      static-properties: (),
+      variants: (
+        0: 0deg,
+        15: 15deg,
+        30: 30deg,
+        60: 60deg,
+        90: 90deg,
+        180: 180deg
+      ),
+      pseudos: ()
+    ),
+    filter-invert: (
+      shorthand: filter-invert,
+      responsive: false,
+      responsive-pseudos: false,
+      extra-selector: null,
+      properties: (--filter-invert),
+      static-properties: (),
+      variants: (
+        0: 0,
+        100: 1,
+      ),
+      pseudos: ()
+    ),
+    filter-opacity: (
+      shorthand: filter-opacity,
+      responsive: false,
+      responsive-pseudos: false,
+      extra-selector: null,
+      properties: (--filter-opacity),
+      static-properties: (),
+      variants: (
+        core.opacities()
+      ),
+      pseudos: ()
+    ),
+    filter-saturate: (
+      shorthand: filter-saturate,
+      responsive: false,
+      responsive-pseudos: false,
+      extra-selector: null,
+      properties: (--filter-saturate),
+      static-properties: (),
+      variants: (
+        100: 1,
+        110: 1.1,
+        120: 1.2,
+        130: 1.3,
+        140: 1.4,
+        150: 1.5,
+        160: 1.6,
+        170: 1.7,
+        180: 1.8,
+        190: 1.9,
+        200: 2,
+      ),
+      pseudos: ()
+    ),
+    filter-sepia: (
+      shorthand: filter-sepia,
+      responsive: false,
+      responsive-pseudos: false,
+      extra-selector: null,
+      properties: (--filter-sepia),
+      static-properties: (),
+      variants: (
+        0: 0,
+        100: 1,
+      ),
+      pseudos: ()
+    ),
+    backdrop-filter: (
+      shorthand: backdrop,
+      responsive: false,
+      responsive-pseudos: false,
+      extra-selector: null,
+      properties: (backdrop-filter, -webkit-backdrop-filter),
+      static-properties: (
+        --backdrop-blur: 0,
+        --backdrop-brightness: 1,
+        --backdrop-contrast: 1,
+        --backdrop-grayscale: 0,
+        --backdrop-hue-rotate: 0deg,
+        --backdrop-invert: 0,
+        --backdrop-opacity: 1,
+        --backdrop-saturate: 1,
+        --backdrop-sepia: 0
+      ),
+      variants: (
+        null: string.unquote("blur(var(--backdrop-blur))") string.unquote("brightness(var(--backdrop-brightness))") string.unquote("contrast(var(--backdrop-contrast))") string.unquote("grayscale(var(--backdrop-grayscale))") string.unquote("hue-rotate(var(--backdrop-hue-rotate))") string.unquote("invert(var(--backdrop-invert))") string.unquote("opacity(var(--backdrop-opacity))") string.unquote("saturate(var(--backdrop-saturate))") string.unquote("sepia(var(--backdrop-sepia))"),
+        none: none
+      ),
+      pseudos: ()
+    ),
+    backdrop-blur: (
+      shorthand: backdrop-blur,
+      responsive: false,
+      responsive-pseudos: false,
+      extra-selector: null,
+      properties: (--backdrop-blur),
+      static-properties: (),
+      variants: (
+        core.blurs()
+      ),
+      pseudos: ()
+    ),
+    backdrop-brightness: (
+      shorthand: backdrop-brightness,
+      responsive: false,
+      responsive-pseudos: false,
+      extra-selector: null,
+      properties: (--backdrop-brightness),
+      static-properties: (),
+      variants: (
+        100: 1,
+        110: 1.1,
+        120: 1.2,
+        130: 1.3,
+        140: 1.4,
+        150: 1.5,
+        160: 1.6,
+        170: 1.7,
+        180: 1.8,
+        190: 1.9,
+        200: 2,
+      ),
+      pseudos: ()
+    ),
+    backdrop-contrast: (
+      shorthand: backdrop-contrast,
+      responsive: false,
+      responsive-pseudos: false,
+      extra-selector: null,
+      properties: (--backdrop-contrast),
+      static-properties: (),
+      variants: (
+        0: 0,
+        10: 0.1,
+        20: 0.2,
+        30: 0.3,
+        40: 0.4,
+        50: 0.5,
+        60: 0.6,
+        70: 0.7,
+        80: 0.8,
+        90: 0.9,
+        100: 1,
+      ),
+      pseudos: ()
+    ),
+    backdrop-grayscale: (
+      shorthand: backdrop-grayscale,
+      responsive: false,
+      responsive-pseudos: false,
+      extra-selector: null,
+      properties: (--backdrop-grayscale),
+      static-properties: (),
+      variants: (
+        0: 0,
+        100: 1,
+      ),
+      pseudos: ()
+    ),
+    backdrop-hue-rotate: (
+      shorthand: backdrop-hue-rotate,
+      responsive: false,
+      responsive-pseudos: false,
+      extra-selector: null,
+      properties: (--backdrop-hue-rotate),
+      static-properties: (),
+      variants: (
+        0: 0deg,
+        15: 15deg,
+        30: 30deg,
+        60: 60deg,
+        90: 90deg,
+        180: 180deg
+      ),
+      pseudos: ()
+    ),
+    backdrop-invert: (
+      shorthand: backdrop-invert,
+      responsive: false,
+      responsive-pseudos: false,
+      extra-selector: null,
+      properties: (--backdrop-invert),
+      static-properties: (),
+      variants: (
+        0: 0,
+        100: 1,
+      ),
+      pseudos: ()
+    ),
+    backdrop-opacity: (
+      shorthand: backdrop-opacity,
+      responsive: false,
+      responsive-pseudos: false,
+      extra-selector: null,
+      properties: (--backdrop-opacity),
+      static-properties: (),
+      variants: (
+        core.opacities()
+      ),
+      pseudos: ()
+    ),
+    backdrop-saturate: (
+      shorthand: backdrop-saturate,
+      responsive: false,
+      responsive-pseudos: false,
+      extra-selector: null,
+      properties: (--backdrop-saturate),
+      static-properties: (),
+      variants: (
+        100: 1,
+        110: 1.1,
+        120: 1.2,
+        130: 1.3,
+        140: 1.4,
+        150: 1.5,
+        160: 1.6,
+        170: 1.7,
+        180: 1.8,
+        190: 1.9,
+        200: 2,
+      ),
+      pseudos: ()
+    ),
+    backdrop-sepia: (
+      shorthand: backdrop-sepia,
+      responsive: false,
+      responsive-pseudos: false,
+      extra-selector: null,
+      properties: (--backdrop-sepia),
+      static-properties: (),
+      variants: (
+        0: 0,
+        100: 1,
+      ),
+      pseudos: ()
+    ),
+    ratio: (
+      shorthand: ratio,
+      responsive: true,
+      responsive-pseudos: false,
+      extra-selector: null,
+      properties: (),
+      static-properties: (),
+      variants: (
+        square: (
+          position: relative,
+          width: 100%,
+          padding-top: 100%,
+        ),
+        '16-9': (
+          position: relative,
+          width: 100%,
+          padding-top: 56.25%,
+        ),
+        '4-3': (
+          position: relative,
+          width: 100%,
+          padding-top: 75%,
+        ),
+        '2-1': (
+          position: relative,
+          width: 100%,
+          padding-top: 50%,
+        ),
+        '16-10': (
+          position: relative,
+          width: 100%,
+          padding-top: 63%,
+        )
+      ),
+      pseudos: ()
+    ),
+    z-index: (
+      shorthand: z,
+      responsive: false,
+      responsive-pseudos: false,
+      extra-selector: null,
+      properties: (z-index),
+      static-properties: (),
+      variants: (
+        auto: auto,
+        0: 0,
+        1: 1,
+        2: 2,
+        3: 3,
+        4: 4,
+        5: 5,
+        6: 6,
+        7: 7,
+        8: 8,
+        9: 9,
+        10: 10,
+      ),
+      pseudos: (focus)
+    ),
+    xy: (
+      shorthand: xy,
+      responsive: true,
+      responsive-pseudos: false,
+      extra-selector: null,
+      properties: (top, right, bottom, left),
+      static-properties: (),
+      variants: (
+        0: 0,
+        auto: auto
+      ),
+      pseudos: ()
+    ),
+    y: (
+      shorthand: y,
+      responsive: true,
+      responsive-pseudos: false,
+      extra-selector: null,
+      properties: (top, bottom),
+      static-properties: (),
+      variants: (
+        0: 0,
+        auto: auto
+      ),
+      pseudos: ()
+    ),
+    x: (
+      shorthand: x,
+      responsive: true,
+      responsive-pseudos: false,
+      extra-selector: null,
+      properties: (left, right),
+      static-properties: (),
+      variants: (
+        0: 0,
+        auto: auto
+      ),
+      pseudos: ()
+    ),
+    top: (
+      shorthand: top,
+      responsive: true,
+      responsive-pseudos: false,
+      extra-selector: null,
+      properties: (top),
+      static-properties: (),
+      variants: (
+        core.merge(
+          core.sizes(map.get(core.$all-config, range-limits, top)),
+          (
+            auto: auto,
+            0: 0,
+            n100p: -100%,
+            100p: 100%,
+            n50p: -50%,
+            50p: 50%
+          )
+        )
+      ),
+      pseudos: ()
+    ),
+    right: (
+      shorthand: right,
+      responsive: true,
+      responsive-pseudos: false,
+      extra-selector: null,
+      properties: (right),
+      static-properties: (),
+      variants: (
+        core.merge(
+          core.sizes(map.get(core.$all-config, range-limits, right)),
+          (
+            auto: auto,
+            0: 0,
+            n100p: -100%,
+            100p: 100%,
+            n50p: -50%,
+            50p: 50%
+          )
+        )
+      ),
+      pseudos: ()
+    ),
+    left: (
+      shorthand: left,
+      responsive: true,
+      responsive-pseudos: false,
+      extra-selector: null,
+      properties: (left),
+      static-properties: (),
+      variants: (
+        core.merge(
+          core.sizes(map.get(core.$all-config, range-limits, left)),
+          (
+            auto: auto,
+            0: 0,
+            n100p: -100%,
+            100p: 100%,
+            n50p: -50%,
+            50p: 50%
+          )
+        )
+      ),
+      pseudos: ()
+    ),
+    bottom: (
+      shorthand: bottom,
+      responsive: true,
+      responsive-pseudos: false,
+      extra-selector: null,
+      properties: (bottom),
+      static-properties: (),
+      variants: (
+        core.merge(
+          core.sizes(map.get(core.$all-config, range-limits, bottom)),
+          (
+            auto: auto,
+            0: 0,
+            n100p: -100%,
+            100p: 100%,
+            n50p: -50%,
+            50p: 50%
+          )
+        )
+      ),
+      pseudos: ()
+    ),
+    table-layout: (
+      shorthand: table,
+      responsive: true,
+      responsive-pseudos: false,
+      extra-selector: null,
+      properties: (table-layout),
+      static-properties: (),
+      variants: (
+        auto: auto,
+        fixed: fixed
+      ),
+      pseudos: ()
+    ),
+    position: (
+      shorthand: null,
+      responsive: true,
+      responsive-pseudos: false,
+      extra-selector: null,
+      properties: (position),
+      static-properties: (),
+      variants: (
+        static: static,
+        fixed: fixed,
+        absolute: absolute,
+        relative: relative,
+        sticky: sticky
+      ),
+      pseudos: ()
+    ),
+    object-position: (
+      shorthand: object,
+      responsive: false,
+      responsive-pseudos: false,
+      extra-selector: null,
+      properties: (object-position),
+      static-properties: (),
+      variants: (
+        bottom: bottom,
+        center: center,
+        left: left,
+        left-bottom: left-bottom,
+        left-top: left-top,
+        right: right,
+        right-bottom: right-bottom,
+        right-top: right-top,
+        top: top
+      ),
+      pseudos: ()
+    ),
+    object-fit: (
+      shorthand: object,
+      responsive: false,
+      responsive-pseudos: false,
+      extra-selector: null,
+      properties: (object-fit),
+      static-properties: (),
+      variants: (
+        contain: contain,
+        cover: cover,
+        fill: fill,
+        none: none,
+        size-down: size-down
+      ),
+      pseudos: ()
+    ),
+    isolation: (
+      shorthand: null,
+      responsive: true,
+      responsive-pseudos: false,
+      extra-selector: null,
+      properties: (isolation),
+      static-properties: (),
+      variants: (
+        isolate: isolate,
+        isolation-auto: auto
+      ),
+      pseudos: ()
+    ),
+    float: (
+      shorthand: float,
+      responsive: true,
+      responsive-pseudos: false,
+      extra-selector: null,
+      properties: (float),
+      static-properties: (),
+      variants: (
+        left: left,
+        right: right,
+        none: none
+      ),
+      pseudos: ()
+    ),
+    clear: (
+      shorthand: clear,
+      responsive: false,
+      responsive-pseudos: false,
+      extra-selector: null,
+      properties: (clear),
+      static-properties: (),
+      variants: (
+        left: left,
+        right: right,
+        both: both
+      ),
+      pseudos: ()
+    ),
+    box-sizing: (
+      shorthand: null,
+      responsive: false,
+      responsive-pseudos: false,
+      extra-selector: null,
+      properties: (box-sizing),
+      static-properties: (),
+      variants: (
+        border-box: border-box,
+        content-box: content-box
+      ),
+      pseudos: ()
+    ),
+    box-decoration-break: (
+      shorthand: decoration,
+      responsive: true,
+      responsive-pseudos: false,
+      extra-selector: null,
+      properties: (box-decoration-break, -webkit-box-decoration-break),
+      static-properties: (),
+      variants: (
+        slice: slice,
+        clone: clone
+      ),
+      pseudos: ()
+    ),
+    visibility: (
+      shorthand: null,
+      responsive: true,
+      responsive-pseudos: false,
+      extra-selector: null,
+      properties: (visibility),
+      static-properties: (),
+      variants: (
+        visible: visible,
+        invisible: hidden
+      ),
+      pseudos: ()
+    ),
+    display: (
+      shorthand: null,
+      responsive: true,
+      responsive-pseudos: false,
+      extra-selector: null,
+      properties: (display),
+      static-properties: (),
+      variants: (
+        inline: inline,
+        block: block,
+        flex: flex,
+        grid: grid,
+        inline-block: inline-block,
+        inline-flex: inline-flex,
+        inline-grid: inline-grid,
+        inline-table: inline-table,
+        table: table,
+        table-caption: table-caption,
+        table-column-group: table-column-group,
+        table-header-group: table-header-group,
+        table-footer-group: table-footer-group,
+        table-row-group: table-row-group,
+        table-cell: table-cell,
+        table-column: table-column,
+        table-row: table-row,
+        hidden: none,
+        flow-root: flow-root,
+      ),
+      pseudos: ()
+    ),
+    gap: (
+      shorthand: gap,
+      responsive: true,
+      responsive-pseudos: false,
+      extra-selector: null,
+      properties: (gap),
+      static-properties: (),
+      variants: (
+        core.merge(
+          core.positive-sizes(map.get(core.$all-config, range-limits, gap)),
+          (
+            0: 0,
+          )
+        )
+      ),
+      pseudos: ()
+    ),
+    row-gap: (
+      shorthand: row-gap,
+      responsive: true,
+      responsive-pseudos: false,
+      extra-selector: null,
+      properties: (row-gap),
+      static-properties: (),
+      variants: (
+        core.merge(
+          core.positive-sizes(map.get(core.$all-config, range-limits, gap)),
+          (
+            0: 0,
+          )
+        )
+      ),
+      pseudos: ()
+    ),
+    column-gap: (
+      shorthand: col-gap,
+      responsive: true,
+      responsive-pseudos: false,
+      extra-selector: null,
+      properties: (column-gap),
+      static-properties: (),
+      variants: (
+        core.merge(
+          core.positive-sizes(map.get(core.$all-config, range-limits, gap)),
+          (
+            0: 0,
+          )
+        )
+      ),
+      pseudos: ()
+    ),
+    gutter-y: (
+      shorthand: gutter-y,
+      responsive: true,
+      responsive-pseudos: false,
+      extra-selector: '> * + *',
+      properties: (margin),
+      static-properties: (
+        --gutter-top: 1,
+        --gutter-bottom: 0,
+      ),
+      variants: (
+        core.merge(
+          $gutter-y-map,
+          (
+            0: 0,
+          )
+        )
+      ),
+      pseudos: ()
+    ),
+    gutter-x: (
+      shorthand: gutter-x,
+      responsive: true,
+      responsive-pseudos: false,
+      extra-selector: '> * + *',
+      properties: (margin),
+      static-properties: (
+        --gutter-right: 0,
+        --gutter-left: 1,
+      ),
+      variants: (
+        core.merge(
+          $gutter-x-map,
+          (
+            0: 0,
+          )
+        )
+      ),
+      pseudos: ()
+    ),
+    gutter-reverse: (
+      shorthand: gutter-reverse,
+      responsive: true,
+      responsive-pseudos: false,
+      extra-selector: '> * + *',
+      properties: (),
+      static-properties: (
+        --gutter-top: 0,
+        --gutter-right: 1,
+        --gutter-bottom: 1,
+        --gutter-left: 0,
+      ),
+      variants: (
+        null: null
+      ),
+      pseudos: ()
+    ),
+    order: (
+      shorthand: order,
+      responsive: true,
+      responsive-pseudos: false,
+      extra-selector: null,
+      properties: (order),
+      static-properties: (),
+      variants: (
+        first: -9999,
+        last: 9999,
+        1: 1,
+        2: 2,
+        3: 3,
+        4: 4,
+        5: 5,
+        6: 6,
+        7: 7,
+        8: 8,
+        9: 9,
+        10: 10,
+        11: 11,
+        12: 12,
+      ),
+      pseudos: ()
+    ),
+    flex-wrap: (
+      shorthand: flex-wrap,
+      responsive: true,
+      responsive-pseudos: false,
+      extra-selector: null,
+      properties: (flex-wrap),
+      static-properties: (),
+      variants: (
+        nowrap: nowrap,
+        wrap: wrap,
+        wrap-reverse: wrap-reverse
+      ),
+      pseudos: ()
+    ),
+    flex-shrink: (
+      shorthand: flex-shrink,
+      responsive: true,
+      responsive-pseudos: false,
+      extra-selector: null,
+      properties: (flex-shrink),
+      static-properties: (),
+      variants: (
+        1: 1,
+        0: 0
+      ),
+      pseudos: ()
+    ),
+    flex-grow: (
+      shorthand: flex-grow,
+      responsive: true,
+      responsive-pseudos: false,
+      extra-selector: null,
+      properties: (flex-grow),
+      static-properties: (),
+      variants: (
+        1: 1,
+        0: 0
+      ),
+      pseudos: ()
+    ),
+    flex-direction: (
+      shorthand: flex,
+      responsive: true,
+      responsive-pseudos: false,
+      extra-selector: null,
+      properties: (flex-direction),
+      static-properties: (),
+      variants: (
+        row: row,
+        row-reverse: row-reverse,
+        col: column,
+        col-reverse: column-reverse
+      ),
+      pseudos: ()
+    ),
+    flex: (
+      shorthand: flex,
+      responsive: true,
+      responsive-pseudos: false,
+      extra-selector: null,
+      properties: (flex),
+      static-properties: (),
+      variants: (
+        initial: 0 1 auto,
+        1: 1 1 0%,
+        auto: 1 1 auto,
+        none: none
+      ),
+      pseudos: ()
+    ),
+    justify-self: (
+      shorthand: justify-self,
+      responsive: true,
+      responsive-pseudos: false,
+      extra-selector: null,
+      properties: (justify-self),
+      static-properties: (),
+      variants: (
+        auto: auto,
+        start: start,
+        end: end,
+        center: center,
+        stretch: stretch
+      ),
+      pseudos: ()
+    ),
+    justify-items: (
+      shorthand: justify-items,
+      responsive: true,
+      responsive-pseudos: false,
+      extra-selector: null,
+      properties: (justify-items),
+      static-properties: (),
+      variants: (
+        auto: auto,
+        start: start,
+        end: end,
+        center: center,
+        stretch: stretch
+      ),
+      pseudos: ()
+    ),
+    justify-content: (
+      shorthand: justify-content,
+      responsive: true,
+      responsive-pseudos: false,
+      extra-selector: null,
+      properties: (justify-content),
+      static-properties: (),
+      variants: (
+        start: flex-start,
+        center: center,
+        end: flex-end,
+        between: space-between,
+        around: space-around,
+        evenly: space-evenly
+      ),
+      pseudos: ()
+    ),
+    align-self: (
+      shorthand: align-self,
+      responsive: true,
+      responsive-pseudos: false,
+      extra-selector: null,
+      properties: (align-self),
+      static-properties: (),
+      variants: (
+        auto: auto,
+        stretch: stretch,
+        center: center,
+        start: flex-start,
+        end: flex-end
+      ),
+      pseudos: ()
+    ),
+    align-items: (
+      shorthand: align-items,
+      responsive: true,
+      responsive-pseudos: false,
+      extra-selector: null,
+      properties: (align-items),
+      static-properties: (),
+      variants: (
+        center: center,
+        start: flex-start,
+        end: flex-end,
+        baseline: baseline,
+        stretch: stretch
+      ),
+      pseudos: ()
+    ),
+    align-content: (
+      shorthand: align-content,
+      responsive: true,
+      responsive-pseudos: false,
+      extra-selector: null,
+      properties: (align-content),
+      static-properties: (),
+      variants: (
+        center: center,
+        start: flex-start,
+        end: flex-end,
+        between: space-between,
+        around: space-around,
+        evenly: space-evenly,
+      ),
+      pseudos: ()
+    ),
+    grid-template-rows: (
+      shorthand: grid-rows,
+      responsive: true,
+      responsive-pseudos: false,
+      extra-selector: null,
+      properties: (grid-template-rows),
+      static-properties: (),
+      variants: (
+        none: none,
+        1: repeat(1, minmax(0, 1fr)),
+        2: repeat(2, minmax(0, 1fr)),
+        3: repeat(3, minmax(0, 1fr)),
+        4: repeat(4, minmax(0, 1fr)),
+        5: repeat(5, minmax(0, 1fr)),
+      ),
+      pseudos: ()
+    ),
+    grid-template-columns: (
+      shorthand: grid-cols,
+      responsive: true,
+      responsive-pseudos: false,
+      extra-selector: null,
+      properties: (grid-template-columns),
+      static-properties: (),
+      variants: (
+        none: none,
+        1: repeat(1, minmax(0, 1fr)),
+        2: repeat(2, minmax(0, 1fr)),
+        3: repeat(3, minmax(0, 1fr)),
+        4: repeat(4, minmax(0, 1fr)),
+        5: repeat(5, minmax(0, 1fr)),
+        6: repeat(6, minmax(0, 1fr)),
+        7: repeat(7, minmax(0, 1fr)),
+        8: repeat(8, minmax(0, 1fr)),
+        9: repeat(9, minmax(0, 1fr)),
+        10: repeat(10, minmax(0, 1fr)),
+        11: repeat(11, minmax(0, 1fr)),
+        12: repeat(12, minmax(0, 1fr))
+      ),
+      pseudos: ()
+    ),
+    grid-row-start: (
+      shorthand: row-start,
+      responsive: true,
+      responsive-pseudos: false,
+      extra-selector: null,
+      properties: (grid-row-start),
+      static-properties: (),
+      variants: (
+        auto: auto,
+        1: 1,
+        2: 2,
+        3: 3,
+        4: 4,
+        5: 5,
+        6: 6,
+      ),
+      pseudos: ()
+    ),
+    grid-row-end: (
+      shorthand: row-end,
+      responsive: true,
+      responsive-pseudos: false,
+      extra-selector: null,
+      properties: (grid-row-end),
+      static-properties: (),
+      variants: (
+        auto: auto,
+        1: 1,
+        2: 2,
+        3: 3,
+        4: 4,
+        5: 5,
+        6: 6,
+      ),
+      pseudos: ()
+    ),
+    grid-row: (
+      shorthand: row,
+      responsive: true,
+      responsive-pseudos: false,
+      extra-selector: null,
+      properties: (grid-row),
+      static-properties: (),
+      variants: (
+        auto: auto,
+        1: span 1 / span 1,
+        2: span 2 / span 2,
+        3: span 3 / span 3,
+        4: span 4 / span 4,
+        5: span 5 / span 5,
+      ),
+      pseudos: ()
+    ),
+    grid-column-start: (
+      shorthand: col-start,
+      responsive: true,
+      responsive-pseudos: false,
+      extra-selector: null,
+      properties: (grid-column-start),
+      static-properties: (),
+      variants: (
+        auto: auto,
+        1: 1,
+        2: 2,
+        3: 3,
+        4: 4,
+        5: 5,
+        6: 6,
+        7: 7,
+        8: 8,
+        9: 9,
+        10: 10,
+        11: 11,
+        12: 12,
+        13: 13,
+      ),
+      pseudos: ()
+    ),
+    grid-column-end: (
+      shorthand: col-end,
+      responsive: true,
+      responsive-pseudos: false,
+      extra-selector: null,
+      properties: (grid-column-end),
+      static-properties: (),
+      variants: (
+        auto: auto,
+        1: 1,
+        2: 2,
+        3: 3,
+        4: 4,
+        5: 5,
+        6: 6,
+        7: 7,
+        8: 8,
+        9: 9,
+        10: 10,
+        11: 11,
+        12: 12,
+        13: 13
+      ),
+      pseudos: ()
+    ),
+    grid-column: (
+      shorthand: col,
+      responsive: true,
+      responsive-pseudos: false,
+      extra-selector: null,
+      properties: (grid-column),
+      static-properties: (),
+      variants: (
+        auto: auto,
+        1: span 1 / span 1,
+        2: span 2 / span 2,
+        3: span 3 / span 3,
+        4: span 4 / span 4,
+        5: span 5 / span 5,
+        6: span 6 / span 6,
+        7: span 7 / span 7,
+        8: span 8 / span 8,
+        9: span 9 / span 9,
+        10: span 10 / span 10,
+        11: span 11 / span 11,
+        12: span 12 / span 12
+      ),
+      pseudos: ()
+    ),
+    grid-auto-flow: (
+      shorthand: grid-flow,
+      responsive: true,
+      responsive-pseudos: false,
+      extra-selector: null,
+      properties: (grid-auto-flow),
+      static-properties: (),
+      variants: (
+        row: row,
+        col: column,
+        row-dense: row dense,
+        col-dense: column dense
+      ),
+      pseudos: ()
+    ),
+    transform: (
+      shorthand: transform,
+      responsive: false,
+      responsive-pseudos: false,
+      extra-selector: null,
+      properties: (transform),
+      static-properties: (
+        --translate-x: 0,
+        --translate-y: 0,
+        --rotate: 0,
+        --skew-x: 0,
+        --skew-y: 0,
+        --scale-x: 1,
+        --scale-y: 1
+      ),
+      variants: (
+        null: (
+          translateX(var(--translate-x)) translateY(var(--translate-y)) rotate(var(--rotate))
+            skewX(var(--skew-x)) skewY(var(--skew-y)) scaleX(var(--scale-x))
+            scaleY(var(--scale-y)
+          )
+        )
+      ),
+      pseudos: ()
+    ),
+    transform-origin: (
+      shorthand: transform,
+      responsive: true,
+      responsive-pseudos: false,
+      extra-selector: null,
+      properties: (transform-origin),
+      static-properties: (),
+      variants: (
+        center: center,
+        center-bottom: center bottom,
+        center-left: center left,
+        center-right: center right,
+        top: top,
+        top-right: top right,
+        right: right,
+        bottom-right: bottom right,
+        bottom: bottom,
+        bottom-left: bottom left,
+        left: left,
+        top-left: top left
+      ),
+      pseudos: ()
+    ),
+    rotate: (
+      shorthand: rotate,
+      responsive: true,
+      responsive-pseudos: false,
+      extra-selector: null,
+      properties: (--rotate),
+      static-properties: (),
+      variants: (
+        0: 0,
+  
+        2: 2deg,
+        4: 4deg,
+        6: 6deg,
+        8: 8deg,
+        10: 10deg,
+        12: 12deg,
+
+        n2: -2deg,
+        n4: -4deg,
+        n6: -6deg,
+        n8: -8deg,
+        n10: -10deg,
+        n12: -12deg,
+
+        45: 45deg,
+        90: 90deg,
+        180: 180deg,
+
+        n45: -45deg,
+        n90: -90deg,
+        n180: -180deg,
+      ),
+      pseudos: (hover, focus)
+    ),
+    skew-y: (
+      shorthand: skew-y,
+      responsive: true,
+      responsive-pseudos: false,
+      extra-selector: null,
+      properties: (--skew-y),
+      static-properties: (),
+      variants: (
+        n12: -12deg,
+        n10: -10deg,
+        n8: -8deg,
+        n6: -6deg,
+        n4: -4deg,
+        n2: -2deg,
+        0: 0,
+        2: 2deg,
+        4: 4deg,
+        6: 6deg,
+        8: 8deg,
+        10: 10deg,
+        12: 12deg,
+      ),
+      pseudos: (hover, focus)
+    ),
+    skew-x: (
+      shorthand: skew-x,
+      responsive: true,
+      responsive-pseudos: false,
+      extra-selector: null,
+      properties: (--skew-x),
+      static-properties: (),
+      variants: (
+        n12: -12deg,
+        n10: -10deg,
+        n8: -8deg,
+        n6: -6deg,
+        n4: -4deg,
+        n2: -2deg,
+        0: 0,
+        2: 2deg,
+        4: 4deg,
+        6: 6deg,
+        8: 8deg,
+        10: 10deg,
+        12: 12deg,
+      ),
+      pseudos: (hover, focus)
+    ),
+    scale: (
+      shorthand: scale,
+      responsive: true,
+      responsive-pseudos: false,
+      extra-selector: null,
+      properties: (--scale-x, --scale-y),
+      static-properties: (),
+      variants: (
+        0: 0,
+        50: 0.5,
+        75: 0.75,
+        80: 0.8,
+        85: 0.85,
+        90: 0.9,
+        95: 0.95,
+        100: 1,
+        105: 1.05,
+        110: 1.1,
+        115: 1.15,
+        120: 1.2,
+        125: 1.25,
+        130: 1.3,
+        135: 1.35,
+        140: 1.4,
+        145: 1.45,
+        150: 1.5,
+      ),
+      pseudos: (hover, focus)
+    ),
+    scale-y: (
+      shorthand: scale-y,
+      responsive: true,
+      responsive-pseudos: false,
+      extra-selector: null,
+      properties: (--scale-y),
+      static-properties: (),
+      variants: (
+        0: 0,
+        50: 0.5,
+        75: 0.75,
+        80: 0.8,
+        85: 0.85,
+        90: 0.9,
+        95: 0.95,
+        100: 1,
+        105: 1.05,
+        110: 1.1,
+        115: 1.15,
+        120: 1.2,
+        125: 1.25,
+        130: 1.3,
+        135: 1.35,
+        140: 1.4,
+        145: 1.45,
+        150: 1.5,
+      ),
+      pseudos: (hover, focus)
+    ),
+    scale-x: (
+      shorthand: scale-x,
+      responsive: true,
+      responsive-pseudos: false,
+      extra-selector: null,
+      properties: (--scale-x),
+      static-properties: (),
+      variants: (
+        0: 0,
+        50: 0.5,
+        75: 0.75,
+        80: 0.8,
+        85: 0.85,
+        90: 0.9,
+        95: 0.95,
+        100: 1,
+        105: 1.05,
+        110: 1.1,
+        115: 1.15,
+        120: 1.2,
+        125: 1.25,
+        130: 1.3,
+        135: 1.35,
+        140: 1.4,
+        145: 1.45,
+        150: 1.5,
+      ),
+      pseudos: (hover, focus)
+    ),
+    translate-y: (
+      shorthand: translate-y,
+      responsive: true,
+      responsive-pseudos: false,
+      extra-selector: null,
+      properties: (--translate-y),
+      static-properties: (),
+      variants: (
+        core.merge(
+          core.positive-sizes(map.get(core.$all-config, range-limits, translate)),
+          core.negative-sizes(map.get(core.$all-config, range-limits, translate)),
+          (
+            0: 0,
+            50p: 50%,
+            100p: 100%,
+            n50p: -50%,
+            n100p: -100%
+          )
+        )
+      ),
+      pseudos: (hover, focus)
+    ),
+    translate-x: (
+      shorthand: translate-x,
+      responsive: true,
+      responsive-pseudos: false,
+      extra-selector: null,
+      properties: (--translate-x),
+      static-properties: (),
+      variants: (
+        core.merge(
+          core.positive-sizes(map.get(core.$all-config, range-limits, translate)),
+          core.negative-sizes(map.get(core.$all-config, range-limits, translate)),
+          (
+            0: 0,
+            50p: 50%,
+            100p: 100%,
+            n50p: -50%,
+            n100p: -100%
+          )
+        )
+      ),
+      pseudos: (hover, focus)
+    ),
+    stroke-width: (
+      shorthand: stroke,
+      responsive: false,
+      responsive-pseudos: false,
+      extra-selector: null,
+      properties: (stroke-width),
+      static-properties: (),
+      variants: (
+        0: 0,
+        1: 1,
+        2: 2,
+        3: 3,
+        4: 4,
+        5: 5,
+        6: 6
+      ),
+      pseudos: ()
+    ),
+    stroke: (
+      shorthand: stroke,
+      responsive: false,
+      responsive-pseudos: false,
+      extra-selector: null,
+      properties: (stroke),
+      static-properties: (),
+      variants: (
+        current: currentColor
+      ),
+      pseudos: ()
+    ),
+    fill: (
+      shorthand: fill,
+      responsive: false,
+      responsive-pseudos: false,
+      extra-selector: null,
+      properties: (fill),
+      static-properties: (),
+      variants: (
+        current: currentColor
+      ),
+      pseudos: ()
+    ),
+    appearance: (
+      shorthand: appearance,
+      responsive: false,
+      responsive-pseudos: false,
+      extra-selector: null,
+      properties: (appearance, -moz-appearance, -webkit-appearance),
+      static-properties: (),
+      variants: (
+        none: none
+      ),
+      pseudos: ()
+    ),
+    outline: (
+      shorthand: outline,
+      responsive: false,
+      responsive-pseudos: false,
+      extra-selector: null,
+      properties: (outline),
+      static-properties: (),
+      variants: (
+        none: none
+      ),
+      pseudos: (focus)
+    ),
+    scroll-behavior: (
+      shorthand: scroll,
+      responsive: true,
+      responsive-pseudos: false,
+      extra-selector: null,
+      properties: (scroll-behavior),
+      static-properties: (),
+      variants: (
+        auto: auto,
+        smooth: smooth
+      ),
+      pseudos: ()
+    ),
+    overscroll: (
+      shorthand: overscroll,
+      responsive: true,
+      responsive-pseudos: false,
+      extra-selector: null,
+      properties: (overscroll-behavior),
+      static-properties: (),
+      variants: (
+        auto: auto,
+        contain: contain,
+        none: none
+      ),
+      pseudos: ()
+    ),
+    overscroll-y: (
+      shorthand: overscroll-y,
+      responsive: true,
+      responsive-pseudos: false,
+      extra-selector: null,
+      properties: (overscroll-behavior-y),
+      static-properties: (),
+      variants: (
+        auto: auto,
+        contain: contain,
+        none: none
+      ),
+      pseudos: ()
+    ),
+    overscroll-x: (
+      shorthand: overscroll-x,
+      responsive: true,
+      responsive-pseudos: false,
+      extra-selector: null,
+      properties: (overscroll-behavior-x),
+      static-properties: (),
+      variants: (
+        auto: auto,
+        contain: contain,
+        none: none
+      ),
+      pseudos: ()
+    ),
+    overflow: (
+      shorthand: overflow,
+      responsive: true,
+      responsive-pseudos: false,
+      extra-selector: null,
+      properties: (overflow),
+      static-properties: (),
+      variants: (
+        auto: auto,
+        hidden: hidden,
+        visible: visible,
+        scroll: scroll
+      ),
+      pseudos: ()
+    ),
+    overflow-y: (
+      shorthand: overflow-y,
+      responsive: true,
+      responsive-pseudos: false,
+      extra-selector: null,
+      properties: (overflow-y),
+      static-properties: (),
+      variants: (
+        auto: auto,
+        hidden: hidden,
+        visible: visible,
+        scroll: scroll
+      ),
+      pseudos: ()
+    ),
+    overflow-x: (
+      shorthand: overflow-x,
+      responsive: true,
+      responsive-pseudos: false,
+      extra-selector: null,
+      properties: (overflow-x),
+      static-properties: (),
+      variants: (
+        auto: auto,
+        hidden: hidden,
+        visible: visible,
+        scroll: scroll
+      ),
+      pseudos: ()
+    ),
+    user-select: (
+      shorthand: select,
+      responsive: false,
+      responsive-pseudos: false,
+      extra-selector: null,
+      properties: (user-select, -webkit-user-select),
+      static-properties: (),
+      variants: (
+        none: none,
+        text: text,
+        all: all,
+        auto: auto
+      ),
+      pseudos: ()
+    ),
+    scrolling: (
+      shorthand: scrolling,
+      responsive: false,
+      responsive-pseudos: false,
+      extra-selector: null,
+      properties: (-webkit-overflow-scrolling),
+      static-properties: (),
+      variants: (
+        auto: auto,
+        touch: touch
+      ),
+      pseudos: ()
+    ),
+    resize: (
+      shorthand: resize,
+      responsive: true,
+      responsive-pseudos: false,
+      extra-selector: null,
+      properties: (resize),
+      static-properties: (),
+      variants: (
+        none: none,
+        both: both,
+        horizontal: horizontal,
+        vertical: vertical,
+      ),
+      pseudos: ()
+    ),
+    pointer-events: (
+      shorthand: pointer-events,
+      responsive: false,
+      responsive-pseudos: false,
+      extra-selector: null,
+      properties: (pointer-events),
+      static-properties: (),
+      variants: (
+        none: none,
+        auto: auto
+      ),
+      pseudos: ()
+    ),
+    cursor: (
+      shorthand: cursor,
+      responsive: false,
+      responsive-pseudos: false,
+      extra-selector: null,
+      properties: (cursor),
+      static-properties: (),
+      variants: (
+        auto: auto,
+        default: default,
+        pointer: pointer,
+        wait: wait,
+        text: text,
+        move: move,
+        not-allowed: not-allowed
+      ),
+      pseudos: (hover, active)
+    ),
+    animation: (
+      shorthand: animate,
+      responsive: false,
+      responsive-pseudos: false,
+      extra-selector: null,
+      properties: (animation),
+      static-properties: (),
+      variants: (
+        none: none,
+        spin: spin 1s linear infinite,
+        pulse: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite,
+        ping: ping 2s cubic-bezier(0, 0, 0.2, 1) infinite,
+        bounce: (bounce 1s infinite)
+      ),
+      pseudos: ()
+    )
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  )
+);
+
+core.$all-config: map.deep-merge(core.$all-config, $config);

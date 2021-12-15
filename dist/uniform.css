@@ -558,18 +558,6 @@ select {
 
 /*! purgecss end ignore */
 /*! UniformCSS v1.0.0 | MIT License | github.com/ThinkUniform/uniformcss */
-.leading-trimmer {
-  leading-trim: both;
-}
-
-.leading-a {
-  leading-trim: a-value;
-}
-
-.leading-b {
-  leading-trim: b-value;
-}
-
 .align-baseline {
   vertical-align: baseline;
 }
@@ -29511,18 +29499,6 @@ select {
 }
 
 @media (min-width: 768px) {
-  .sm\.leading-trimmer {
-    leading-trim: both;
-  }
-
-  .sm\.leading-a {
-    leading-trim: a-value;
-  }
-
-  .sm\.leading-b {
-    leading-trim: b-value;
-  }
-
   .sm\.align-baseline {
     vertical-align: baseline;
   }
@@ -38224,18 +38200,6 @@ select {
   }
 }
 @media (min-width: 1024px) {
-  .md\.leading-trimmer {
-    leading-trim: both;
-  }
-
-  .md\.leading-a {
-    leading-trim: a-value;
-  }
-
-  .md\.leading-b {
-    leading-trim: b-value;
-  }
-
   .md\.align-baseline {
     vertical-align: baseline;
   }
@@ -46937,18 +46901,6 @@ select {
   }
 }
 @media (min-width: 1280px) {
-  .lg\.leading-trimmer {
-    leading-trim: both;
-  }
-
-  .lg\.leading-a {
-    leading-trim: a-value;
-  }
-
-  .lg\.leading-b {
-    leading-trim: b-value;
-  }
-
   .lg\.align-baseline {
     vertical-align: baseline;
   }
