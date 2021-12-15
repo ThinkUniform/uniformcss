@@ -1,40 +1,23 @@
 @use "uniform/core";
 @use "sass:map";
 
-$name: object-fit;
-$shorthand: object;
-$responsive: false;
-$responsive-pseudos: false;
-$extra-selector: null;
-
-$properties: (object-fit);
-$static-properties: ();
-
-$variants: (
-  contain: contain,
-  cover: cover,
-  fill: fill,
-  none: none,
-  size-down: size-down
-);
-
-$pseudos: ();
-
 $config: (
   utilities: (
-    $name: (
-      shorthand: $shorthand,
-      responsive: $responsive,
-      responsive-pseudos: $responsive-pseudos,
-      extra-selector: $extra-selector,
-      properties: $properties,
-      static-properties: $static-properties,
+    object-fit: (
+      shorthand: object,
+      responsive: false,
+      responsive-pseudos: false,
+      extra-selector: null,
+      properties: (object-fit),
+      static-properties: (),
       variants: (
-        $variants
+        contain: contain,
+        cover: cover,
+        fill: fill,
+        none: none,
+        size-down: size-down
       ),
-      pseudos: (
-        $pseudos
-      )
+      pseudos: ()
     )
   )
 );

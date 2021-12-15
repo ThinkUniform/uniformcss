@@ -1,36 +1,19 @@
 @use "uniform/core";
 @use "sass:map";
 
-$name: stroke;
-$shorthand: stroke;
-$responsive: false;
-$responsive-pseudos: false;
-$extra-selector: null;
-
-$properties: (stroke);
-$static-properties: ();
-
-$variants: (
-  current: currentColor
-);
-
-$pseudos: ();
-
 $config: (
   utilities: (
-    $name: (
-      shorthand: $shorthand,
-      responsive: $responsive,
-      responsive-pseudos: $responsive-pseudos,
-      extra-selector: $extra-selector,
-      properties: $properties,
-      static-properties: $static-properties,
+    stroke: (
+      shorthand: stroke,
+      responsive: false,
+      responsive-pseudos: false,
+      extra-selector: null,
+      properties: (stroke),
+      static-properties: (),
       variants: (
-        $variants
+        current: currentColor
       ),
-      pseudos: (
-        $pseudos
-      )
+      pseudos: ()
     )
   )
 );

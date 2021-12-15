@@ -1,37 +1,20 @@
 @use "uniform/core";
 @use "sass:map";
 
-$name: scroll-behavior;
-$shorthand: scroll;
-$responsive: true;
-$responsive-pseudos: false;
-$extra-selector: null;
-
-$properties: (scroll-behavior);
-$static-properties: ();
-
-$variants: (
-  auto: auto,
-  smooth: smooth
-);
-
-$pseudos: ();
-
 $config: (
   utilities: (
-    $name: (
-      shorthand: $shorthand,
-      responsive: $responsive,
-      responsive-pseudos: $responsive-pseudos,
-      extra-selector: $extra-selector,
-      properties: $properties,
-      static-properties: $static-properties,
+    scroll-behavior: (
+      shorthand: scroll,
+      responsive: true,
+      responsive-pseudos: false,
+      extra-selector: null,
+      properties: (scroll-behavior),
+      static-properties: (),
       variants: (
-        $variants
+        auto: auto,
+        smooth: smooth
       ),
-      pseudos: (
-        $pseudos
-      )
+      pseudos: ()
     )
   )
 );

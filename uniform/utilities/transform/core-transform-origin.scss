@@ -1,47 +1,30 @@
 @use "uniform/core";
 @use "sass:map";
 
-$name: transform-origin;
-$shorthand: transform;
-$responsive: true;
-$responsive-pseudos: false;
-$extra-selector: null;
-
-$properties: (transform-origin);
-$static-properties: ();
-
-$variants: (
-  center: center,
-  center-bottom: center bottom,
-  center-left: center left,
-  center-right: center right,
-  top: top,
-  top-right: top right,
-  right: right,
-  bottom-right: bottom right,
-  bottom: bottom,
-  bottom-left: bottom left,
-  left: left,
-  top-left: top left
-);
-
-$pseudos: ();
-
 $config: (
   utilities: (
-    $name: (
-      shorthand: $shorthand,
-      responsive: $responsive,
-      responsive-pseudos: $responsive-pseudos,
-      extra-selector: $extra-selector,
-      properties: $properties,
-      static-properties: $static-properties,
+    transform-origin: (
+      shorthand: transform,
+      responsive: true,
+      responsive-pseudos: false,
+      extra-selector: null,
+      properties: (transform-origin),
+      static-properties: (),
       variants: (
-        $variants
+        center: center,
+        center-bottom: center bottom,
+        center-left: center left,
+        center-right: center right,
+        top: top,
+        top-right: top right,
+        right: right,
+        bottom-right: bottom right,
+        bottom: bottom,
+        bottom-left: bottom left,
+        left: left,
+        top-left: top left
       ),
-      pseudos: (
-        $pseudos
-      )
+      pseudos: ()
     )
   )
 );

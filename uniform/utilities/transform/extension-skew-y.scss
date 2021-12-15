@@ -1,48 +1,31 @@
 @use "uniform/core";
 @use "sass:map";
 
-$name: skew-y;
-$shorthand: skew-y;
-$responsive: true;
-$responsive-pseudos: false;
-$extra-selector: null;
-
-$properties: (--skew-y);
-$static-properties: ();
-
-$variants: (
-  n12: -12deg,
-  n10: -10deg,
-  n8: -8deg,
-  n6: -6deg,
-  n4: -4deg,
-  n2: -2deg,
-  0: 0,
-  2: 2deg,
-  4: 4deg,
-  6: 6deg,
-  8: 8deg,
-  10: 10deg,
-  12: 12deg,
-);
-
-$pseudos: (hover, focus);
-
 $config: (
   utilities: (
-    $name: (
-      shorthand: $shorthand,
-      responsive: $responsive,
-      responsive-pseudos: $responsive-pseudos,
-      extra-selector: $extra-selector,
-      properties: $properties,
-      static-properties: $static-properties,
+    skew-y: (
+      shorthand: skew-y,
+      responsive: true,
+      responsive-pseudos: false,
+      extra-selector: null,
+      properties: (--skew-y),
+      static-properties: (),
       variants: (
-        $variants
+        n12: -12deg,
+        n10: -10deg,
+        n8: -8deg,
+        n6: -6deg,
+        n4: -4deg,
+        n2: -2deg,
+        0: 0,
+        2: 2deg,
+        4: 4deg,
+        6: 6deg,
+        8: 8deg,
+        10: 10deg,
+        12: 12deg,
       ),
-      pseudos: (
-        $pseudos
-      )
+      pseudos: (hover, focus)
     )
   )
 );

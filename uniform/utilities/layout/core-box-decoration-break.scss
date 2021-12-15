@@ -1,37 +1,20 @@
 @use "uniform/core";
 @use "sass:map";
 
-$name: box-decoration-break;
-$shorthand: decoration;
-$responsive: true;
-$responsive-pseudos: false;
-$extra-selector: null;
-
-$properties: (box-decoration-break, -webkit-box-decoration-break);
-$static-properties: ();
-
-$variants: (
-  slice: slice,
-  clone: clone
-);
-
-$pseudos: ();
-
 $config: (
   utilities: (
-    $name: (
-      shorthand: $shorthand,
-      responsive: $responsive,
-      responsive-pseudos: $responsive-pseudos,
-      extra-selector: $extra-selector,
-      properties: $properties,
-      static-properties: $static-properties,
+    box-decoration-break: (
+      shorthand: decoration,
+      responsive: true,
+      responsive-pseudos: false,
+      extra-selector: null,
+      properties: (box-decoration-break, -webkit-box-decoration-break),
+      static-properties: (),
       variants: (
-        $variants
+        slice: slice,
+        clone: clone
       ),
-      pseudos: (
-        $pseudos
-      )
+      pseudos: ()
     )
   )
 );

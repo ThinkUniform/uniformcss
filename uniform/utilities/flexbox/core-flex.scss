@@ -1,39 +1,22 @@
 @use "uniform/core";
 @use "sass:map";
 
-$name: flex;
-$shorthand: flex;
-$responsive: true;
-$responsive-pseudos: false;
-$extra-selector: null;
-
-$properties: (flex);
-$static-properties: ();
-
-$variants: (
-  initial: 0 1 auto,
-  1: 1 1 0%,
-  auto: 1 1 auto,
-  none: none
-);
-
-$pseudos: ();
-
 $config: (
   utilities: (
-    $name: (
-      shorthand: $shorthand,
-      responsive: $responsive,
-      responsive-pseudos: $responsive-pseudos,
-      extra-selector: $extra-selector,
-      properties: $properties,
-      static-properties: $static-properties,
+    flex: (
+      shorthand: flex,
+      responsive: true,
+      responsive-pseudos: false,
+      extra-selector: null,
+      properties: (flex),
+      static-properties: (),
       variants: (
-        $variants
+        initial: 0 1 auto,
+        1: 1 1 0%,
+        auto: 1 1 auto,
+        none: none
       ),
-      pseudos: (
-        $pseudos
-      )
+      pseudos: ()
     )
   )
 );

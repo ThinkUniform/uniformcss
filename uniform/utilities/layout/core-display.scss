@@ -1,54 +1,37 @@
 @use "uniform/core";
 @use "sass:map";
 
-$name: display;
-$shorthand: null;
-$responsive: true;
-$responsive-pseudos: false;
-$extra-selector: null;
-
-$properties: (display);
-$static-properties: ();
-
-$variants: (
-  inline: inline,
-  block: block,
-  flex: flex,
-  grid: grid,
-  inline-block: inline-block,
-  inline-flex: inline-flex,
-  inline-grid: inline-grid,
-  inline-table: inline-table,
-  table: table,
-  table-caption: table-caption,
-  table-column-group: table-column-group,
-  table-header-group: table-header-group,
-  table-footer-group: table-footer-group,
-  table-row-group: table-row-group,
-  table-cell: table-cell,
-  table-column: table-column,
-  table-row: table-row,
-  hidden: none,
-  flow-root: flow-root,
-);
-
-$pseudos: (first, last);
-
 $config: (
   utilities: (
-    $name: (
-      shorthand: $shorthand,
-      responsive: $responsive,
-      responsive-pseudos: $responsive-pseudos,
-      extra-selector: $extra-selector,
-      properties: $properties,
-      static-properties: $static-properties,
+    display: (
+      shorthand: null,
+      responsive: true,
+      responsive-pseudos: false,
+      extra-selector: null,
+      properties: (display),
+      static-properties: (),
       variants: (
-        $variants
+        inline: inline,
+        block: block,
+        flex: flex,
+        grid: grid,
+        inline-block: inline-block,
+        inline-flex: inline-flex,
+        inline-grid: inline-grid,
+        inline-table: inline-table,
+        table: table,
+        table-caption: table-caption,
+        table-column-group: table-column-group,
+        table-header-group: table-header-group,
+        table-footer-group: table-footer-group,
+        table-row-group: table-row-group,
+        table-cell: table-cell,
+        table-column: table-column,
+        table-row: table-row,
+        hidden: none,
+        flow-root: flow-root,
       ),
-      pseudos: (
-        $pseudos
-      )
+      pseudos: ()
     )
   )
 );

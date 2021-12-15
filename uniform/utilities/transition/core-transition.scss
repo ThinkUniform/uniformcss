@@ -1,161 +1,144 @@
 @use "uniform/core";
 @use "sass:map";
 
-$name: transition; 
-$shorthand: transition;
-$responsive: false;
-$responsive-pseudos: false;
-$extra-selector: null;
-
-$properties: (transition);
-$static-properties: ();
-
-$variants: (
-	100: (
-		background-color 100ms,
-		border-color 100ms,
-		color 100ms,
-		fill 100ms,
-		stroke 100ms,
-		opacity 100ms,
-		box-shadow 100ms,
-		transform 100ms,
-		top 100ms,
-		right 100ms,
-		bottom 100ms,
-		left 100ms
-	),
-	200: (
-		background-color 200ms,
-		border-color 200ms,
-		color 200ms,
-		fill 200ms,
-		stroke 200ms,
-		opacity 200ms,
-		box-shadow 200ms,
-		transform 200ms,
-		top 200ms,
-		right 200ms,
-		bottom 200ms,
-		left 200ms
-	),
-	300: (
-		background-color 300ms,
-		border-color 300ms,
-		color 300ms,
-		fill 300ms,
-		stroke 300ms,
-		opacity 300ms,
-		box-shadow 300ms,
-		transform 300ms,
-		top 300ms,
-		right 300ms,
-		bottom 300ms,
-		left 300ms
-	),
-	400: (
-		background-color 400ms,
-		border-color 400ms,
-		color 400ms,
-		fill 400ms,
-		stroke 400ms,
-		opacity 400ms,
-		box-shadow 400ms,
-		transform 400ms,
-		top 400ms,
-		right 400ms,
-		bottom 400ms,
-		left 400ms
-	),
-	500: (
-		background-color 500ms,
-		border-color 500ms,
-		color 500ms,
-		fill 500ms,
-		stroke 500ms,
-		opacity 500ms,
-		box-shadow 500ms,
-		transform 500ms,
-		top 500ms,
-		right 500ms,
-		bottom 500ms,
-		left 500ms
-	),
-	600: (
-		background-color 600ms,
-		border-color 600ms,
-		color 600ms,
-		fill 600ms,
-		stroke 600ms,
-		opacity 600ms,
-		box-shadow 600ms,
-		transform 600ms,
-		top 600ms,
-		right 600ms,
-		bottom 600ms,
-		left 600ms
-	),
-	700: (
-		background-color 700ms,
-		border-color 700ms,
-		color 700ms,
-		fill 700ms,
-		stroke 700ms,
-		opacity 700ms,
-		box-shadow 700ms,
-		transform 700ms,
-		top 700ms,
-		right 700ms,
-		bottom 700ms,
-		left 700ms
-	),
-	800: (
-		background-color 800ms,
-		border-color 800ms,
-		color 800ms,
-		fill 800ms,
-		stroke 800ms,
-		opacity 800ms,
-		box-shadow 800ms,
-		transform 800ms,
-		top 800ms,
-		right 800ms,
-		bottom 800ms,
-		left 800ms
-	),
-	900: (
-		background-color 900ms,
-		border-color 900ms,
-		color 900ms,
-		fill 900ms,
-		stroke 900ms,
-		opacity 900ms,
-		box-shadow 900ms,
-		transform 900ms,
-		top 900ms,
-		right 900ms,
-		bottom 900ms,
-		left 900ms
-	),
-);
-
-$pseudos: ();
-
 $config: (
   utilities: (
-    $name: (
-      shorthand: $shorthand,
-      responsive: $responsive,
-      responsive-pseudos: $responsive-pseudos,
-      extra-selector: $extra-selector,
-      properties: $properties,
-      static-properties: $static-properties,
+    transition: (
+      shorthand: transition,
+      responsive: false,
+      responsive-pseudos: false,
+      extra-selector: null,
+      properties: (transition),
+      static-properties: (),
       variants: (
-        $variants
+        100: (
+          background-color 100ms,
+          border-color 100ms,
+          color 100ms,
+          fill 100ms,
+          stroke 100ms,
+          opacity 100ms,
+          box-shadow 100ms,
+          transform 100ms,
+          top 100ms,
+          right 100ms,
+          bottom 100ms,
+          left 100ms
+        ),
+        200: (
+          background-color 200ms,
+          border-color 200ms,
+          color 200ms,
+          fill 200ms,
+          stroke 200ms,
+          opacity 200ms,
+          box-shadow 200ms,
+          transform 200ms,
+          top 200ms,
+          right 200ms,
+          bottom 200ms,
+          left 200ms
+        ),
+        300: (
+          background-color 300ms,
+          border-color 300ms,
+          color 300ms,
+          fill 300ms,
+          stroke 300ms,
+          opacity 300ms,
+          box-shadow 300ms,
+          transform 300ms,
+          top 300ms,
+          right 300ms,
+          bottom 300ms,
+          left 300ms
+        ),
+        400: (
+          background-color 400ms,
+          border-color 400ms,
+          color 400ms,
+          fill 400ms,
+          stroke 400ms,
+          opacity 400ms,
+          box-shadow 400ms,
+          transform 400ms,
+          top 400ms,
+          right 400ms,
+          bottom 400ms,
+          left 400ms
+        ),
+        500: (
+          background-color 500ms,
+          border-color 500ms,
+          color 500ms,
+          fill 500ms,
+          stroke 500ms,
+          opacity 500ms,
+          box-shadow 500ms,
+          transform 500ms,
+          top 500ms,
+          right 500ms,
+          bottom 500ms,
+          left 500ms
+        ),
+        600: (
+          background-color 600ms,
+          border-color 600ms,
+          color 600ms,
+          fill 600ms,
+          stroke 600ms,
+          opacity 600ms,
+          box-shadow 600ms,
+          transform 600ms,
+          top 600ms,
+          right 600ms,
+          bottom 600ms,
+          left 600ms
+        ),
+        700: (
+          background-color 700ms,
+          border-color 700ms,
+          color 700ms,
+          fill 700ms,
+          stroke 700ms,
+          opacity 700ms,
+          box-shadow 700ms,
+          transform 700ms,
+          top 700ms,
+          right 700ms,
+          bottom 700ms,
+          left 700ms
+        ),
+        800: (
+          background-color 800ms,
+          border-color 800ms,
+          color 800ms,
+          fill 800ms,
+          stroke 800ms,
+          opacity 800ms,
+          box-shadow 800ms,
+          transform 800ms,
+          top 800ms,
+          right 800ms,
+          bottom 800ms,
+          left 800ms
+        ),
+        900: (
+          background-color 900ms,
+          border-color 900ms,
+          color 900ms,
+          fill 900ms,
+          stroke 900ms,
+          opacity 900ms,
+          box-shadow 900ms,
+          transform 900ms,
+          top 900ms,
+          right 900ms,
+          bottom 900ms,
+          left 900ms
+        ),
       ),
-      pseudos: (
-        $pseudos
-      )
+      pseudos: ()
     )
   )
 );

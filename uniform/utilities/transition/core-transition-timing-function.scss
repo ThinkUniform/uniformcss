@@ -1,39 +1,22 @@
 @use "uniform/core";
 @use "sass:map";
 
-$name: transition-timing-function;
-$shorthand: null;
-$responsive: false;
-$responsive-pseudos: false;
-$extra-selector: null;
-
-$properties: (transition-timing-function);
-$static-properties: ();
-
-$variants: (
-  linear: linear,
-  ease: ease,
-  ease-in: ease-in,
-  ease-in-out: ease-in-out
-);
-
-$pseudos: ();
-
 $config: (
   utilities: (
-    $name: (
-      shorthand: $shorthand,
-      responsive: $responsive,
-      responsive-pseudos: $responsive-pseudos,
-      extra-selector: $extra-selector,
-      properties: $properties,
-      static-properties: $static-properties,
+    transition-timing-function: (
+      shorthand: null,
+      responsive: false,
+      responsive-pseudos: false,
+      extra-selector: null,
+      properties: (transition-timing-function),
+      static-properties: (),
       variants: (
-        $variants
+        linear: linear,
+        ease: ease,
+        ease-in: ease-in,
+        ease-in-out: ease-in-out
       ),
-      pseudos: (
-        $pseudos
-      )
+      pseudos: ()
     )
   )
 );

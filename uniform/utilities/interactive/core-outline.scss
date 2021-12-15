@@ -1,36 +1,19 @@
 @use "uniform/core";
 @use "sass:map";
 
-$name: outline;
-$shorthand: outline;
-$responsive: false;
-$responsive-pseudos: false;
-$extra-selector: null;
-
-$properties: (outline);
-$static-properties: ();
-
-$variants: (
-  none: none
-);
-
-$pseudos: (focus);
-
 $config: (
   utilities: (
-    $name: (
-      shorthand: $shorthand,
-      responsive: $responsive,
-      responsive-pseudos: $responsive-pseudos,
-      extra-selector: $extra-selector,
-      properties: $properties,
-      static-properties: $static-properties,
+    outline: (
+      shorthand: outline,
+      responsive: false,
+      responsive-pseudos: false,
+      extra-selector: null,
+      properties: (outline),
+      static-properties: (),
       variants: (
-        $variants
+        none: none
       ),
-      pseudos: (
-        $pseudos
-      )
+      pseudos: (focus)
     )
   )
 );

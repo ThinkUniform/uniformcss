@@ -1,0 +1,22 @@
+.h1 {
+  font-weight: bold;
+}
+
+$external-map: (
+  utilities: (
+    leading-trim: (
+      shorthand: leading,
+      responsive: true,
+      responsive-pseudos: false,
+      extra-selector: null,
+      properties: (leading-trim),
+      static-properties: (),
+      variants: (
+        trimmer: both,
+        a: a-value,
+        b: b-value
+      ),
+      pseudos: ()
+    )
+  )
+);

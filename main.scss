@@ -1,10 +1,17 @@
-// 1. Load Uniform Module
-// @use "uniform" as *;
+
+@use "external-map" as external-map;
 
 // 2. Configuree Uniform (Optional)
 @use "uniform" as * with (
   $config: (
-    comma-compression: true,
-    css-variables: true
+    font-sizes: (
+      h1: (
+        font-size: 32px,
+        line-height: 1.75,
+        font-weight: 600
+      ),
+    ),
+    excludes: (all),
+    includes: (text-size)
   )
 );

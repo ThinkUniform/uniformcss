@@ -1,18 +1,6 @@
 @use "uniform/core";
 @use "sass:map";
 
-$name: gutter-x;
-$shorthand: gutter-x;
-$responsive: true;
-$responsive-pseudos: false;
-$extra-selector: '> * + *';
-
-$properties: (margin);
-$static-properties: (
-  --gutter-right: 0,
-  --gutter-left: 1,
-);
-
 $range-limit: map.get(core.$all-config, range-limits, gutter);
 
 $gutter-map: ();
@@ -23,32 +11,27 @@ $gutter-map: ();
   $gutter-map: map.merge($gutter-map, $map);
 }
 
-$variants: (
-  core.merge(
-    $gutter-map,
-    (
-      0: 0,
-    )
-  )
-);
-
-$pseudos: ();
-
 $config: (
   utilities: (
-    $name: (
-      shorthand: $shorthand,
-      responsive: $responsive,
-      responsive-pseudos: $responsive-pseudos,
-      extra-selector: $extra-selector,
-      properties: $properties,
-      static-properties: $static-properties,
-      variants: (
-        $variants
+    gutter-x: (
+      shorthand: gutter-x,
+      responsive: true,
+      responsive-pseudos: false,
+      extra-selector: '> * + *',
+      properties: (margin),
+      static-properties: (
+        --gutter-right: 0,
+        --gutter-left: 1,
       ),
-      pseudos: (
-        $pseudos
-      )
+      variants: (
+        core.merge(
+          $gutter-map,
+          (
+            0: 0,
+          )
+        )
+      ),
+      pseudos: ()
     )
   )
 );

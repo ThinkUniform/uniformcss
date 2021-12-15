@@ -1,37 +1,20 @@
 @use "uniform/core";
 @use "sass:map";
 
-$name: flex-shrink;
-$shorthand: flex-shrink;
-$responsive: true;
-$responsive-pseudos: false;
-$extra-selector: null;
-
-$properties: (flex-shrink);
-$static-properties: ();
-
-$variants: (
-  1: 1,
-  0: 0
-);
-
-$pseudos: ();
-
 $config: (
   utilities: (
-    $name: (
-      shorthand: $shorthand,
-      responsive: $responsive,
-      responsive-pseudos: $responsive-pseudos,
-      extra-selector: $extra-selector,
-      properties: $properties,
-      static-properties: $static-properties,
+    flex-shrink: (
+      shorthand: flex-shrink,
+      responsive: true,
+      responsive-pseudos: false,
+      extra-selector: null,
+      properties: (flex-shrink),
+      static-properties: (),
       variants: (
-        $variants
+        1: 1,
+        0: 0
       ),
-      pseudos: (
-        $pseudos
-      )
+      pseudos: ()
     )
   )
 );

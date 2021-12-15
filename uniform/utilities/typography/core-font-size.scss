@@ -1,38 +1,19 @@
 @use "uniform/core";
 @use "sass:map";
 
-$name: font-size;
-$shorthand: font;
-$responsive: true;
-$responsive-pseudos: false;
-$extra-selector: null;
-
-$properties: ();
-$static-properties: ();
-
-$variants: (
-  core.merge(
-    core.font-sizes()
-  )
-);
-
-$pseudos: ();
-
 $config: (
   utilities: (
-    $name: (
-      shorthand: $shorthand,
-      responsive: $responsive,
-      responsive-pseudos: $responsive-pseudos,
-      extra-selector: $extra-selector,
-      properties: $properties,
-      static-properties: $static-properties,
+    font-size: (
+      shorthand: font,
+      responsive: true,
+      responsive-pseudos: false,
+      extra-selector: null,
+      properties: (font-size),
+      static-properties: (),
       variants: (
-        $variants
+        core.font-sizes()
       ),
-      pseudos: (
-        $pseudos
-      )
+      pseudos: ()
     )
   )
 );
