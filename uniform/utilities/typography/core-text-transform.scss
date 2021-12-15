@@ -1,38 +1,21 @@
 @use "uniform/core";
 @use "sass:map";
 
-$name: text-transform;
-$shorthand: null;
-$responsive: false;
-$responsive-pseudos: false;
-$extra-selector: null;
-
-$properties: (text-transform);
-$static-properties: ();
-
-$variants: (
-  uppercase: uppercase,
-  lowercase: lowercase,
-  capitalize: capitalize
-);
-
-$pseudos: ();
-
 $config: (
   utilities: (
-    $name: (
-      shorthand: $shorthand,
-      responsive: $responsive,
-      responsive-pseudos: $responsive-pseudos,
-      extra-selector: $extra-selector,
-      properties: $properties,
-      static-properties: $static-properties,
+    text-transform: (
+      shorthand: null,
+      responsive: false,
+      responsive-pseudos: false,
+      extra-selector: null,
+      properties: (text-transform),
+      static-properties: (),
       variants: (
-        $variants
+        uppercase: uppercase,
+        lowercase: lowercase,
+        capitalize: capitalize
       ),
-      pseudos: (
-        $pseudos
-      )
+      pseudos: ()
     )
   )
 );

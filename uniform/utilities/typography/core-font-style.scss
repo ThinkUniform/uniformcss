@@ -1,37 +1,20 @@
 @use "uniform/core";
 @use "sass:map";
 
-$name: font-style;
-$shorthand: null;
-$responsive: false;
-$responsive-pseudos: false;
-$extra-selector: null;
-
-$properties: (font-style);
-$static-properties: ();
-
-$variants: (
-  italic: italic,
-  normal: normal
-);
-
-$pseudos: ();
-
 $config: (
   utilities: (
-    $name: (
-      shorthand: $shorthand,
-      responsive: $responsive,
-      responsive-pseudos: $responsive-pseudos,
-      extra-selector: $extra-selector,
-      properties: $properties,
-      static-properties: $static-properties,
+    font-style: (
+      shorthand: null,
+      responsive: false,
+      responsive-pseudos: false,
+      extra-selector: null,
+      properties: (font-style),
+      static-properties: (),
       variants: (
-        $variants
+        italic: italic,
+        normal: normal
       ),
-      pseudos: (
-        $pseudos
-      )
+      pseudos: ()
     )
   )
 );
