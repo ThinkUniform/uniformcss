@@ -26,7 +26,7 @@ $config: (
         null: string.unquote("blur(var(--backdrop-blur))") string.unquote("brightness(var(--backdrop-brightness))") string.unquote("contrast(var(--backdrop-contrast))") string.unquote("grayscale(var(--backdrop-grayscale))") string.unquote("hue-rotate(var(--backdrop-hue-rotate))") string.unquote("invert(var(--backdrop-invert))") string.unquote("opacity(var(--backdrop-opacity))") string.unquote("saturate(var(--backdrop-saturate))") string.unquote("sepia(var(--backdrop-sepia))"),
         none: none
       ),
-      pseudos: ()
+      pseudos: (none)
     )
   )
 );

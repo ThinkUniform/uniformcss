@@ -1,3 +1,5 @@
+/*! UniformCSS v1.2.0 | MIT License | github.com/ThinkUniform/uniformcss */
+
 @use "sass:map";
 @use "sass:list";
 @use "sass:string";
@@ -102,7 +104,7 @@ $default-config: (
   delimiter: '-',
   pseudo-delimiter: '.',
   screen-delimiter: '.',
-  headless: false,
+  output-mode: 'css',
   comma-compression: false,
   css-variables: true,
   
@@ -713,7 +715,7 @@ $child-delimiter: map.get($all-config, child-delimiter);
 $pseudo-delimiter: escape(map.get($all-config, pseudo-delimiter));
 $screen-delimiter: escape(map.get($all-config, screen-delimiter));
 
-$headless: map.get($all-config, headless);
+$output: map.get($all-config, output);
 $root: map.get($all-config, root);
 $css-variables: map.get($all-config, css-variables);
 

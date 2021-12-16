@@ -4,7 +4,28 @@
 // 2. Configuree Uniform (Optional)
 @use "uniform" as * with (
   $config: (
+    output-mode: 'json',
     comma-compression: true,
-    css-variables: true
+    css-variables: true,
+    // excludes: (all),
+    // includes: (custom-utility),
+    prefix: 'u-',
+
+    // utilities: (
+    //   custom-utility: (
+    //     important: false,
+    //     shorthand: custom,
+    //     responsive: true,
+    //     responsive-pseudos: false,
+    //     extra-selector: 'geg',
+    //     properties: (padding-left, padding-right),
+    //     static-properties: (),
+    //     variants: (
+    //       a: "1",
+    //       b: 2
+    //     ),
+    //     pseudos: (none)
+    //   )
+    // )
   )
 );
