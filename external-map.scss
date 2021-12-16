@@ -5,6 +5,7 @@
 $external-map: (
   utilities: (
     leading-trim: (
+      important: false,
       shorthand: leading,
       responsive: true,
       responsive-pseudos: false,

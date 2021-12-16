@@ -6,6 +6,7 @@ $range-limit: map.get(core.$all-config, range-limits, border-width);
 $config: (
   utilities: (
     border-bottom-width: (
+      important: false,
       shorthand: border-b,
       responsive: true,
       responsive-pseudos: false,

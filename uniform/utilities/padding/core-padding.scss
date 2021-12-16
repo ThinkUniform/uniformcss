@@ -6,6 +6,7 @@ $range-limit: map.get(core.$all-config, range-limits, padding);
 $config: (
   utilities: (
     padding: (
+      important: false,
       shorthand: p,
       responsive: true,
       responsive-pseudos: false,

@@ -4,6 +4,7 @@
 $config: (
   utilities: (
     box-decoration-break: (
+      important: false,
       shorthand: decoration,
       responsive: true,
       responsive-pseudos: false,

@@ -6,6 +6,7 @@ $range-limit: map.get(core.$all-config, range-limits, translate);
 $config: (
   utilities: (
     translate-x: (
+      important: false,
       shorthand: translate-x,
       responsive: true,
       responsive-pseudos: false,

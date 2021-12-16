@@ -4,6 +4,7 @@
 $config: (
   utilities: (
     flex-shrink: (
+      important: false,
       shorthand: flex-shrink,
       responsive: true,
       responsive-pseudos: false,

@@ -4,6 +4,7 @@
 $config: (
   utilities: (
     transform-origin: (
+      important: false,
       shorthand: transform,
       responsive: true,
       responsive-pseudos: false,

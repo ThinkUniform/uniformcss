@@ -4,6 +4,7 @@
 $config: (
   utilities: (
     grid-column-end: (
+      important: false,
       shorthand: col-end,
       responsive: true,
       responsive-pseudos: false,

@@ -4,6 +4,7 @@
 $config: (
   utilities: (
     grid-auto-flow: (
+      important: false,
       shorthand: grid-flow,
       responsive: true,
       responsive-pseudos: false,

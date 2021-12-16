@@ -4,6 +4,7 @@
 $config: (
   utilities: (
     grid-column-start: (
+      important: false,
       shorthand: col-start,
       responsive: true,
       responsive-pseudos: false,

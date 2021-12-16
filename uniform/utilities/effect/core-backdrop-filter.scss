@@ -5,6 +5,7 @@
 $config: (
   utilities: (
     backdrop-filter: (
+      important: false,
       shorthand: backdrop,
       responsive: false,
       responsive-pseudos: false,

@@ -14,6 +14,7 @@ $gutter-map: ();
 $config: (
   utilities: (
     gutter-x: (
+      important: false,
       shorthand: gutter-x,
       responsive: true,
       responsive-pseudos: false,

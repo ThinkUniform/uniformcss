@@ -4,6 +4,7 @@
 $config: (
   utilities: (
     border-top-left-radius: (
+      important: false,
       shorthand: radius-tl,
       responsive: true,
       responsive-pseudos: false,

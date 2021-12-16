@@ -219,8 +219,6 @@
 @use "utilities/typography/core-color";
 @use "utilities/typography/core-vertical-align";
 
-@use "utilities/custom";
-
 // ==================================================
 // Constructor
 // ==================================================
@@ -291,6 +289,8 @@ $responsive-pseudo-set: ();
 		@if ($include-condition) {
 
 			// Setup initial variables
+			$local-important: map.get($utility-value, important);
+			
 			$shorthand: map.get($utility-value, shorthand);
 			$extra-selector: map.get($utility-value, extra-selector);
 			$responsive: map.get($utility-value, responsive);
@@ -354,7 +354,7 @@ $responsive-pseudo-set: ();
 				} @else {
 					@each $property in $properties {
 						$map: (
-							#{$property}: $merged-variant-value #{if($important == true, !important, null)}
+							#{$property}: $merged-variant-value #{if($important == true or $local-important == true, !important, null)}
 						);
 						$merged-properties: map.merge($merged-properties, $map);
 					}

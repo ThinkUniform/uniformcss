@@ -4,6 +4,7 @@
 $config: (
   utilities: (
     transition-duration: (
+      important: false,
       shorthand: duration,
       responsive: false,
       responsive-pseudos: false,

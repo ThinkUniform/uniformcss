@@ -4,6 +4,7 @@
 $config: (
   utilities: (
     grid-template-rows: (
+      important: false,
       shorthand: grid-rows,
       responsive: true,
       responsive-pseudos: false,
