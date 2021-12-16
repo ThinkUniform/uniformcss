@@ -73,11 +73,6 @@
 @use "utilities/flexbox/core-flex-wrap";
 @use "utilities/flexbox/core-order";
 
-// Utilities - Gutter
-@use "utilities/gutter/extension-gutter-reverse";
-@use "utilities/gutter/extension-gutter-x";
-@use "utilities/gutter/extension-gutter-y";
-
 // Utilities - Gap
 @use "utilities/gap/core-column-gap";
 @use "utilities/gap/core-row-gap";
@@ -170,6 +165,11 @@
 @use "utilities/margin/extension-margin-y";
 @use "utilities/margin/core-margin";
 
+// Utilities - Gutter
+@use "utilities/gutter/extension-gutter-reverse";
+@use "utilities/gutter/extension-gutter-x";
+@use "utilities/gutter/extension-gutter-y";
+
 // Utilities - Sizing
 @use "utilities/sizing/core-height";
 @use "utilities/sizing/core-width";
@@ -222,7 +222,23 @@
 // Constructor
 // ==================================================
 
-$config: map.deep-merge(core.$all-config, core.$config);
+@function ordered-map-merge($map-1, $map-2) {
+  // https://github.com/sass/dart-sass/issues/1385
+	$merged-map: $map-1;
+	@each $map-2-key, $map-2-value in $map-2 {
+		$map-1-value: map.get($map-1, $map-2-key);
+		@if type-of($map-1-value) == map and type-of($map-2-value) == map {
+			// Merge identically named nested maps.
+			$sub-merged-map: ordered-map-merge($map-1-value, $map-2-value);
+			$merged-map: map.set($merged-map, $map-2-key, $sub-merged-map);
+		} @else {
+			$merged-map: map.set($merged-map, $map-2-key, $map-2-value);
+		}
+	}
+	@return $merged-map;
+}
+
+$config: ordered-map-merge(core.$all-config, core.$config);
 
 // The following sets are used to generate classes
 $standard-class-set: ();
@@ -459,14 +475,14 @@ $json-set: ();
             @if meta.type-of($merged-variant-value) == map {
               @each $key, $value in $merged-variant-value {
                 $map: (
-                  #{$key}: $value #{if($important == true, !important, null)}
+                  #{$key}: $value #{if($important == true or $local-important == true, !important, null)}
                 );
                 $merged-properties: map.merge($merged-properties, $map);
               }
             } @else {
               @each $property in $properties {
                 $map: (
-                  #{$property}: $merged-variant-value #{if($important == true, !important, null)}
+                  #{$property}: $merged-variant-value #{if($important == true or $local-important == true, !important, null)}
                 );
                 $merged-properties: map.merge($merged-properties, $map);
               }
