@@ -1,41 +1,25 @@
 @use "uniform/core";
 @use "sass:map";
 
-$name: vertical-align;
-$shorthand: align;
-$responsive: true;
-$responsive-pseudos: false;
-$extra-selector: null;
-
-$properties: (vertical-align);
-$static-properties: ();
-
-$variants: (
-  baseline: baseline,
-  top: top,
-  middle: middle,
-  bottom: bottom,
-  text-top: text-top,
-  text-bottom: text-bottom
-);
-
-$pseudos: ();
-
 $config: (
   utilities: (
-    $name: (
-      shorthand: $shorthand,
-      responsive: $responsive,
-      responsive-pseudos: $responsive-pseudos,
-      extra-selector: $extra-selector,
-      properties: $properties,
-      static-properties: $static-properties,
+    vertical-align: (
+      important: false,
+      shorthand: align,
+      responsive: true,
+      responsive-pseudos: false,
+      extra-selector: null,
+      properties: (vertical-align),
+      static-properties: (),
       variants: (
-        $variants
+        baseline: baseline,
+        top: top,
+        middle: middle,
+        bottom: bottom,
+        text-top: text-top,
+        text-bottom: text-bottom
       ),
-      pseudos: (
-        $pseudos
-      )
+      pseudos: (none)
     )
   )
 );

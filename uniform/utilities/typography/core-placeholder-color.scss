@@ -1,37 +1,21 @@
 @use "uniform/core";
 @use "sass:map";
 
-$name: placeholder-color;
-$shorthand: placeholder;
-$responsive: false;
-$responsive-pseudos: false;
-$extra-selector: '::placeholder';
-
-$properties: (color);
-$static-properties: ();
-
-$variants: (
-  transparent: transparent,
-  current: currentColor
-);
-
-$pseudos: (focus);
-
 $config: (
   utilities: (
-    $name: (
-      shorthand: $shorthand,
-      responsive: $responsive,
-      responsive-pseudos: $responsive-pseudos,
-      extra-selector: $extra-selector,
-      properties: $properties,
-      static-properties: $static-properties,
+    placeholder-color: (
+      important: false,
+      shorthand: placeholder,
+      responsive: false,
+      responsive-pseudos: false,
+      extra-selector: '::placeholder',
+      properties: (color),
+      static-properties: (),
       variants: (
-        $variants
+        transparent: transparent,
+        current: currentColor
       ),
-      pseudos: (
-        $pseudos
-      )
+      pseudos: (focus)
     )
   )
 );

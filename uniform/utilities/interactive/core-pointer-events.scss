@@ -1,37 +1,21 @@
 @use "uniform/core";
 @use "sass:map";
 
-$name: pointer-events;
-$shorthand: pointer-events;
-$responsive: false;
-$responsive-pseudos: false;
-$extra-selector: null;
-
-$properties: (pointer-events);
-$static-properties: ();
-
-$variants: (
-  none: none,
-  auto: auto
-);
-
-$pseudos: ();
-
 $config: (
   utilities: (
-    $name: (
-      shorthand: $shorthand,
-      responsive: $responsive,
-      responsive-pseudos: $responsive-pseudos,
-      extra-selector: $extra-selector,
-      properties: $properties,
-      static-properties: $static-properties,
+    pointer-events: (
+      important: false,
+      shorthand: pointer-events,
+      responsive: false,
+      responsive-pseudos: false,
+      extra-selector: null,
+      properties: (pointer-events),
+      static-properties: (),
       variants: (
-        $variants
+        none: none,
+        auto: auto
       ),
-      pseudos: (
-        $pseudos
-      )
+      pseudos: (none)
     )
   )
 );

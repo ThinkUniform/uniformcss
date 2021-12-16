@@ -1,39 +1,23 @@
 @use "uniform/core";
 @use "sass:map";
 
-$name: user-select;
-$shorthand: select;
-$responsive: false;
-$responsive-pseudos: false;
-$extra-selector: null;
-
-$properties: (user-select, -webkit-user-select);
-$static-properties: ();
-
-$variants: (
-  none: none,
-  text: text,
-  all: all,
-  auto: auto
-);
-
-$pseudos: ();
-
 $config: (
   utilities: (
-    $name: (
-      shorthand: $shorthand,
-      responsive: $responsive,
-      responsive-pseudos: $responsive-pseudos,
-      extra-selector: $extra-selector,
-      properties: $properties,
-      static-properties: $static-properties,
+    user-select: (
+      important: false,
+      shorthand: select,
+      responsive: false,
+      responsive-pseudos: false,
+      extra-selector: null,
+      properties: (user-select, -webkit-user-select),
+      static-properties: (),
       variants: (
-        $variants
+        none: none,
+        text: text,
+        all: all,
+        auto: auto
       ),
-      pseudos: (
-        $pseudos
-      )
+      pseudos: (none)
     )
   )
 );

@@ -1,48 +1,32 @@
 @use "uniform/core";
 @use "sass:map";
 
-$name: top;
-$shorthand: top;
-$responsive: true;
-$responsive-pseudos: false;
-$extra-selector: null;
-
-$properties: (top);
-$static-properties: ();
-
 $range-limit: map.get(core.$all-config, range-limits, top);
-
-$variants: (
-  core.merge(
-    core.sizes($range-limit),
-    (
-      auto: auto,
-      0: 0,
-      n100p: -100%,
-      100p: 100%,
-      n50p: -50%,
-      50p: 50%
-    )
-  )
-);
-
-$pseudos: ();
 
 $config: (
   utilities: (
-    $name: (
-      shorthand: $shorthand,
-      responsive: $responsive,
-      responsive-pseudos: $responsive-pseudos,
-      extra-selector: $extra-selector,
-      properties: $properties,
-      static-properties: $static-properties,
+    top: (
+      important: false,
+      shorthand: top,
+      responsive: true,
+      responsive-pseudos: false,
+      extra-selector: null,
+      properties: (top),
+      static-properties: (),
       variants: (
-        $variants
+        core.merge(
+          core.sizes($range-limit),
+          (
+            auto: auto,
+            0: 0,
+            n100p: -100%,
+            100p: 100%,
+            n50p: -50%,
+            50p: 50%
+          )
+        )
       ),
-      pseudos: (
-        $pseudos
-      )
+      pseudos: (none)
     )
   )
 );

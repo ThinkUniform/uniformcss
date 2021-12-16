@@ -1,37 +1,21 @@
 @use "uniform/core";
 @use "sass:map";
 
-$name: text-overflow;
-$shorthand: null;
-$responsive: true;
-$responsive-pseudos: false;
-$extra-selector: null;
-
-$properties: (text-overflow);
-$static-properties: ();
-
-$variants: (
-  clip: clip,
-  ellipsis: ellipsis
-);
-
-$pseudos: ();
-
 $config: (
   utilities: (
-    $name: (
-      shorthand: $shorthand,
-      responsive: $responsive,
-      responsive-pseudos: $responsive-pseudos,
-      extra-selector: $extra-selector,
-      properties: $properties,
-      static-properties: $static-properties,
+    text-overflow: (
+      important: false,
+      shorthand: null,
+      responsive: true,
+      responsive-pseudos: false,
+      extra-selector: null,
+      properties: (text-overflow),
+      static-properties: (),
       variants: (
-        $variants
+        clip: clip,
+        ellipsis: ellipsis
       ),
-      pseudos: (
-        $pseudos
-      )
+      pseudos: (none)
     )
   )
 );

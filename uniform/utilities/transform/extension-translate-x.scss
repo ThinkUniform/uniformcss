@@ -1,48 +1,32 @@
 @use "uniform/core";
 @use "sass:map";
 
-$name: translate-x;
-$shorthand: translate-x;
-$responsive: true;
-$responsive-pseudos: false;
-$extra-selector: null;
-
-$properties: (--translate-x);
-$static-properties: ();
-
 $range-limit: map.get(core.$all-config, range-limits, translate);
-
-$variants: (
-	core.merge(
-    core.positive-sizes($range-limit),
-    core.negative-sizes($range-limit),
-    (
-      0: 0,
-      50p: 50%,
-      100p: 100%,
-      n50p: -50%,
-      n100p: -100%
-    )
-  )
-);
-
-$pseudos: (hover, focus);
 
 $config: (
   utilities: (
-    $name: (
-      shorthand: $shorthand,
-      responsive: $responsive,
-      responsive-pseudos: $responsive-pseudos,
-      extra-selector: $extra-selector,
-      properties: $properties,
-      static-properties: $static-properties,
+    translate-x: (
+      important: false,
+      shorthand: translate-x,
+      responsive: true,
+      responsive-pseudos: false,
+      extra-selector: null,
+      properties: (--translate-x),
+      static-properties: (),
       variants: (
-        $variants
+        core.merge(
+          core.positive-sizes($range-limit),
+          core.negative-sizes($range-limit),
+          (
+            0: 0,
+            50p: 50%,
+            100p: 100%,
+            n50p: -50%,
+            n100p: -100%
+          )
+        )
       ),
-      pseudos: (
-        $pseudos
-      )
+      pseudos: (hover, focus)
     )
   )
 );

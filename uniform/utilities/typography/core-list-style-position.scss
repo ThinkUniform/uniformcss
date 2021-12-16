@@ -1,37 +1,21 @@
 @use "uniform/core";
 @use "sass:map";
 
-$name: list-style-positions;
-$shorthand: list;
-$responsive: false;
-$responsive-pseudos: false;
-$extra-selector: null;
-
-$properties: (list-style-position);
-$static-properties: ();
-
-$variants: (
-  inside: inside,
-  outside: outside
-);
-
-$pseudos: ();
-
 $config: (
   utilities: (
-    $name: (
-      shorthand: $shorthand,
-      responsive: $responsive,
-      responsive-pseudos: $responsive-pseudos,
-      extra-selector: $extra-selector,
-      properties: $properties,
-      static-properties: $static-properties,
+    list-style-positions: (
+      important: false,
+      shorthand: list,
+      responsive: false,
+      responsive-pseudos: false,
+      extra-selector: null,
+      properties: (list-style-positions),
+      static-properties: (),
       variants: (
-        $variants
+        inside: inside,
+        outside: outside
       ),
-      pseudos: (
-        $pseudos
-      )
+      pseudos: (none)
     )
   )
 );

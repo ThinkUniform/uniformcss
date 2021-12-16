@@ -1,37 +1,21 @@
 @use "uniform/core";
 @use "sass:map";
 
-$name: border-collapse;
-$shorthand: border;
-$responsive: false;
-$responsive-pseudos: false;
-$extra-selector: null;
-
-$properties: (border-collapse);
-$static-properties: ();
-
-$variants: (
-  separate: separate,
-  collapse: collapse
-);
-
-$pseudos: ();
-
 $config: (
   utilities: (
-    $name: (
-      shorthand: $shorthand,
-      responsive: $responsive,
-      responsive-pseudos: $responsive-pseudos,
-      extra-selector: $extra-selector,
-      properties: $properties,
-      static-properties: $static-properties,
+    border-collapse: (
+      important: false,
+      shorthand: border,
+      responsive: false,
+      responsive-pseudos: false,
+      extra-selector: null,
+      properties: (border-collapse),
+      static-properties: (),
       variants: (
-        $variants
+        separate: separate,
+        collapse: collapse
       ),
-      pseudos: (
-        $pseudos
-      )
+      pseudos: (none)
     )
   )
 );

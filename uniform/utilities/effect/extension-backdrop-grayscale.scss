@@ -1,37 +1,21 @@
 @use "uniform/core";
 @use "sass:map";
 
-$name: backdrop-grayscale; 
-$shorthand: backdrop-grayscale;
-$responsive: false;
-$responsive-pseudos: false;
-$extra-selector: null;
-
-$properties: (--backdrop-grayscale);
-$static-properties: ();
-
-$variants: (
-  0: 0,
-  100: 1,
-);
-
-$pseudos: ();
-
 $config: (
   utilities: (
-    $name: (
-      shorthand: $shorthand,
-      responsive: $responsive,
-      responsive-pseudos: $responsive-pseudos,
-      extra-selector: $extra-selector,
-      properties: $properties,
-      static-properties: $static-properties,
+    backdrop-grayscale: (
+      important: false,
+      shorthand: backdrop-grayscale,
+      responsive: false,
+      responsive-pseudos: false,
+      extra-selector: null,
+      properties: (--backdrop-grayscale),
+      static-properties: (),
       variants: (
-        $variants
+        0: 0,
+        100: 1,
       ),
-      pseudos: (
-        $pseudos
-      )
+      pseudos: (none)
     )
   )
 );

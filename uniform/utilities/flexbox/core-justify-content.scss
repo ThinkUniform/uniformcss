@@ -1,41 +1,25 @@
 @use "uniform/core";
 @use "sass:map";
 
-$name: justify-content;
-$shorthand: justify-content;
-$responsive: true;
-$responsive-pseudos: false;
-$extra-selector: null;
-
-$properties: (justify-content);
-$static-properties: ();
-
-$variants: (
-  start: flex-start,
-  center: center,
-  end: flex-end,
-  between: space-between,
-  around: space-around,
-  evenly: space-evenly
-);
-
-$pseudos: ();
-
 $config: (
   utilities: (
-    $name: (
-      shorthand: $shorthand,
-      responsive: $responsive,
-      responsive-pseudos: $responsive-pseudos,
-      extra-selector: $extra-selector,
-      properties: $properties,
-      static-properties: $static-properties,
+    justify-content: (
+      important: false,
+      shorthand: justify-content,
+      responsive: true,
+      responsive-pseudos: false,
+      extra-selector: null,
+      properties: (justify-content),
+      static-properties: (),
       variants: (
-        $variants
+        start: flex-start,
+        center: center,
+        end: flex-end,
+        between: space-between,
+        around: space-around,
+        evenly: space-evenly
       ),
-      pseudos: (
-        $pseudos
-      )
+      pseudos: (none)
     )
   )
 );

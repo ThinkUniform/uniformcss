@@ -1,38 +1,22 @@
 @use "uniform/core";
 @use "sass:map";
 
-$name: text-decoration;
-$shorthand: null;
-$responsive: false;
-$responsive-pseudos: false;
-$extra-selector: null;
-
-$properties: (text-decoration);
-$static-properties: ();
-
-$variants: (
-  underline: underline,
-  line-through: line-through,
-  no-underline: none,
-);
-
-$pseudos: (hover, group-hover, focus);
-
 $config: (
   utilities: (
-    $name: (
-      shorthand: $shorthand,
-      responsive: $responsive,
-      responsive-pseudos: $responsive-pseudos,
-      extra-selector: $extra-selector,
-      properties: $properties,
-      static-properties: $static-properties,
+    text-decoration: (
+      important: false,
+      shorthand: null,
+      responsive: false,
+      responsive-pseudos: false,
+      extra-selector: null,
+      properties: (text-decoration),
+      static-properties: (),
       variants: (
-        $variants
+        underline: underline,
+        line-through: line-through,
+        no-underline: none,
       ),
-      pseudos: (
-        $pseudos
-      )
+      pseudos: (hover, group-hover, focus)
     )
   )
 );

@@ -4,7 +4,7 @@
     <img src="icon.svg" alt="Logo" width="64" height="64">
   </a>
 
-  <h3 align="center">Uniform CSS</h3>
+  <h3 align="center">UniformCSS</h3>
 
   <p align="center">
     A fully configurable utility class generator and <br>CSS framework built for Sass projects.
@@ -44,7 +44,7 @@
 
 ## Introduction
 
-Uniform CSS is a fully configurable utility generator and CSS framework built entirely in Sass. Get the power of a utility-first workflow without losing the productiveness of Sass. To see documentation, visit [uniformcss.com](https://uniformcss.com/)
+UniformCSS is a fully configurable utility generator and CSS framework built entirely in Sass. Get the power of a utility-first workflow without losing the productiveness of Sass. To see documentation, visit [uniformcss.com](https://uniformcss.com/)
 
 - Load and configure Uniform directly in Sass
 - Build complex UI without ever touching your CSS
@@ -87,7 +87,7 @@ choco install sass
 
 ### Load and Compile Uniform
 
-Add Uniform as a Sass module to your `main.scss` project. Follow these steps to load Uniform CSS, compile, and watch for changes.
+Add Uniform as a Sass module to your `main.scss` project. Follow these steps to load UniformCSS, compile, and watch for changes.
 
 1. Clone the repository
    ```sh

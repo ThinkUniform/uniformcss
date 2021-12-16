@@ -1,39 +1,23 @@
 @use "uniform/core";
 @use "sass:map";
 
-$name: grid-auto-flow;
-$shorthand: grid-flow;
-$responsive: true;
-$responsive-pseudos: false;
-$extra-selector: null;
-
-$properties: (grid-auto-flow);
-$static-properties: ();
-
-$variants: (
-  row: row,
-  col: column,
-  row-dense: row dense,
-  col-dense: column dense
-);
-
-$pseudos: ();
-
 $config: (
   utilities: (
-    $name: (
-      shorthand: $shorthand,
-      responsive: $responsive,
-      responsive-pseudos: $responsive-pseudos,
-      extra-selector: $extra-selector,
-      properties: $properties,
-      static-properties: $static-properties,
+    grid-auto-flow: (
+      important: false,
+      shorthand: grid-flow,
+      responsive: true,
+      responsive-pseudos: false,
+      extra-selector: null,
+      properties: (grid-auto-flow),
+      static-properties: (),
       variants: (
-        $variants
+        row: row,
+        col: column,
+        row-dense: row dense,
+        col-dense: column dense
       ),
-      pseudos: (
-        $pseudos
-      )
+      pseudos: (none)
     )
   )
 );

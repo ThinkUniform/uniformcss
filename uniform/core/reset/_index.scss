@@ -4,10 +4,10 @@
 
 $exclude: map.get($all-config, excludes);
 $include: map.get($all-config, includes);
-$headless: map.get($all-config, headless);
+$output-mode: map.get($all-config, output-mode);
 
 $include-condition: true;
-@if ( $headless == true ) {
+@if ( $output-mode == 'headless' or map.get($config, output-mode) == 'json' ) {
   $include-condition: false;
 }
 @if ( list.index($exclude, all) ) {

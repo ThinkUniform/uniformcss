@@ -1,38 +1,22 @@
 @use "uniform/core";
 @use "sass:map";
 
-$name: flex-wrap;
-$shorthand: flex;
-$responsive: true;
-$responsive-pseudos: false;
-$extra-selector: null;
-
-$properties: (flex-wrap);
-$static-properties: ();
-
-$variants: (
-  nowrap: nowrap,
-  wrap: wrap,
-  wrap-reverse: wrap-reverse
-);
-
-$pseudos: ();
-
 $config: (
   utilities: (
-    $name: (
-      shorthand: $shorthand,
-      responsive: $responsive,
-      responsive-pseudos: $responsive-pseudos,
-      extra-selector: $extra-selector,
-      properties: $properties,
-      static-properties: $static-properties,
+    flex-wrap: (
+      important: false,
+      shorthand: flex-wrap,
+      responsive: true,
+      responsive-pseudos: false,
+      extra-selector: null,
+      properties: (flex-wrap),
+      static-properties: (),
       variants: (
-        $variants
+        nowrap: nowrap,
+        wrap: wrap,
+        wrap-reverse: wrap-reverse
       ),
-      pseudos: (
-        $pseudos
-      )
+      pseudos: (none)
     )
   )
 );

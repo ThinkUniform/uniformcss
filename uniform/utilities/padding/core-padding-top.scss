@@ -1,43 +1,27 @@
 @use "uniform/core";
 @use "sass:map";
 
-$name: padding-top;
-$shorthand: pt;
-$responsive: true;
-$responsive-pseudos: false;
-$extra-selector: null;
-
-$properties: (padding-top);
-$static-properties: ();
-
 $range-limit: map.get(core.$all-config, range-limits, padding);
-
-$variants: (
-	core.merge(
-    core.positive-sizes($range-limit),
-    (
-      0: 0,
-    )
-	)
-);
-
-$pseudos: (first, last);
 
 $config: (
   utilities: (
-    $name: (
-      shorthand: $shorthand,
-      responsive: $responsive,
-      responsive-pseudos: $responsive-pseudos,
-      extra-selector: $extra-selector,
-      properties: $properties,
-      static-properties: $static-properties,
+    padding-top: (
+      important: false,
+      shorthand: pt,
+      responsive: true,
+      responsive-pseudos: false,
+      extra-selector: null,
+      properties: (padding-top),
+      static-properties: (),
       variants: (
-        $variants
+        core.merge(
+          core.positive-sizes($range-limit),
+          (
+            0: 0,
+          )
+        )
       ),
-      pseudos: (
-        $pseudos
-      )
+      pseudos: (first, last)
     )
   )
 );

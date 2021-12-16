@@ -1,42 +1,26 @@
 @use "uniform/core";
 @use "sass:map";
 
-$name: grid-row-start;
-$shorthand: row-start;
-$responsive: true;
-$responsive-pseudos: false;
-$extra-selector: null;
-
-$properties: (grid-row-start);
-$static-properties: ();
-
-$variants: (
-  auto: auto,
-  1: 1,
-  2: 2,
-  3: 3,
-  4: 4,
-  5: 5,
-  6: 6,
-);
-
-$pseudos: ();
-
 $config: (
   utilities: (
-    $name: (
-      shorthand: $shorthand,
-      responsive: $responsive,
-      responsive-pseudos: $responsive-pseudos,
-      extra-selector: $extra-selector,
-      properties: $properties,
-      static-properties: $static-properties,
+    grid-row-start: (
+      important: false,
+      shorthand: row-start,
+      responsive: true,
+      responsive-pseudos: false,
+      extra-selector: null,
+      properties: (grid-row-start),
+      static-properties: (),
       variants: (
-        $variants
+        auto: auto,
+        1: 1,
+        2: 2,
+        3: 3,
+        4: 4,
+        5: 5,
+        6: 6,
       ),
-      pseudos: (
-        $pseudos
-      )
+      pseudos: (none)
     )
   )
 );

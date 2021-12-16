@@ -4,7 +4,22 @@
 // 2. Configuree Uniform (Optional)
 @use "uniform" as * with (
   $config: (
+    output-mode: 'css',
     comma-compression: true,
     css-variables: true
   )
 );
+
+// -------------------
+// New Features v1.2.0
+// -------------------
+
+// **Introducing Output Mode**
+// - setting output-mode to 'css' outputs CSS (default), 
+// - you can also output JSON by setting this to 'json'!
+
+// **Multi-Property Utilities**
+// - you can now generate multi-property utilities directly via utilities settings
+
+// **Localized Important**
+// - Enable important on a per utility basis directly through the utilities settings

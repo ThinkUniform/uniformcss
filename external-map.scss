@@ -1,22 +1,23 @@
-@use "uniform/core";
-@use "sass:map";
+.h1 {
+  font-weight: bold;
+}
 
-$config: (
+$external-map: (
   utilities: (
-    font-size: (
+    leading-trim: (
       important: false,
-      shorthand: font,
+      shorthand: leading,
       responsive: true,
       responsive-pseudos: false,
       extra-selector: null,
-      properties: (font-size),
+      properties: (leading-trim),
       static-properties: (),
       variants: (
-        core.font-sizes()
+        trimmer: both,
+        a: a-value,
+        b: b-value
       ),
       pseudos: (none)
     )
   )
 );
-
-core.$all-config: map.deep-merge(core.$all-config, $config);

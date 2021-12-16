@@ -1,66 +1,50 @@
 @use "uniform/core";
 @use "sass:map";
 
-$name: width;
-$shorthand: w;
-$responsive: true;
-$responsive-pseudos: false;
-$extra-selector: null;
-
-$properties: (width);
-$static-properties: ();
-
 $range-limit: map.get(core.$all-config, range-limits, width);
-
-$variants: (
-	core.merge(
-		core.positive-sizes($range-limit),
-		(
-			auto: auto,
-			0: 0,
-
-			50p: 50%,
-			100p: 100%,
-			50vw: 50vw,
-			100vw: 100vw,
-
-			'1-12': 8.333333%,
-			'2-12': 16.666667%,
-			'3-12': 25%,
-			'4-12': 33.333333%,
-			'5-12': 41.666667%,
-			'6-12': 50%,
-			'7-12': 58.333333%,
-			'8-12': 66.666667%,
-			'9-12': 75%,
-			'10-12': 83.333333%,
-			'11-12': 91.666667%,
-			
-			'1-5': 20%,
-			'2-5': 40%,
-			'3-5': 60%,
-			'4-5': 80%,
-		)
-	)
-);
-
-$pseudos: ();
 
 $config: (
   utilities: (
-    $name: (
-      shorthand: $shorthand,
-      responsive: $responsive,
-      responsive-pseudos: $responsive-pseudos,
-      extra-selector: $extra-selector,
-      properties: $properties,
-      static-properties: $static-properties,
+    width: (
+      important: false,
+      shorthand: w,
+      responsive: true,
+      responsive-pseudos: false,
+      extra-selector: null,
+      properties: (width),
+      static-properties: (),
       variants: (
-        $variants
+        core.merge(
+          core.positive-sizes($range-limit),
+					(
+						auto: auto,
+						0: 0,
+
+						50p: 50%,
+						100p: 100%,
+						50vw: 50vw,
+						100vw: 100vw,
+
+						'1-12': 8.333333%,
+						'2-12': 16.666667%,
+						'3-12': 25%,
+						'4-12': 33.333333%,
+						'5-12': 41.666667%,
+						'6-12': 50%,
+						'7-12': 58.333333%,
+						'8-12': 66.666667%,
+						'9-12': 75%,
+						'10-12': 83.333333%,
+						'11-12': 91.666667%,
+						
+						'1-5': 20%,
+						'2-5': 40%,
+						'3-5': 60%,
+						'4-5': 80%,
+					)
+        )
       ),
-      pseudos: (
-        $pseudos
-      )
+      pseudos: (none)
     )
   )
 );

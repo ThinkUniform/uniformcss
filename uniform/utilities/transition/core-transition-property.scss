@@ -1,63 +1,47 @@
 @use "uniform/core";
 @use "sass:map";
 
-$name: transition-property;
-$shorthand: transition;
-$responsive: false;
-$responsive-pseudos: false;
-$extra-selector: null;
-
-$properties: (transition-property);
-$static-properties: ();
-
-$variants: (
-	none: none,
-	all: all,
-	null: (
-		background-color,
-		border-color,
-		color,
-		fill,
-		stroke,
-		opacity,
-		box-shadow,
-		transform,
-		filter,
-		backdrop-filter
-	),
-	colors: (
-		background-color,
-		border-color,
-		color,
-		fill,
-		stroke
-	),
-	filters: (
-		filter,
-		backdrop-filter
-	),
-	opacity: opacity,
-	shadow: box-shadow,
-	transform: transform,
-);
-
-$pseudos: ();
-
 $config: (
   utilities: (
-    $name: (
-      shorthand: $shorthand,
-      responsive: $responsive,
-      responsive-pseudos: $responsive-pseudos,
-      extra-selector: $extra-selector,
-      properties: $properties,
-      static-properties: $static-properties,
+    transition-property: (
+      important: false,
+      shorthand: transition,
+      responsive: false,
+      responsive-pseudos: false,
+      extra-selector: null,
+      properties: (transition-property),
+      static-properties: (),
       variants: (
-        $variants
+        none: none,
+				all: all,
+				null: (
+					background-color,
+					border-color,
+					color,
+					fill,
+					stroke,
+					opacity,
+					box-shadow,
+					transform,
+					filter,
+					backdrop-filter
+				),
+				colors: (
+					background-color,
+					border-color,
+					color,
+					fill,
+					stroke
+				),
+				filters: (
+					filter,
+					backdrop-filter
+				),
+				opacity: opacity,
+				shadow: box-shadow,
+				transform: transform,
       ),
-      pseudos: (
-        $pseudos
-      )
+      pseudos: (none)
     )
   )
 );

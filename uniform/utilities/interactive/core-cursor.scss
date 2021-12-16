@@ -1,42 +1,26 @@
 @use "uniform/core";
 @use "sass:map";
 
-$name: cursor;
-$shorthand: cursor;
-$responsive: false;
-$responsive-pseudos: false;
-$extra-selector: null;
-
-$properties: (cursor);
-$static-properties: ();
-
-$variants: (
-  auto: auto,
-  default: default,
-  pointer: pointer,
-  wait: wait,
-  text: text,
-  move: move,
-  not-allowed: not-allowed
-);
-
-$pseudos: (hover, active);
-
 $config: (
   utilities: (
-    $name: (
-      shorthand: $shorthand,
-      responsive: $responsive,
-      responsive-pseudos: $responsive-pseudos,
-      extra-selector: $extra-selector,
-      properties: $properties,
-      static-properties: $static-properties,
+    cursor: (
+      important: false,
+      shorthand: cursor,
+      responsive: false,
+      responsive-pseudos: false,
+      extra-selector: null,
+      properties: (cursor),
+      static-properties: (),
       variants: (
-        $variants
+        auto: auto,
+        default: default,
+        pointer: pointer,
+        wait: wait,
+        text: text,
+        move: move,
+        not-allowed: not-allowed
       ),
-      pseudos: (
-        $pseudos
-      )
+      pseudos: (hover, active)
     )
   )
 );

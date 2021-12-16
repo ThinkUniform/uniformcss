@@ -1,40 +1,24 @@
 @use "uniform/core";
 @use "sass:map";
 
-$name: border-style;
-$shorthand: border;
-$responsive: false;
-$responsive-pseudos: false;
-$extra-selector: null;
-
-$properties: (border-style);
-$static-properties: ();
-
-$variants: (
-  solid: solid,
-  dashed: dashed,
-  dotted: dotted,
-  double: double,
-  none: none
-);
-
-$pseudos: ();
-
 $config: (
   utilities: (
-    $name: (
-      shorthand: $shorthand,
-      responsive: $responsive,
-      responsive-pseudos: $responsive-pseudos,
-      extra-selector: $extra-selector,
-      properties: $properties,
-      static-properties: $static-properties,
+    border-style: (
+      important: false,
+      shorthand: border,
+      responsive: false,
+      responsive-pseudos: false,
+      extra-selector: null,
+      properties: (border-style),
+      static-properties: (),
       variants: (
-        $variants
+        solid: solid,
+        dashed: dashed,
+        dotted: dotted,
+        double: double,
+        none: none
       ),
-      pseudos: (
-        $pseudos
-      )
+      pseudos: (none)
     )
   )
 );

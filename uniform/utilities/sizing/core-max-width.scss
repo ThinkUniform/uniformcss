@@ -1,55 +1,39 @@
 @use "uniform/core";
 @use "sass:map";
 
-$name: max-width; 
-$shorthand: max-w;
-$responsive: true;
-$responsive-pseudos: false;
-$extra-selector: null;
-
-$properties: (max-width);
-$static-properties: ();
-
 $range-limit: map.get(core.$all-config, range-limits, max-width);
-
-$variants: (
-	core.merge(
-		core.positive-sizes($range-limit),
-		core.name-screens(),
-		(
-      0: 0,
-			none: none,
-
-      50p: 50%,
-			100p: 100%,
-      50vw: 50vw,
-      100vw: 100vw,
-
-      min: min-content,
-      max: max-content,
-      
-      text: 64ch,
-		)
-	)
-);
-
-$pseudos: ();
 
 $config: (
   utilities: (
-    $name: (
-      shorthand: $shorthand,
-      responsive: $responsive,
-      responsive-pseudos: $responsive-pseudos,
-      extra-selector: $extra-selector,
-      properties: $properties,
-      static-properties: $static-properties,
+    max-width: (
+      important: false,
+      shorthand: max-w,
+      responsive: true,
+      responsive-pseudos: false,
+      extra-selector: null,
+      properties: (max-width),
+      static-properties: (),
       variants: (
-        $variants
+        core.merge(
+          core.positive-sizes($range-limit),
+          core.name-screens(),
+          (
+            0: 0,
+            none: none,
+
+            50p: 50%,
+            100p: 100%,
+            50vw: 50vw,
+            100vw: 100vw,
+
+            min: min-content,
+            max: max-content,
+            
+            text: 64ch,
+          )
+        )
       ),
-      pseudos: (
-        $pseudos
-      )
+      pseudos: (none)
     )
   )
 );

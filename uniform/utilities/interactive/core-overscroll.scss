@@ -1,38 +1,22 @@
 @use "uniform/core";
 @use "sass:map";
 
-$name: overscroll;
-$shorthand: overscroll;
-$responsive: true;
-$responsive-pseudos: false;
-$extra-selector: null;
-
-$properties: (overscroll-behavior);
-$static-properties: ();
-
-$variants: (
-  auto: auto,
-  contain: contain,
-  none: none
-);
-
-$pseudos: ();
-
 $config: (
   utilities: (
-    $name: (
-      shorthand: $shorthand,
-      responsive: $responsive,
-      responsive-pseudos: $responsive-pseudos,
-      extra-selector: $extra-selector,
-      properties: $properties,
-      static-properties: $static-properties,
+    overscroll: (
+      important: false,
+      shorthand: overscroll,
+      responsive: true,
+      responsive-pseudos: false,
+      extra-selector: null,
+      properties: (overscroll-behavior),
+      static-properties: (),
       variants: (
-        $variants
+        auto: auto,
+        contain: contain,
+        none: none
       ),
-      pseudos: (
-        $pseudos
-      )
+      pseudos: (none)
     )
   )
 );

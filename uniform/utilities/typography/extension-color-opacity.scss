@@ -1,38 +1,20 @@
 @use "uniform/core";
 @use "sass:map";
 
-$name: color-opacity;
-$shorthand: color-opacity;
-$responsive: false;
-$responsive-pseudos: false;
-$extra-selector: null;
-
-$properties: (#{--color-opacity});
-$static-properties: ();
-
-$variants: (
-	core.merge(
-    core.opacities(),
-	)
-);
-
-$pseudos: (hover, group-hover, focus);
-
 $config: (
   utilities: (
-    $name: (
-      shorthand: $shorthand,
-      responsive: $responsive,
-      responsive-pseudos: $responsive-pseudos,
-      extra-selector: $extra-selector,
-      properties: $properties,
-      static-properties: $static-properties,
+    color-opacity: (
+      important: false,
+      shorthand: color-opacity,
+      responsive: false,
+      responsive-pseudos: false,
+      extra-selector: null,
+      properties: (--color-opacity),
+      static-properties: (),
       variants: (
-        $variants
+        core.opacities()
       ),
-      pseudos: (
-        $pseudos
-      )
+      pseudos: (hover, group-hover, focus)
     )
   )
 );
