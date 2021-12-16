@@ -132,7 +132,7 @@ Add Uniform as a Sass module to your `main.scss` project. Follow these steps to 
 If you're ever stuck, need help, or wish to have a general discussion about this project, please get involved with the following community channels.
 
 - [Twitter](http://twitter.com/UniformCSS)
-- [Discord](https://discord.gg/GGZuRVua)
+- [Discord](https://discord.gg/TZKvar9sU9)
 - [Github Discussions](https://github.com/ThinkUniform/uniformcss/discussions)
 
 ## Contributing
