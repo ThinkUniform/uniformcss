@@ -348,7 +348,7 @@ $json-set: ();
         @if meta.type-of($merged-variant-value) == map {
           @each $key, $value in $merged-variant-value {
             $map: (
-              #{$key}: $value #{if($important == true, !important, null)}
+              #{$key}: $value #{if($important == true or $local-important == true, !important, null)}
             );
             $merged-properties: map.merge($merged-properties, $map);
           }
@@ -410,7 +410,7 @@ $json-set: ();
               )
             );
             $pseudo-set: map.merge($pseudo-set, $map);
-          } @else {
+          } @else if $pseudo != none {
             $map: (
               '#{$compiled-pseudo-name}': (
                 selector: '.#{$compiled-pseudo-name}#{$extra-selector}#{map.get($all-pseudos, $pseudo)}',
@@ -525,7 +525,7 @@ $json-set: ();
                     )
                   );
                   $pseudo-set: map.merge($pseudo-set, $map);
-                } @else {
+                } @else if $pseudo != none {
                   $map: (
                     '#{$compiled-responsive-pseudo-name}#{$compiled-class-name}': (
                       selector: '.#{$compiled-responsive-pseudo-name}#{$compiled-class-name}#{$extra-selector}#{map.get($all-pseudos, $pseudo)}',
@@ -836,7 +836,7 @@ $merged-class-set: map.merge($standard-class-set, $responsive-class-set);
                 }
               }
             }
-          } @else {
+          } @else if $pseudo != none {
             @at-root &:#{$pseudo} {
               @if $extra-selector == null {
                 @each $property, $value in $properties {
@@ -895,7 +895,7 @@ $merged-class-set: map.merge($standard-class-set, $responsive-class-set);
                   }
                 }
               }
-            } @else {
+            } @else if $pseudo != none {
               @at-root &:#{$pseudo} {
                 @if $extra-selector == null {
                   @each $property, $value in $properties {
