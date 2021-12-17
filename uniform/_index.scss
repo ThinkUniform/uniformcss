@@ -224,6 +224,7 @@
 
 @function ordered-map-merge($map-1, $map-2) {
   // https://github.com/sass/dart-sass/issues/1385
+  // Special credit to @starkis
 	$merged-map: $map-1;
 	@each $map-2-key, $map-2-value in $map-2 {
 		$map-1-value: map.get($map-1, $map-2-key);
