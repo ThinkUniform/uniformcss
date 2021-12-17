@@ -1,7 +1,7 @@
 // 1. Load Uniform Module
 // @use "uniform" as *;
 
-// 2. Configuree Uniform (Optional)
+// 2. Configure Uniform (Optional)
 @use "uniform" as * with (
   $config: (
     output: 'css',
