@@ -4,7 +4,7 @@
 // 2. Configuree Uniform (Optional)
 @use "uniform" as * with (
   $config: (
-    output: 'json',
+    output: 'css',
     important: false,
     comma-compression: true,
     css-variables: true
