@@ -776,13 +776,6 @@ $merged-class-set: map.merge($standard-class-set, $responsive-class-set);
     $extra-selector: map.get($class-detail, extra-selector);
     $classes: map.get($class-detail, classes);
 
-    // Quotify and compile properties
-    // $final-properties: #{''};
-    // @each $property, $property-value in $properties {
-    //   $value: #{'\"'}#{$property}#{'\"'}#{': '}#{'\"'}#{$property-value}#{'\"'};
-    //   $final-properties: list.join($final-properties, $value, $separator: comma);
-    // }
-
     $class-map: #{''};
     @each $class, $class-properties in $classes {
 
