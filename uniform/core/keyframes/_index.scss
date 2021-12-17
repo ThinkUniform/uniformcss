@@ -5,11 +5,11 @@
 
 $exclude: map.get($all-config, excludes);
 $include: map.get($all-config, includes);
-$output-mode: map.get($all-config, output-mode);
+$output: map.get($all-config, output);
 $keyframes: map.get($all-config, keyframes);
 
 $include-condition: true;
-@if ( $output-mode == 'headless' or map.get($config, output-mode) == 'json' ) {
+@if ( $output == 'headless' or map.get($config, output) == 'json' ) {
   $include-condition: false;
 }
 @if ( list.index($exclude, all) ) {

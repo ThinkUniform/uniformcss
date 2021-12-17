@@ -567,7 +567,7 @@ $json-set: ();
     }
   }
 
-  @if map.get($config, output-mode) == 'json' {
+  @if map.get($config, output) == 'json' {
     @each $utility, $utility-value in $utilities { 
       $include-condition: true;
       @if list.index($excludes, all) {
@@ -614,10 +614,9 @@ $json-set: ();
           $merged-pseudos: list.join($merged-pseudos, $pseudo-extends, $separator: comma);
         }
 
-        // Standard class list
-        $class-set: ();
-        
+        $class-map: ();
         @each $merged-variant, $merged-variant-value in $merged-variants {
+
           // Compile class name
           $compiled-class-name: null;
           @if $shorthand == null {
@@ -651,24 +650,25 @@ $json-set: ();
               $merged-properties: map.merge($merged-properties, $map);
             }
           }
-
           $compiled-properties: map.merge($static-properties, $merged-properties);
-
-          $map: (
-            '#{$utility}': (
-              important: #{if($important == true or $local-important == true, 'true', 'false')},
-              responsive: $responsive,
-              pseudos: $merged-pseudos,
-              selector: '.#{$compiled-class-name}',
-              extra-selector: $extra-selector,
-              properties: (
-                $compiled-properties
-              )
-            )
-          );
-          $class-set: map.merge($class-set, $map);
+          
+          // Compile class with property
+          $compiled-class: ($compiled-class-name: $compiled-properties);
+          $class-map: map.merge($class-map, $compiled-class)
         }
-        $json-set: map.merge($json-set, $class-set) !global;
+
+        $map: (
+          '#{$utility}': (
+            important: #{if($important == true or $local-important == true, 'true', 'false')},
+            responsive: $responsive,
+            pseudos: $merged-pseudos,
+            extra-selector: $extra-selector,
+            classes: (
+              $class-map
+            )
+          )
+        );
+        $json-set: map.merge($json-set, $map) !global;
       }
     }
   }
@@ -681,7 +681,7 @@ $responsive-class-set: map.merge($responsive-class-set, $responsive-pseudo-set);
 $merged-class-set: map.merge($standard-class-set, $responsive-class-set);
 
 // Class generation
-@if map.get($config, output-mode) == 'css' {
+@if map.get($config, output) == 'css' {
   @if map.get($config, comma-compression) == true {
     @each $class, $detail in $standard-class-set {
       $selector: map.get($detail, selector);
@@ -765,46 +765,48 @@ $merged-class-set: map.merge($standard-class-set, $responsive-class-set);
   */
 }
 
-@function append-comma($boolean) {
-  @if $boolean {
-    @return #{''};
-  } @else {
-    @return #{','};
-  }
-}
-
 @function json-encode($classes) {
   $output: #{''};
 
-  @each $class, $detail in $classes {
+  @each $class, $class-detail in $classes {
     
-    $responsive: map.get($detail, responsive);
-    $pseudos: map.get($detail, pseudos);
-    $selector: map.get($detail, selector);
-    $extra-selector: map.get($detail, extra-selector);
-    $important: map.get($detail, important);
-    $properties: map.get($detail, properties);
+    $important: map.get($class-detail, important);
+    $responsive: map.get($class-detail, responsive);
+    $pseudos: map.get($class-detail, pseudos);
+    $extra-selector: map.get($class-detail, extra-selector);
+    $classes: map.get($class-detail, classes);
 
     // Quotify and compile properties
-    $final-properties: #{''};
-    @each $property, $property-value in $properties {
-      $value: #{'\"'}#{$property}#{'\"'}#{': '}#{'\"'}#{$property-value}#{'\"'};
-      $final-properties: list.join($final-properties, $value, $separator: comma);
+    // $final-properties: #{''};
+    // @each $property, $property-value in $properties {
+    //   $value: #{'\"'}#{$property}#{'\"'}#{': '}#{'\"'}#{$property-value}#{'\"'};
+    //   $final-properties: list.join($final-properties, $value, $separator: comma);
+    // }
+
+    $class-map: #{''};
+    @each $class, $class-properties in $classes {
+
+      $final-properties: ();
+      @each $property, $value in $class-properties {
+        $value: #{'\"'}#{$property}#{'\"'}#{': '}#{'\"'}#{$value}#{'\"'};
+        $final-properties: list.join($final-properties, $value, $separator: comma);
+      }
+
+      $value: #{'\"'}#{$class}#{'\"'}#{': '}#{'{'}#{$final-properties}#{'}'};
+      $class-map: list.join($class-map, $value, $separator: comma);
     }
 
-
     // Final JSON output
-    $output: list.join($output, #{'\"'}#{$class}#{'\": {'}#{'"selector": "'}#{$selector}#{'\", '}#{'"extra-selector": '}#{'\"'}#{$extra-selector}#{'\", '}#{'"important": '}#{'\"'}#{$important}#{'\", '}#{'"responsive": "'}#{$responsive}#{'\", '}#{'"pseudos": '}#{'\"'}#{$pseudos}#{'\", '}#{'\"properties\": {'}#{$final-properties}#{'}}'}, $separator: comma);
+    $output: list.join($output, #{'\"'}#{$class}#{'\": {'}#{'"important": '}#{'\"'}#{$important}#{'\", '}#{'"extra-selector": '}#{'\"'}#{$extra-selector}#{'\", '}#{'"responsive": "'}#{$responsive}#{'\", '}#{'"pseudos": '}#{'\"'}#{$pseudos}#{'\", '}#{'\"classes\": {'}#{$class-map}#{'}}'}, $separator: comma);
 
   }
   @return $output;
 }
 
 // JSON generation
-@if map.get($config, output-mode) == 'json' {
+@if map.get($config, output) == 'json' {
   @include json($json-set);
 }
-
 
 // Apply mixin
 @mixin apply($utilities) {

@@ -4,19 +4,21 @@
 // 2. Configuree Uniform (Optional)
 @use "uniform" as * with (
   $config: (
-    output-mode: 'css',
+    output: 'json',
+    important: false,
     comma-compression: true,
     css-variables: true
   )
 );
 
 // -------------------
-// New Features v1.2.0
+// New Features v1.2.3
 // -------------------
 
-// **Introducing Output Mode**
-// - setting output-mode to 'css' outputs CSS (default), 
-// - you can also output JSON by setting this to 'json'!
+// **Introducing Output Modes**
+// - setting `output` to `'css'` outputs CSS (default), 
+// - you can also output JSON by setting this to `'json'`!
+// - or set to `'headless'` to enable headless mode
 
 // **Multi-Property Utilities**
 // - you can now generate multi-property utilities directly via utilities settings

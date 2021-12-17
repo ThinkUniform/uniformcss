@@ -1,4 +1,4 @@
-/*! UniformCSS v1.2.0 | MIT License | github.com/ThinkUniform/uniformcss */
+/*! UniformCSS v1.2.3 | MIT License | github.com/ThinkUniform/uniformcss */
 
 @use "sass:map";
 @use "sass:list";
@@ -104,7 +104,7 @@ $default-config: (
   delimiter: '-',
   pseudo-delimiter: '.',
   screen-delimiter: '.',
-  output-mode: 'css',
+  output: 'css',
   comma-compression: false,
   css-variables: true,
   
