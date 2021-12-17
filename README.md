@@ -19,7 +19,11 @@
     <a href="https://github.com/ThinkUniform/uniformcss/issues">Request Feature</a>
   </p>
 </p>
+<br />
 
+---
+
+<br />
 <details open="open">
   <summary>Table of Contents</summary>
   <ol>
@@ -41,6 +45,7 @@
     <li><a href="#contact">Contact</a></li>
   </ol>
 </details>
+<br />
 
 ## Introduction
 
