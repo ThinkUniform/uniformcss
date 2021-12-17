@@ -225,18 +225,18 @@
 @function ordered-map-merge($map-1, $map-2) {
   // https://github.com/sass/dart-sass/issues/1385
   // Special credit to @starkis
-	$merged-map: $map-1;
-	@each $map-2-key, $map-2-value in $map-2 {
-		$map-1-value: map.get($map-1, $map-2-key);
-		@if type-of($map-1-value) == map and type-of($map-2-value) == map {
-			// Merge identically named nested maps.
-			$sub-merged-map: ordered-map-merge($map-1-value, $map-2-value);
-			$merged-map: map.set($merged-map, $map-2-key, $sub-merged-map);
-		} @else {
-			$merged-map: map.set($merged-map, $map-2-key, $map-2-value);
-		}
-	}
-	@return $merged-map;
+  $merged-map: $map-1;
+  @each $map-2-key, $map-2-value in $map-2 {
+    $map-1-value: map.get($map-1, $map-2-key);
+    @if type-of($map-1-value) == map and type-of($map-2-value) == map {
+      // Merge identically named nested maps.
+      $sub-merged-map: ordered-map-merge($map-1-value, $map-2-value);
+      $merged-map: map.set($merged-map, $map-2-key, $sub-merged-map);
+    } @else {
+      $merged-map: map.set($merged-map, $map-2-key, $map-2-value);
+    }
+  }
+  @return $merged-map;
 }
 
 $config: ordered-map-merge(core.$all-config, core.$config);
@@ -256,10 +256,10 @@ $json-set: ();
       $map-reversed: ();
       
       @for $i from length($keys) through 1 {
-          $map-reversed: map-merge(
-              $map-reversed,
-              (nth($keys, $i): map-get($map, nth($keys, $i)))
-          );
+        $map-reversed: map-merge(
+          $map-reversed,
+          (nth($keys, $i): map-get($map, nth($keys, $i)))
+        );
       }
 
       @if type-of($map-reversed) == "map" {
