@@ -60,18 +60,18 @@ $config: (
     "~",
   );
 
-	$string: "" + $any;
-	$escaped-string: "";
-	@for $x from 1 through string.length($string) {
-		$character: string.slice($string, $x, $x);
-		@if list.index($escape-chars, $character) {
-			// NOTE: `"\\..."` must be quoted.
-			$escaped-string: $escaped-string + "\\"+ $character;
-		} @else {
-			$escaped-string: $escaped-string + $character;
-		}
-	}
-	@return $escaped-string;
+  $string: "" + $any;
+  $escaped-string: "";
+  @for $x from 1 through string.length($string) {
+    $character: string.slice($string, $x, $x);
+    @if list.index($escape-chars, $character) {
+      // NOTE: `"\\..."` must be quoted.
+      $escaped-string: $escaped-string + "\\"+ $character;
+    } @else {
+      $escaped-string: $escaped-string + $character;
+    }
+  }
+  @return $escaped-string;
 }
 
 @function string-split($string, $separator) {
