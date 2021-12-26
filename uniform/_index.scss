@@ -427,6 +427,20 @@ $json-set: ();
               )
             );
             $pseudo-set: map.merge($pseudo-set, $map);
+          } @else if $pseudo == checked-sibling {
+            $map: (
+              '#{$compiled-pseudo-name}': (
+                selector: 'input:checked ~ .#{$compiled-pseudo-name}#{$extra-selector}',
+                parent: '.#{$compiled-class-name}',
+                category: pseudo,
+                extra-selector: $extra-selector,
+                pseudo: checked-sibling,
+                properties: (
+                  $compiled-properties
+                )
+              )
+            );
+            $pseudo-set: map.merge($pseudo-set, $map);
           } @else if $pseudo != none {
             $map: (
               '#{$compiled-pseudo-name}': (
@@ -535,6 +549,21 @@ $json-set: ();
                       category: pseudo,
                       extra-selector: $extra-selector,
                       pseudo: group-focus,
+                      screen: $screen,
+                      properties: (
+                        $compiled-properties
+                      )
+                    )
+                  );
+                  $pseudo-set: map.merge($pseudo-set, $map);
+                } @else if $pseudo == checked-sibling {
+                  $map: (
+                    '#{$compiled-responsive-pseudo-name}#{$compiled-class-name}': (
+                      selector: 'input:checked ~ .#{$compiled-responsive-pseudo-name}#{$compiled-class-name}#{$extra-selector}',
+                      parent: '.#{$screen}#{$screen-delimiter}#{$compiled-class-name}',
+                      category: pseudo,
+                      extra-selector: $extra-selector,
+                      pseudo: checked-sibling,
                       screen: $screen,
                       properties: (
                         $compiled-properties
@@ -848,6 +877,20 @@ $merged-class-set: map.merge($standard-class-set, $responsive-class-set);
                 }
               }
             }
+          } @else if $pseudo == checked-sibling {
+            @at-root input:checked ~ & {
+              @if $extra-selector == null {
+                @each $property, $value in $properties {
+                  #{$property}: #{$value};
+                }
+              } @else {
+                & #{$extra-selector} {
+                  @each $property, $value in $properties {
+                    #{$property}: #{$value};
+                  }
+                }
+              }
+            }
           } @else if $pseudo != none {
             @at-root &:#{$pseudo} {
               @if $extra-selector == null {
@@ -895,6 +938,20 @@ $merged-class-set: map.merge($standard-class-set, $responsive-class-set);
               }
             } @else if $pseudo == group-focus {
               @at-root .group:focus & {
+                @if $extra-selector == null {
+                  @each $property, $value in $properties {
+                    #{$property}: #{$value};
+                  }
+                } @else {
+                  & #{$extra-selector} {
+                    @each $property, $value in $properties {
+                      #{$property}: #{$value};
+                    }
+                  }
+                }
+              }
+            } @else if $pseudo == checked-sibling {
+              @at-root input:checked ~ & {
                 @if $extra-selector == null {
                   @each $property, $value in $properties {
                     #{$property}: #{$value};
