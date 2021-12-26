@@ -3,13 +3,13 @@
 
 $config: (
   utilities: (
-    list-style-positions: (
+    list-style-position: (
       important: false,
       shorthand: list,
       responsive: false,
       responsive-pseudos: false,
       extra-selector: null,
-      properties: (list-style-positions),
+      properties: (list-style-position),
       static-properties: (),
       variants: (
         inside: inside,
