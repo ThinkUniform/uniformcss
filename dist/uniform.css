@@ -1,4 +1,4 @@
-/*! UniformCSS v1.2.6 | MIT License | github.com/ThinkUniform/uniformcss */
+/*! UniformCSS v1.2.7 | MIT License | github.com/ThinkUniform/uniformcss */
 /*! purgecss start ignore */
 :root {
   --FONT-FAMILIES-----------------:#01;
@@ -1842,11 +1842,11 @@ select {
 }
 
 .list-inside {
-  list-style-positions: inside;
+  list-style-position: inside;
 }
 
 .list-outside {
-  list-style-positions: outside;
+  list-style-position: outside;
 }
 
 .leading-tightest {
