@@ -11,17 +11,20 @@
   )
 );
 
-// -------------------
-// New Features v1.2.4
-// -------------------
+// -----------------------
+// New Features v1.2 ~ 1.3
+// -----------------------
 
 // **Introducing Output Modes**
-// - setting `output` to `'css'` outputs CSS (default), 
-// - you can also output JSON by setting this to `'json'`!
+// - Setting `output` to `'css'` outputs CSS (default), 
+// - You can also output JSON by setting this to `'json'`!
 // - or set to `'headless'` to enable headless mode
 
 // **Multi-Property Utilities**
-// - you can now generate multi-property utilities directly via the utilities settings
+// - You can now generate multi-property utilities directly via the utilities settings
 
 // **Localized Important**
 // - Enable important locally directly via the utilities settings
+
+// **Other Improvements**
+// - You can enable subsequent sibling selector for checked input with `checked-sibling`
