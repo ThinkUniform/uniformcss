@@ -18,11 +18,7 @@ $config: (
           core.fills(bg),
           (
             transparent: transparent,
-            current: currentColor,
-            success: var(--bg-success, rgba(18, 181, 57, var(--bg-opacity))),
-            warning: var(--bg-warning, rgba(210, 127, 0, var(--bg-opacity))),
-            danger: var(--bg-danger, rgba(203, 18, 0, var(--bg-opacity))),
-            info: var(--bg-info, rgba(0, 200, 177, var(--bg-opacity))),
+            current: currentColor
           )
         )
       ),

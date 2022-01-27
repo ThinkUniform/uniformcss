@@ -12,7 +12,7 @@ $config: (
       properties: (--backdrop-blur),
       static-properties: (),
       variants: (
-        core.blurs()
+        core.getBlurs()
       ),
       pseudos: (none)
     )

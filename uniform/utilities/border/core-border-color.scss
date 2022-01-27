@@ -18,11 +18,7 @@ $config: (
           core.fills(border),
           (
             transparent: transparent,
-            current: currentColor,
-            success: var(--border-success, rgba(18, 181, 57, var(--border-opacity))),
-            warning: var(--border-warning, rgba(210, 127, 0, var(--border-opacity))),
-            danger: var(--border-danger, rgba(203, 18, 0, var(--border-opacity))),
-            info: var(--border-info, rgba(0, 200, 177, var(--border-opacity))),
+            current: currentColor
           )
         )
       ),
