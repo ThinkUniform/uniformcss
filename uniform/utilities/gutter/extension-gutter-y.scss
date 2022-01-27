@@ -6,7 +6,10 @@ $range-limit: map.get(core.$all-config, range-limits, gutter);
 $gutter-map: ();
 @each $size-key, $size-value in core.sizes($range-limit) {
   $map: (
-    $size-key:  calc(#{$size-value} * var(--gutter-top)) 0 calc(#{$size-value} * var(--gutter-bottom)) 0,
+    $size-key:  (
+      margin-top: calc(#{$size-value} * var(--gutter-top)),
+      margin-bottom: calc(#{$size-value} * var(--gutter-bottom)),
+    )
   );
   $gutter-map: map.merge($gutter-map, $map);
 }
