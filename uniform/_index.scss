@@ -204,6 +204,7 @@
 @use "utilities/typography/core-overflow-wrap";
 @use "utilities/typography/core-text-align";
 @use "utilities/typography/core-text-decoration";
+@use "utilities/typography/core-text-decoration-style";
 @use "utilities/typography/core-text-overflow";
 @use "utilities/typography/core-text-transform";
 @use "utilities/typography/core-white-space";
@@ -729,27 +730,29 @@ $merged-class-set: map.merge($standard-class-set, $responsive-class-set);
         }
       }
     }
-
-    @each $screen, $screen-value in map.get($config, screens) {
-      @media (min-width: $screen-value) {
-        @each $class, $detail in $responsive-class-set {
-          @if $screen == map.get($detail, screen) {
-            $selector: map.get($detail, selector);
-            $parent: map.get($detail, parent);
-            $category: map.get($detail, category);
-            $properties: map.get($detail, properties);
-            
-            #{$selector} {
-              @if $category == standard {
-                @each $key, $value in $properties {
-                  #{$key}: #{$value};
+    
+    @if map.get($config, screens) != null {
+      @each $screen, $screen-value in map.get($config, screens) {
+        @media (min-width: $screen-value) {
+          @each $class, $detail in $responsive-class-set {
+            @if $screen == map.get($detail, screen) {
+              $selector: map.get($detail, selector);
+              $parent: map.get($detail, parent);
+              $category: map.get($detail, category);
+              $properties: map.get($detail, properties);
+              
+              #{$selector} {
+                @if $category == standard {
+                  @each $key, $value in $properties {
+                    #{$key}: #{$value};
+                  }
+                } @else {
+                  @extend #{$parent};
                 }
-              } @else {
-                @extend #{$parent};
               }
             }
-          }
-        }				
+          }				
+        }
       }
     }
   } @else {
@@ -765,23 +768,24 @@ $merged-class-set: map.merge($standard-class-set, $responsive-class-set);
         }
       }
     }
-
-    @each $screen, $screen-value in map.get($config, screens) {
-      @media (min-width: $screen-value) {
-        @each $class, $detail in $responsive-class-set {
-          @if $screen == map.get($detail, screen) {
-            $selector: map.get($detail, selector);
-            $parent: map.get($detail, parent);
-            $category: map.get($detail, category);
-            $properties: map.get($detail, properties);
-            
-            #{$selector} {
-              @each $key, $value in $properties {
-                #{$key}: #{$value};
+    @if map.get($config, screens) != null {
+      @each $screen, $screen-value in map.get($config, screens) {
+        @media (min-width: $screen-value) {
+          @each $class, $detail in $responsive-class-set {
+            @if $screen == map.get($detail, screen) {
+              $selector: map.get($detail, selector);
+              $parent: map.get($detail, parent);
+              $category: map.get($detail, category);
+              $properties: map.get($detail, properties);
+              
+              #{$selector} {
+                @each $key, $value in $properties {
+                  #{$key}: #{$value};
+                }
               }
             }
-          }
-        }				
+          }				
+        }
       }
     }
   }
