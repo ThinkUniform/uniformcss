@@ -848,6 +848,7 @@ $merged-class-set: map.merge($standard-class-set, $responsive-class-set);
       $selector: map.get($target-utility, selector);
       $category: map.get($target-utility, category);
       $extra-selector: map.get($target-utility, extra-selector);
+      $all-pseudos: map.get($config, pseudos);
       $pseudo: map.get($target-utility, pseudo);
       $screen: map.get($target-utility, screen);
       
@@ -896,7 +897,7 @@ $merged-class-set: map.merge($standard-class-set, $responsive-class-set);
               }
             }
           } @else if $pseudo != none {
-            @at-root &:#{$pseudo} {
+            @at-root &#{map.get($all-pseudos, $pseudo)} {
               @if $extra-selector == null {
                 @each $property, $value in $properties {
                   #{$property}: #{$value};
