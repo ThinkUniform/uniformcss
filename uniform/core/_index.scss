@@ -1,4 +1,4 @@
-/*! UniformCSS v1.5.1 | MIT License | github.com/ThinkUniform/uniformcss */
+/*! UniformCSS v1.5.2 | MIT License | github.com/ThinkUniform/uniformcss */
 
 @use "sass:map";
 @use "sass:list";
@@ -1078,18 +1078,23 @@ $merged-gradients: map.deep-merge($merged-gradients, $extend-gradients);
 @function positive-sizes($limit: null) {
   @if $limit != null {
     $size-map: ();
-    $min: list.nth($limit, 1);
-    $max: list.nth($limit, 2);
+    @if list.length($merged-positive-sizes) != 0 {
+      $min: list.nth($limit, 1);
+      $max: list.nth($limit, 2);
 
-    @for $i from $min through $max {
-      $map: list.nth($merged-positive-sizes, $i);
-      $key: list.nth($map, 1);
-      $limit-map: (
-        $key: list.nth($map, 2)
-      );
-      $size-map: map.merge($size-map, $limit-map);
+      @if list.length($merged-positive-sizes) < $max {
+        $max: $min + 1
+      }
+
+      @for $i from $min through $max {
+        $map: list.nth($merged-positive-sizes, $i);
+        $key: list.nth($map, 1);
+        $limit-map: (
+          $key: list.nth($map, 2)
+        );
+        $size-map: map.merge($size-map, $limit-map);
+      }
     }
-
     @return $size-map;
   } @else {
     @return $merged-positive-sizes;
@@ -1099,18 +1104,23 @@ $merged-gradients: map.deep-merge($merged-gradients, $extend-gradients);
 @function negative-sizes($limit: null) {
   @if $limit != null {
     $size-map: ();
-    $min: list.nth($limit, 1);
-    $max: list.nth($limit, 2);
+    @if list.length($merged-negative-sizes) != 0 {
+      $min: list.nth($limit, 1);
+      $max: list.nth($limit, 2);
 
-    @for $i from $min through $max {
-      $map: list.nth($merged-negative-sizes, $i);
-      $key: list.nth($map, 1);
-      $limit-map: (
-        $key: list.nth($map, 2)
-      );
-      $size-map: map.merge($size-map, $limit-map);
+      @if list.length($merged-negative-sizes) < $max {
+        $max: $min + 1
+      }
+
+      @for $i from $min through $max {
+        $map: list.nth($merged-negative-sizes, $i);
+        $key: list.nth($map, 1);
+        $limit-map: (
+          $key: list.nth($map, 2)
+        );
+        $size-map: map.merge($size-map, $limit-map);
+      }
     }
-
     @return $size-map;
   } @else {
     @return $merged-negative-sizes;
