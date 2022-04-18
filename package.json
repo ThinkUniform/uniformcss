@@ -1,6 +1,6 @@
 {
   "name": "uniformcss",
-  "version": "1.5.1",
+  "version": "1.5.2",
   "description": "A fully configurable utility class generator and CSS framework built for Sass projects.",
   "main": "main.sass",
   "scripts": {
@@ -30,7 +30,7 @@
   },
   "license": "MIT",
   "devDependencies": {
-    "postcss-cli": "^7.1.0",
-    "purgecss": "^3.0.0"
+    "postcss-cli": "^9.1.0",
+    "purgecss": "^4.1.3"
   }
 }
