@@ -2,12 +2,12 @@
 // @use "uniform" as *;
 
 // 2. Configure Uniform (Optional)
-@use "uniform" as * with (
+@use 'uniform' as * with (
   $config: (
     output: 'css',
     important: false,
     comma-compression: true,
-    css-variables: false,
+    css-variables: true,
   )
 );
 
@@ -16,7 +16,7 @@
 // -----------------------
 
 // **Introducing Output Modes**
-// - Setting `output` to `'css'` outputs CSS (default), 
+// - Setting `output` to `'css'` outputs CSS (default),
 // - You can also output JSON by setting this to `'json'`!
 // - or set to `'headless'` to enable headless mode
 
