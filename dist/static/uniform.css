@@ -1,4 +1,4 @@
-/*! UniformCSS v1.5.0 | MIT License | github.com/ThinkUniform/uniformcss */
+/*! UniformCSS v1.5.2 | MIT License | github.com/ThinkUniform/uniformcss */
 /*! purgecss start ignore */
 @keyframes spin {
   from {
@@ -1303,23 +1303,23 @@ select {
 }
 
 .decoration-solid, .focus\.decoration-solid:focus, .group:hover .group-hover\.decoration-solid, .hover\.decoration-solid:hover {
-  text-decoration: solid;
+  text-decoration-style: solid;
 }
 
 .decoration-double, .focus\.decoration-double:focus, .group:hover .group-hover\.decoration-double, .hover\.decoration-double:hover {
-  text-decoration: double;
+  text-decoration-style: double;
 }
 
 .decoration-dotted, .focus\.decoration-dotted:focus, .group:hover .group-hover\.decoration-dotted, .hover\.decoration-dotted:hover {
-  text-decoration: dotted;
+  text-decoration-style: dotted;
 }
 
 .decoration-dashed, .focus\.decoration-dashed:focus, .group:hover .group-hover\.decoration-dashed, .hover\.decoration-dashed:hover {
-  text-decoration: dashed;
+  text-decoration-style: dashed;
 }
 
 .decoration-wavy, .focus\.decoration-wavy:focus, .group:hover .group-hover\.decoration-wavy, .hover\.decoration-wavy:hover {
-  text-decoration: wavy;
+  text-decoration-style: wavy;
 }
 
 .underline, .focus\.underline:focus, .group:hover .group-hover\.underline, .hover\.underline:hover {
