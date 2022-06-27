@@ -838,94 +838,24 @@ $merged-class-set: map.merge($standard-class-set, $responsive-class-set);
 // Apply mixin
 @mixin apply($utilities) {
   $utility-array: core.string-split($utilities, ' ');
+
   @each $utility in $utility-array {
+    
     $escaped-utility: core.escape($utility);
-    @if map.get($merged-class-set, $escaped-utility) == null {
-      @error '[#{$utility}] could not be found, please check your spelling.';
-    } @else {
-      $target-utility: map.get($merged-class-set, $escaped-utility);
-      $properties: map.get($target-utility, properties);
-      $selector: map.get($target-utility, selector);
-      $category: map.get($target-utility, category);
-      $extra-selector: map.get($target-utility, extra-selector);
-      $all-pseudos: map.get($config, pseudos);
-      $pseudo: map.get($target-utility, pseudo);
-      $screen: map.get($target-utility, screen);
-      
-      @if $screen == null {
-        @if $category == pseudo {
-          @if $pseudo == group-hover {	
-            @at-root .group:hover & {
-              @if $extra-selector == null {
-                @each $property, $value in $properties {
-                  #{$property}: #{$value};
-                }
-              } @else {
-                & #{$extra-selector} {
-                  @each $property, $value in $properties {
-                    #{$property}: #{$value};
-                  }
-                }
-              }
-            }
-          } @else if $pseudo == group-focus {
-            @at-root .group:focus & {
-              @if $extra-selector == null {
-                @each $property, $value in $properties {
-                  #{$property}: #{$value};
-                }
-              } @else {
-                & #{$extra-selector} {
-                  @each $property, $value in $properties {
-                    #{$property}: #{$value};
-                  }
-                }
-              }
-            }
-          } @else if $pseudo == checked-sibling {
-            @at-root input:checked ~ & {
-              @if $extra-selector == null {
-                @each $property, $value in $properties {
-                  #{$property}: #{$value};
-                }
-              } @else {
-                & #{$extra-selector} {
-                  @each $property, $value in $properties {
-                    #{$property}: #{$value};
-                  }
-                }
-              }
-            }
-          } @else if $pseudo != none {
-            @at-root &#{map.get($all-pseudos, $pseudo)} {
-              @if $extra-selector == null {
-                @each $property, $value in $properties {
-                  #{$property}: #{$value};
-                }
-              } @else {
-                & #{$extra-selector} {
-                  @each $property, $value in $properties {
-                    #{$property}: #{$value};
-                  }
-                }
-              }
-            }
-          }
-        } @else {
-          @if $extra-selector == null {
-            @each $property, $value in $properties {
-              #{$property}: #{$value};
-            }
-          } @else {
-            & #{$extra-selector} {
-              @each $property, $value in $properties {
-                #{$property}: #{$value};
-              }
-            }
-          }
-        }
+    @if $escaped-utility != "" {
+      @if map.get($merged-class-set, $escaped-utility) == null {
+        @error '[#{$utility}] could not be found, please check your spelling.';
       } @else {
-        @media (min-width: map.get($config, screens, $screen)) {
+        $target-utility: map.get($merged-class-set, $escaped-utility);
+        $properties: map.get($target-utility, properties);
+        $selector: map.get($target-utility, selector);
+        $category: map.get($target-utility, category);
+        $extra-selector: map.get($target-utility, extra-selector);
+        $all-pseudos: map.get($config, pseudos);
+        $pseudo: map.get($target-utility, pseudo);
+        $screen: map.get($target-utility, screen);
+        
+        @if $screen == null {
           @if $category == pseudo {
             @if $pseudo == group-hover {	
               @at-root .group:hover & {
@@ -970,7 +900,7 @@ $merged-class-set: map.merge($standard-class-set, $responsive-class-set);
                 }
               }
             } @else if $pseudo != none {
-              @at-root &:#{$pseudo} {
+              @at-root &#{map.get($all-pseudos, $pseudo)} {
                 @if $extra-selector == null {
                   @each $property, $value in $properties {
                     #{$property}: #{$value};
@@ -993,6 +923,80 @@ $merged-class-set: map.merge($standard-class-set, $responsive-class-set);
               & #{$extra-selector} {
                 @each $property, $value in $properties {
                   #{$property}: #{$value};
+                }
+              }
+            }
+          }
+        } @else {
+          @media (min-width: map.get($config, screens, $screen)) {
+            @if $category == pseudo {
+              @if $pseudo == group-hover {	
+                @at-root .group:hover & {
+                  @if $extra-selector == null {
+                    @each $property, $value in $properties {
+                      #{$property}: #{$value};
+                    }
+                  } @else {
+                    & #{$extra-selector} {
+                      @each $property, $value in $properties {
+                        #{$property}: #{$value};
+                      }
+                    }
+                  }
+                }
+              } @else if $pseudo == group-focus {
+                @at-root .group:focus & {
+                  @if $extra-selector == null {
+                    @each $property, $value in $properties {
+                      #{$property}: #{$value};
+                    }
+                  } @else {
+                    & #{$extra-selector} {
+                      @each $property, $value in $properties {
+                        #{$property}: #{$value};
+                      }
+                    }
+                  }
+                }
+              } @else if $pseudo == checked-sibling {
+                @at-root input:checked ~ & {
+                  @if $extra-selector == null {
+                    @each $property, $value in $properties {
+                      #{$property}: #{$value};
+                    }
+                  } @else {
+                    & #{$extra-selector} {
+                      @each $property, $value in $properties {
+                        #{$property}: #{$value};
+                      }
+                    }
+                  }
+                }
+              } @else if $pseudo != none {
+                @at-root &:#{$pseudo} {
+                  @if $extra-selector == null {
+                    @each $property, $value in $properties {
+                      #{$property}: #{$value};
+                    }
+                  } @else {
+                    & #{$extra-selector} {
+                      @each $property, $value in $properties {
+                        #{$property}: #{$value};
+                      }
+                    }
+                  }
+                }
+              }
+            } @else {
+              @if $extra-selector == null {
+                @each $property, $value in $properties {
+                  #{$property}: #{$value};
+                }
+              } @else {
+                & #{$extra-selector} {
+                  @each $property, $value in $properties {
+                    #{$property}: #{$value};
+                  }
                 }
               }
             }
