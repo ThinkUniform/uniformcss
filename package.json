@@ -1,6 +1,6 @@
 {
   "name": "uniformcss",
-  "version": "1.5.2",
+  "version": "1.5.3",
   "description": "A fully configurable utility class generator and CSS framework built for Sass projects.",
   "main": "main.sass",
   "scripts": {
