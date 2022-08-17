@@ -5,6 +5,7 @@
 $exclude: map.get($all-config, excludes);
 $include: map.get($all-config, includes);
 $output: map.get($all-config, output);
+$css-variables: map.get($all-config, css-variables);
 
 $include-condition: true;
 @if ( $output == 'headless' or map.get($config, output) == 'json' ) {
@@ -38,7 +39,11 @@ $include-condition: true;
   }
 
   pre, code {
-		font-family: var(--font-mono);
+    @if ( $css-variables == true ) {
+      font-family: var(--font-mono);
+    } @else {
+      font-family: font(mono);
+    }
 	}
 
   [type=date],
