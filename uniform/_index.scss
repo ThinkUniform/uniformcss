@@ -243,7 +243,12 @@ $json-set: ();
   $placeholder-support: map.get($config, placeholder-support);
   $apply-support: map.get($config, apply-support);
 
-  $utilities: map.get($config, utilities);
+  $utilities: core.$utilities;
+  @if map.get(core.$config, utilities) != null {
+    // Seed user-supplied utilities first so new keys keep their authored
+    // position and overrides retain the original (pre-registry) ordering.
+    $utilities: map.deep-merge(map.get(core.$config, utilities), core.$utilities);
+  }
   $excludes: map.get($config, excludes);
   $includes: map.get($config, includes);
 
@@ -338,12 +343,46 @@ $json-set: ();
 
         $compiled-properties: map.merge($static-properties, $merged-properties);
 
+        // Build pseudo entries and the compressed group selector in a single
+        // pass. `grouped-selector` lets the compressed emitter output one
+        // comma-joined rule per base class instead of relying on @extend.
+        $grouped-selector: '.#{$compiled-class-name}#{$extra-selector}';
+        @each $pseudo in $merged-pseudos {
+          $compiled-pseudo-name: #{$pseudo}#{$pseudo-delimiter}#{$compiled-class-name};
+          $pseudo-selector: null;
+          @if $pseudo == group-hover {
+            $pseudo-selector: '.group:hover .#{$compiled-pseudo-name}#{$extra-selector}';
+          } @else if $pseudo == group-focus {
+            $pseudo-selector: '.group:focus .#{$compiled-pseudo-name}#{$extra-selector}';
+          } @else if $pseudo == checked-sibling {
+            $pseudo-selector: 'input:checked ~ .#{$compiled-pseudo-name}#{$extra-selector}';
+          } @else if $pseudo != none {
+            $pseudo-selector: '.#{$compiled-pseudo-name}#{$extra-selector}#{map.get($all-pseudos, $pseudo)}';
+          }
+          @if $pseudo-selector != null {
+            $pseudo-set: map.merge($pseudo-set, (
+              '#{$compiled-pseudo-name}': (
+                selector: $pseudo-selector,
+                parent: '.#{$compiled-class-name}',
+                category: pseudo,
+                extra-selector: $extra-selector,
+                pseudo: $pseudo,
+                properties: (
+                  $compiled-properties
+                )
+              )
+            ));
+            $grouped-selector: '#{$grouped-selector}, #{$pseudo-selector}';
+          }
+        }
+
         $map: (
           '#{$compiled-class-name}': (
             identifier: '#{$compiled-class-name}',
             responsive: $responsive,
             pseudos: $merged-pseudos,
             selector: '.#{$compiled-class-name}#{$extra-selector}',
+            grouped-selector: $grouped-selector,
             parent: null,
             category: standard,
             extra-selector: $extra-selector,
@@ -353,68 +392,6 @@ $json-set: ();
           )
         );
         $class-set: map.merge($class-set, $map);
-
-        // For EACH PSEUDO do the following
-        @each $pseudo in $merged-pseudos {
-          $compiled-pseudo-name: #{$pseudo}#{$pseudo-delimiter}#{$compiled-class-name};
-          @if $pseudo == group-hover {
-            $map: (
-              '#{$compiled-pseudo-name}': (
-                selector: '.group:hover .#{$compiled-pseudo-name}#{$extra-selector}',
-                parent: '.#{$compiled-class-name}',
-                category: pseudo,
-                extra-selector: $extra-selector,
-                pseudo: group-hover,
-                properties: (
-                  $compiled-properties
-                )
-              )
-            );
-            $pseudo-set: map.merge($pseudo-set, $map);
-          } @else if $pseudo == group-focus {
-            $map: (
-              '#{$compiled-pseudo-name}': (
-                selector: '.group:focus .#{$compiled-pseudo-name}#{$extra-selector}',
-                parent: '.#{$compiled-class-name}',
-                category: pseudo,
-                extra-selector: $extra-selector,
-                pseudo: group-focus,
-                properties: (
-                  $compiled-properties
-                )
-              )
-            );
-            $pseudo-set: map.merge($pseudo-set, $map);
-          } @else if $pseudo == checked-sibling {
-            $map: (
-              '#{$compiled-pseudo-name}': (
-                selector: 'input:checked ~ .#{$compiled-pseudo-name}#{$extra-selector}',
-                parent: '.#{$compiled-class-name}',
-                category: pseudo,
-                extra-selector: $extra-selector,
-                pseudo: checked-sibling,
-                properties: (
-                  $compiled-properties
-                )
-              )
-            );
-            $pseudo-set: map.merge($pseudo-set, $map);
-          } @else if $pseudo != none {
-            $map: (
-              '#{$compiled-pseudo-name}': (
-                selector: '.#{$compiled-pseudo-name}#{$extra-selector}#{map.get($all-pseudos, $pseudo)}',
-                parent: '.#{$compiled-class-name}',
-                category: pseudo,
-                extra-selector: $extra-selector,
-                pseudo: $pseudo,
-                properties: (
-                  $compiled-properties
-                )
-              )
-            );
-            $pseudo-set: map.merge($pseudo-set, $map);
-          }
-        }
       }
       $standard-class-set: map.merge($standard-class-set, $class-set) !global;
       $standard-pseudo-set: map.merge($standard-pseudo-set, $pseudo-set) !global;
@@ -462,10 +439,48 @@ $json-set: ();
             }
       
             $compiled-properties: map.merge($static-properties, $merged-properties);
-      
+
+            $grouped-selector: '.#{$screen}#{$screen-delimiter}#{$compiled-class-name}#{$extra-selector}';
+
+            @if $responsive-pseudos == true {
+
+              // for EACH PSEUDO do the following
+              @each $pseudo in $merged-pseudos {
+                $compiled-responsive-pseudo-name: #{$screen}#{$screen-delimiter}#{$pseudo}#{$pseudo-delimiter};
+                $pseudo-selector: null;
+
+                @if $pseudo == group-hover {
+                  $pseudo-selector: '.group:hover .#{$compiled-responsive-pseudo-name}#{$compiled-class-name}#{$extra-selector}';
+                } @else if $pseudo == group-focus {
+                  $pseudo-selector: '.group:focus .#{$compiled-responsive-pseudo-name}#{$compiled-class-name}#{$extra-selector}';
+                } @else if $pseudo == checked-sibling {
+                  $pseudo-selector: 'input:checked ~ .#{$compiled-responsive-pseudo-name}#{$compiled-class-name}#{$extra-selector}';
+                } @else if $pseudo != none {
+                  $pseudo-selector: '.#{$compiled-responsive-pseudo-name}#{$compiled-class-name}#{$extra-selector}#{map.get($all-pseudos, $pseudo)}';
+                }
+                @if $pseudo-selector != null {
+                  $pseudo-set: map.merge($pseudo-set, (
+                    '#{$compiled-responsive-pseudo-name}#{$compiled-class-name}': (
+                      selector: $pseudo-selector,
+                      parent: '.#{$screen}#{$screen-delimiter}#{$compiled-class-name}',
+                      category: pseudo,
+                      extra-selector: $extra-selector,
+                      pseudo: $pseudo,
+                      screen: $screen,
+                      properties: (
+                        $compiled-properties
+                      )
+                    )
+                  ));
+                  $grouped-selector: '#{$grouped-selector}, #{$pseudo-selector}';
+                }
+              }
+            }
+
             $map: (
               '#{$screen}#{$screen-delimiter}#{$compiled-class-name}': (
                 selector: '.#{$screen}#{$screen-delimiter}#{$compiled-class-name}#{$extra-selector}',
+                grouped-selector: $grouped-selector,
                 parent: null,
                 category: standard,
                 extra-selector: $extra-selector,
@@ -477,76 +492,6 @@ $json-set: ();
             );
 
             $class-set: map.merge($class-set, $map);
-      
-            @if $responsive-pseudos == true {
-
-              // for EACH PSEUDO do the following
-              @each $pseudo in $merged-pseudos {
-                $compiled-responsive-pseudo-name: #{$screen}#{$screen-delimiter}#{$pseudo}#{$pseudo-delimiter};
-
-                @if $pseudo == group-hover {
-                  $map: (
-                    '#{$compiled-responsive-pseudo-name}#{$compiled-class-name}': (
-                      selector: '.group:hover .#{$compiled-responsive-pseudo-name}#{$compiled-class-name}#{$extra-selector}',
-                      parent: '.#{$screen}#{$screen-delimiter}#{$compiled-class-name}',
-                      category: pseudo,
-                      extra-selector: $extra-selector,
-                      pseudo: group-hover,
-                      screen: $screen,
-                      properties: (
-                        $compiled-properties
-                      )
-                    )
-                  );
-                  $pseudo-set: map.merge($pseudo-set, $map);
-                } @else if $pseudo == group-focus {
-                  $map: (
-                    '#{$compiled-responsive-pseudo-name}#{$compiled-class-name}': (
-                      selector: '.group:focus .#{$compiled-responsive-pseudo-name}#{$compiled-class-name}#{$extra-selector}',
-                      parent: '.#{$screen}#{$screen-delimiter}#{$compiled-class-name}',
-                      category: pseudo,
-                      extra-selector: $extra-selector,
-                      pseudo: group-focus,
-                      screen: $screen,
-                      properties: (
-                        $compiled-properties
-                      )
-                    )
-                  );
-                  $pseudo-set: map.merge($pseudo-set, $map);
-                } @else if $pseudo == checked-sibling {
-                  $map: (
-                    '#{$compiled-responsive-pseudo-name}#{$compiled-class-name}': (
-                      selector: 'input:checked ~ .#{$compiled-responsive-pseudo-name}#{$compiled-class-name}#{$extra-selector}',
-                      parent: '.#{$screen}#{$screen-delimiter}#{$compiled-class-name}',
-                      category: pseudo,
-                      extra-selector: $extra-selector,
-                      pseudo: checked-sibling,
-                      screen: $screen,
-                      properties: (
-                        $compiled-properties
-                      )
-                    )
-                  );
-                  $pseudo-set: map.merge($pseudo-set, $map);
-                } @else if $pseudo != none {
-                  $map: (
-                    '#{$compiled-responsive-pseudo-name}#{$compiled-class-name}': (
-                      selector: '.#{$compiled-responsive-pseudo-name}#{$compiled-class-name}#{$extra-selector}#{map.get($all-pseudos, $pseudo)}',
-                      parent: '.#{$screen}#{$screen-delimiter}#{$compiled-class-name}',
-                      category: pseudo,
-                      extra-selector: $extra-selector,
-                      pseudo: $pseudo,
-                      screen: $screen,
-                      properties: (
-                        $compiled-properties
-                      )
-                    )
-                  );
-                  $pseudo-set: map.merge($pseudo-set, $map);
-                }
-              }
-            }
           }
           $responsive-class-set: map.merge($responsive-class-set, $class-set) !global;
           $responsive-pseudo-set: map.merge($responsive-pseudo-set, $pseudo-set) !global;
@@ -671,19 +616,18 @@ $merged-class-set: map.merge($standard-class-set, $responsive-class-set);
 // Class generation
 @if map.get($config, output) == 'css' {
   @if map.get($config, comma-compression) == true {
+    // Compression no longer relies on @extend. Each base class carries a
+    // pre-built `grouped-selector` (base + all its pseudo selectors), so we
+    // emit one comma-joined rule per base class and skip pseudo entries.
     @each $class, $detail in $standard-class-set {
-      $selector: map.get($detail, selector);
-      $parent: map.get($detail, parent);
-      $category: map.get($detail, category);
-      $properties: map.get($detail, properties);
-  
-      #{$selector} {
-        @if $category == standard {
+      @if map.get($detail, category) == standard {
+        $selector: map.get($detail, grouped-selector);
+        $properties: map.get($detail, properties);
+
+        #{$selector} {
           @each $key, $value in $properties {
             #{$key}: #{$value};
           }
-        } @else {
-          @extend #{$parent};
         }
       }
     }
@@ -692,19 +636,13 @@ $merged-class-set: map.merge($standard-class-set, $responsive-class-set);
       @each $screen, $screen-value in map.get($config, screens) {
         @media (min-width: $screen-value) {
           @each $class, $detail in $responsive-class-set {
-            @if $screen == map.get($detail, screen) {
-              $selector: map.get($detail, selector);
-              $parent: map.get($detail, parent);
-              $category: map.get($detail, category);
+            @if $screen == map.get($detail, screen) and map.get($detail, category) == standard {
+              $selector: map.get($detail, grouped-selector);
               $properties: map.get($detail, properties);
-              
+
               #{$selector} {
-                @if $category == standard {
-                  @each $key, $value in $properties {
-                    #{$key}: #{$value};
-                  }
-                } @else {
-                  @extend #{$parent};
+                @each $key, $value in $properties {
+                  #{$key}: #{$value};
                 }
               }
             }

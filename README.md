@@ -132,6 +132,32 @@ Add Uniform as a Sass module to your `main.scss` project. Follow these steps to 
    );
    ```
 
+## Development & Testing
+
+Uniform compiles a config map into an intermediate representation and then emits
+CSS, JSON, or headless output. To guard that pipeline, the repo ships a snapshot
+test harness that compiles a set of fixtures and diffs them against committed
+baselines.
+
+```sh
+# Compile fixtures and diff against test/__snapshots__/
+npm test
+
+# Refresh baselines after an intentional output change
+npm run test:update
+```
+
+Fixtures live in `test/fixtures/` and cover the default build, the
+non-compressed path, JSON output, a heavily customized config, and the
+`apply()` mixin. Because comma-compressed output can change selector order
+without changing meaning, `test/normalize.js` expands comma groups and compares
+`selector → declaration` sets so you can confirm two stylesheets are
+functionally equivalent before updating a snapshot:
+
+```sh
+node test/normalize.js test/__snapshots__/default.css test/__out__/default.css
+```
+
 ## Community
 
 If you're ever stuck, need help, or wish to have a general discussion about this project, please get involved with the following community channels.

@@ -1,0 +1,9 @@
+// Default config: mirrors the shipped main.scss defaults.
+@use '../../uniform' as * with (
+  $config: (
+    output: 'css',
+    important: false,
+    comma-compression: true,
+    css-variables: true,
+  )
+);

@@ -1,0 +1,41 @@
+---
+description: How to add or edit a UniformCSS utility
+globs: uniform/utilities/**/*.scss
+alwaysApply: false
+---
+
+# Utility files are declarative config, not CSS
+
+Each utility file defines a single utility as a config map and registers it
+into the shared registry. It must NOT emit any CSS itself — the engine in
+`uniform/_index.scss` reads the registry and generates everything.
+
+## Required shape
+
+```scss
+@use "uniform/core";
+@use "sass:map";
+
+$config: (
+  utilities: (
+    align-content: (
+      important: false,
+      shorthand: align-content,   // class prefix; null = use variant key alone
+      responsive: true,
+      responsive-pseudos: false,
+      extra-selector: null,
+      properties: (align-content),
+      static-properties: (),      // always-emitted props (e.g. CSS vars)
+      variants: ( center: center, start: flex-start ),
+      pseudos: (none)             // or e.g. (hover, group-hover, focus)
+    )
+  )
+);
+
+// Always register via this exact line — shallow merge into the registry.
+core.$utilities: map.merge(core.$utilities, map.get($config, utilities));
+```
+
+- Do NOT use `map.deep-merge(core.$all-config, $config)` (the old, quadratic pattern).
+- Utility names are unique top-level keys, so a shallow `map.merge` is correct.
+- After adding a utility, also `@use` it in `uniform/_index.scss`.

@@ -1,4 +1,4 @@
-/*! UniformCSS v1.5.4 | MIT License | github.com/ThinkUniform/uniformcss */
+/*! UniformCSS v1.6.0 | MIT License | github.com/ThinkUniform/uniformcss */
 
 @use "sass:map";
 @use "sass:list";
@@ -667,6 +667,17 @@ $default-config: (
 // ==================================================
 
 $all-config: map.deep-merge($default-config, $config);
+
+// ==================================================
+// Utilities registry
+// ==================================================
+//
+// Each utility file registers itself here via a shallow `map.merge`.
+// Utility names are unique top-level keys, so a deep merge of the entire
+// `$all-config` per file is unnecessary (and quadratic). Keeping the
+// registry separate from the heavy theme config keeps registration O(1).
+
+$utilities: () !default;
 
 // ==================================================
 // Fetched variables

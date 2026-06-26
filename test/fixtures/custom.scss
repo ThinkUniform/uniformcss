@@ -1,0 +1,37 @@
+// Heavy custom config: prefix, important, no css-variables, excludes,
+// extended theme tokens, and a user-supplied utility override.
+// Exercises the config-merge paths that P1 touches.
+@use '../../uniform' as * with (
+  $config: (
+    output: 'css',
+    important: true,
+    comma-compression: true,
+    css-variables: false,
+    prefix: u-,
+    excludes: (animation, cursor),
+    extend: (
+      colors: (
+        brand: #ff0099,
+        accent: #00ffaa,
+      ),
+      positive-sizes: (
+        13: 3.25rem,
+      ),
+    ),
+    utilities: (
+      custom-display: (
+        important: false,
+        shorthand: cd,
+        responsive: true,
+        responsive-pseudos: false,
+        extra-selector: null,
+        properties: (display),
+        static-properties: (),
+        variants: (
+          flow: flow-root,
+        ),
+        pseudos: (none),
+      ),
+    ),
+  )
+);

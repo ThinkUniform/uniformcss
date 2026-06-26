@@ -1,0 +1,35 @@
+---
+description: UniformCSS engine architecture and test workflow
+globs: uniform/_index.scss,uniform/core/**/*.scss
+alwaysApply: false
+---
+
+# Engine: config → IR → emitters
+
+`uniform/_index.scss` is a small compiler:
+
+1. Utility files register into `core.$utilities` (a flat registry).
+2. `tree-constructor` lowers config into an intermediate map of class entries
+   (`selector`, `grouped-selector`, `properties`, `category`, `parent`,
+   `pseudo`, `screen`).
+3. Emitters consume that IR for `css`, `json`, `headless`, and `apply()`.
+
+## Do not reintroduce @extend for comma-compression
+
+Compressed output uses the precomputed `grouped-selector` (base selector +
+all its pseudo selectors, comma-joined) built during construction. This
+replaced the old `@extend` pass and is ~40% faster. Emit one rule per base
+class; skip `category: pseudo` entries. Never add `@extend` back.
+
+## Always run snapshot tests after engine changes
+
+```sh
+npm test            # byte-exact diff of fixtures vs test/__snapshots__/
+npm run test:update # refresh snapshots after an INTENTIONAL output change
+```
+
+- For compressed output, byte order may legitimately change. Verify functional
+  equivalence with `node test/normalize.js <a.css> <b.css>` (expands comma
+  groups and compares selector→declaration sets) BEFORE updating snapshots.
+- `nocompress`, `json`, and `apply` fixtures must stay byte-identical unless
+  you intentionally changed those paths.

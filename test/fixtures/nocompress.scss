@@ -1,0 +1,9 @@
+// Comma-compression disabled (exercises the non-@extend emission path).
+@use '../../uniform' as * with (
+  $config: (
+    output: 'css',
+    important: false,
+    comma-compression: false,
+    css-variables: true,
+  )
+);

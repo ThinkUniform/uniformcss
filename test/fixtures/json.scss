@@ -1,0 +1,7 @@
+// JSON output mode (exercises the json-set branch + json-encode).
+@use '../../uniform' as * with (
+  $config: (
+    output: 'json',
+    css-variables: true,
+  )
+);

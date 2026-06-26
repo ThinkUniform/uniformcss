@@ -40,4 +40,4 @@ $config: (
   )
 );
 
-core.$all-config: map.deep-merge(core.$all-config, $config);
+core.$utilities: map.merge(core.$utilities, map.get($config, utilities));

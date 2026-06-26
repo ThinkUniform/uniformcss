@@ -1,0 +1,21 @@
+// Exercises the apply() mixin across base, pseudo, group, and responsive
+// utilities to lock in its behavior independent of the class generator.
+// apply() uses the configured pseudo-delimiter (`.`) and screen-delimiter (`.`).
+@use '../../uniform' as * with (
+  $config: (
+    output: 'headless',
+    css-variables: false,
+  )
+);
+
+.btn {
+  @include apply('p-4 color-white bg-blue-500 radius-md hover.bg-blue-600 focus.bg-blue-700');
+}
+
+.card {
+  @include apply('p-8 bg-white radius-lg sm.p-12');
+}
+
+.menu-item {
+  @include apply('color-gray-700 group-hover.color-blue-500');
+}

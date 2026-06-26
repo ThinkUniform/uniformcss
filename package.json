@@ -1,6 +1,6 @@
 {
   "name": "uniformcss",
-  "version": "1.5.4",
+  "version": "1.6.0",
   "description": "A fully configurable utility class generator and CSS framework built for Sass projects.",
   "main": "main.sass",
   "scripts": {
@@ -8,7 +8,9 @@
     "uniform:compressed": "sass --load-path=./node_modules/uniformcss --load-path=./ --load-path=./optional-sass-path --no-source-map main.scss dist/uniform.min.css --style compressed",
     "uniform:watch": "sass --load-path=./node_modules/uniformcss --load-path=./ --load-path=./optional-sass-path --no-source-map --watch main.scss dist/uniform.css",
     "uniform:watch-compressed": "sass --load-path=./node_modules/uniformcss --load-path=./ --load-path=./optional-sass-path --no-source-map --watch main.scss dist/uniform.min.css --style compressed",
-    "uniform:purge": "purgecss -c purgecss.config.js -o dist"
+    "uniform:purge": "purgecss -c purgecss.config.js -o dist",
+    "test": "bash test/run.sh test",
+    "test:update": "bash test/run.sh update"
   },
   "repository": {
     "type": "git",
